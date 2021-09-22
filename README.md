@@ -1,14 +1,8 @@
 # d_chart
 
-A new Flutter package project.
+D'Chart is a package for compact chart widgets. This package is a remake of the charts_flutter package. The remake chart types include bar, line, pie, donut and gauge. The use of this package is made as concise as possible, but with the best chart display.
 
-## Getting Started
+## Usage
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+1. Bar
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.

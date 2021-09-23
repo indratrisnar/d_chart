@@ -17,50 +17,153 @@ typedef PieLabel<String> = String Function(
 String _defaultBarValue(Map<String, dynamic> barData, int? index) => '';
 
 class DChart {
+  /// Widget Bar Chart
   static Widget bar({
+    /// [data] of chart. key for data map as String and value is dynamic
+    /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
     required List<Map<String, dynamic>> data,
+
+    /// [barColor] return color of bar. can be custom based on bar data
     required BarColor<Color> barColor,
+
+    /// [barValue] return template string for label on bar.
+    /// Default: _defaultBarValue
     BarValue<String> barValue = _defaultBarValue,
+
+    /// [barValueAnchor] return BarValueAnchor to position [barValue] inside bar
     BarValueAnchor? barValueAnchor,
+
+    /// [barValuePosition] return BarValuePosition to type position [barValue]
     BarValuePosition? barValuePosition,
-    int? barValueFontSize = 14,
+
+    /// [barValueFontSize] return fontSize for [barValue].
+    /// Default : 14
+    int barValueFontSize = 14,
+
+    /// [barValueColor] return color of [barValue]
     Color? barValueColor,
+
+    /// [showBarValue] if true, [barValue] will be shown
+    /// Default: false
     bool showBarValue = false,
+
+    /// [borderColor] return color for border bar
     Color? borderColor,
+
+    /// [borderWidth] return width of line border bar
     double? borderWidth,
+
+    /// [animate] BarChart will be animate when launch if true.
     bool? animate,
+
+    /// [animationDuration] return Duration of animation launch
     Duration? animationDuration,
+
+    /// [verticalDirection] if true, bar will raised to top or horizontally
+    /// Default: true
     bool verticalDirection = true,
+
+    /// [showMeasureLine] if true, measure line will be show
     bool? showMeasureLine,
+
+    /// [showDomainLine] if true, measure line will be show
     bool? showDomainLine,
+
+    /// [axisLineColor] return color of axis line
     Color? axisLineColor,
+
+    /// [axisLineTick] return thickness/width of axis line
     int? axisLineTick,
+
+    /// [axisLineTick] return thickness/width of point line
     int? axisLinePointTick,
+
+    /// [axisLinePointWidth] return length of point line
     int? axisLinePointWidth,
+
+    /// [domainLabelRotation] return rotation label at domain axis
     int? domainLabelRotation,
+
+    /// [domainLabelFontSize] return fontSize for label domain
     int? domainLabelFontSize,
+
+    /// [domainLabelColor] return color for label domain
     Color? domainLabelColor,
+
+    /// [domainLabelPaddingToTick] return padding between label & point line
     int? domainLabelPaddingToTick,
+
+    /// [domainLabelPaddingToAxisLine] return padding between label & axis line
     int? domainLabelPaddingToAxisLine,
+
+    /// [measureLabelRotation] return rotation label at measure axis
     int? measureLabelRotation,
+
+    /// [measureLabelFontSize] return fontSize for label measure
     int? measureLabelFontSize,
-    int? measureLabelPaddingToTick,
-    int? measureLabelPaddingToAxisLine,
+
+    /// [measureLabelColor] return color for label measure
     Color? measureLabelColor,
+
+    /// [measureLabelPaddingToTick] return padding between label & point line
+    int? measureLabelPaddingToTick,
+
+    /// [measureLabelPaddingToAxisLine] return padding between label & axis line
+    int? measureLabelPaddingToAxisLine,
+
+    /// [measureMin] return minimum value for measure
     int? measureMin,
+
+    /// [measureMin] return maximum value for measure
     int? measureMax,
+
+    /// [yAxisTitle] return title for y/vertical axis
     String? yAxisTitle,
+
+    /// [yAxisTitleColor] return color for title yAxis
+    /// Default: Colors.black
     Color yAxisTitleColor = Colors.black,
+
+    /// [yAxisTitleFontSize] return fontSize for title yAxis
+    /// Default: 14
     int yAxisTitleFontSize = 14,
+
+    /// [yAxisTitleInPadding] return padding between title and yAxis
+    /// Default: 8
     int yAxisTitleInPadding = 8,
+
+    /// [yAxisTitleOutPadding] return padding between title and out box / margin
+    /// Default: 0
     int yAxisTitleOutPadding = 0,
+
+    /// [yAxisTitlePosition] return TitlePositionY
+    /// Default: TitlePositionY.left
     TitlePositionY yAxisTitlePosition = TitlePositionY.left,
+
+    /// [xAxisTitle] return title for x/horizontal axis
     String? xAxisTitle,
+
+    /// [yAxisTitleColor] return color for title xAxis
+    /// Default: Colors.black
     Color xAxisTitleColor = Colors.black,
+
+    /// [xAxisTitleFontSize] return fontSize for title xAxis
+    /// Default: 14
     int xAxisTitleFontSize = 14,
+
+    /// [xAxisTitleInPadding] return padding between title and xAxis
+    /// Default: 8
     int xAxisTitleInPadding = 8,
+
+    /// [xAxisTitleOutPadding] return padding between title and out box / margin
+    /// Default: 0
     int xAxisTitleOutPadding = 0,
+
+    /// [xAxisTitlePosition] return TitlePositionX
+    /// Default: TitlePositionX.bottom
     TitlePositionX xAxisTitlePosition = TitlePositionX.bottom,
+
+    /// [minimumPaddingBetweenLabel] return padding between label
     int? minimumPaddingBetweenLabel,
   }) {
     axisLinePointTick = axisLinePointTick ?? axisLineTick;
@@ -173,15 +276,35 @@ class DChart {
     );
   }
 
+  /// retrun widget Line Chart
   static Widget line({
+    /// [data] of chart. key for data map as String and value is dynamic
+    /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
     required List<Map<String, dynamic>> data,
+
+    /// [lineColor] return color of line. can be custom based on line data
     required LineColor<Color> lineColor,
+    // [pointColor] return color of point at line
     LineColor<Color>? pointColor,
+
+    /// [areaColor] return color of area below line
     LineColor<Color>? areaColor,
+
+    /// [includeArea] if true will be show the area
+    /// Default: false
     bool includeArea = false,
+
+    /// [includePoints] if true will be show the points
+    /// Default: false
     bool includePoints = false,
+
+    /// [lineWidth] return width of each line
     double? lineWidth,
+
+    /// [animate] if true, line chart will be animated when widget chart launch
     bool? animate,
+
+    /// [animationDuration] return duration of animation
     Duration? animationDuration,
   }) {
     return _charts.LineChart(
@@ -217,21 +340,60 @@ class DChart {
   }
 
   static Widget pie({
+    /// [data] of chart. key for data map as String and value is dynamic
+    /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
     required List<Map<String, dynamic>> data,
+
+    /// [fillColor] return color of pie. can be custom based on pie data
     required PieColor fillColor,
+
+    /// [pieLabel] return PieLabel data. can be custom based on pie data
     PieLabel? pieLabel,
-    bool? animate,
-    Duration? animationDuration,
+
+    /// [labelPosition] return PieLabelPosition
+    /// Default: PieLabelPosition.auto
     PieLabelPosition labelPosition = PieLabelPosition.auto,
+
+    /// [labelFontSize] return fontSize of label
+    /// Default: 12
     int labelFontSize = 12,
+
+    /// [labelColor] return color of label
+    /// Default: Colors.black
     Color labelColor = Colors.black,
+
+    /// [showLabelLine] if true, will be show label line
+    /// Default: true
     bool showLabelLine = true,
+
+    /// [labelLineColor] return color of label line
+    /// Default: Colors.black
     Color labelLineColor = Colors.black,
+
+    /// [labelLinelength] return length of label line
+    /// Default: 16
     double labelLinelength = 16,
+
+    /// [labelLineThickness] return thickness of label line
+    /// Default: 1
     double labelLineThickness = 1,
+
+    /// [labelPadding] return padding of label
+    /// Default: 5
     int labelPadding = 5,
+
+    /// [donutWidth] return width of donut chart. if null will be return Pie Chart
     int? donutWidth,
+
+    /// [strokeWidth] return width of stroke/limit between part data in pie chart
+    /// Default: 2
     double strokeWidth = 2,
+
+    /// [animate] if true, line chart will be animated when widget chart launch
+    bool? animate,
+
+    /// [animationDuration] return duration of animation
+    Duration? animationDuration,
   }) {
     return _charts.PieChart(
       [
@@ -274,21 +436,60 @@ class DChart {
   }
 
   static Widget gauge({
+    /// [data] of chart. key for data map as String and value is dynamic
+    /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
     required List<Map<String, dynamic>> data,
+
+    /// [fillColor] return color of pie. can be custom based on pie data
     required PieColor fillColor,
+
+    /// [pieLabel] return PieLabel data. can be custom based on pie data
     PieLabel? pieLabel,
-    bool? animate,
-    Duration? animationDuration,
+
+    /// [labelPosition] return PieLabelPosition
+    /// Default: PieLabelPosition.auto
     PieLabelPosition labelPosition = PieLabelPosition.auto,
+
+    /// [labelFontSize] return fontSize of label
+    /// Default: 12
     int labelFontSize = 12,
+
+    /// [labelColor] return color of label
+    /// Default: Colors.black
     Color labelColor = Colors.black,
+
+    /// [showLabelLine] if true, will be show label line
+    /// Default: true
     bool showLabelLine = true,
+
+    /// [labelLineColor] return color of label line
+    /// Default: Colors.black
     Color labelLineColor = Colors.black,
+
+    /// [labelLinelength] return length of label line
+    /// Default: 16
     double labelLinelength = 16,
+
+    /// [labelLineThickness] return thickness of label line
+    /// Default: 1
     double labelLineThickness = 1,
+
+    /// [labelPadding] return padding of label
+    /// Default: 5
     int labelPadding = 5,
+
+    /// [donutWidth] return width of donut chart. if null will be return Pie Chart
     int? donutWidth,
+
+    /// [strokeWidth] return width of stroke/limit between part data in pie chart
+    /// Default: 2
     double strokeWidth = 2,
+
+    /// [animate] if true, line chart will be animated when widget chart launch
+    bool? animate,
+
+    /// [animationDuration] return duration of animation
+    Duration? animationDuration,
   }) {
     return _charts.PieChart(
       [

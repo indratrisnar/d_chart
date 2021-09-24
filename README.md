@@ -11,7 +11,7 @@ D'Chart is a package for compact chart widgets. This package is a remake of the 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar3.jpg" alt="dchart_bar3" height="540">
 
 ```dart
-DChart.bar(
+DChartBar(
     data: [
         {
             'id': 'Bar',
@@ -41,7 +41,7 @@ DChart.bar(
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
 
 ```dart
-DChart.line(
+DChartLine(
     data: [
         {
             'id': 'Line',
@@ -64,7 +64,7 @@ DChart.line(
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
 
 ```dart
-DChart.pie(
+DChartPie(
     data: [
         {'domain': 'Flutter', 'measure': 28},
         {'domain': 'React Native', 'measure': 27},
@@ -93,7 +93,7 @@ DChart.pie(
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
 
 ```dart
-DChart.gauge(
+DChartGauge(
     data: [
         {'domain': 'Off', 'measure': 30},
         {'domain': 'Warm', 'measure': 30},

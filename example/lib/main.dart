@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.bar(
+                child: DChartBar(
                   data: [
                     {
                       'id': 'Bar',
@@ -59,7 +59,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.bar(
+                child: DChartBar(
                   data: [
                     {
                       'id': 'Bar',
@@ -83,7 +83,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.bar(
+                child: DChartBar(
                   data: [
                     {
                       'id': 'Bar',
@@ -114,7 +114,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.bar(
+                child: DChartBar(
                   data: [
                     {
                       'id': 'Bar',
@@ -151,7 +151,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.bar(
+                child: DChartBar(
                   data: [
                     {
                       'id': 'Bar 1',
@@ -214,7 +214,7 @@ class Home extends StatelessWidget {
                       children: [
                         AspectRatio(
                           aspectRatio: 16 / 9,
-                          child: DChart.bar(
+                          child: DChartBar(
                             data: [
                               {
                                 'id': 'Bar 1',
@@ -288,7 +288,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.line(
+                child: DChartLine(
                   data: [
                     {
                       'id': 'Line',
@@ -308,7 +308,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.line(
+                child: DChartLine(
                   data: [
                     {
                       'id': 'Line',
@@ -336,7 +336,7 @@ class Home extends StatelessWidget {
                       children: [
                         AspectRatio(
                           aspectRatio: 16 / 9,
-                          child: DChart.line(
+                          child: DChartLine(
                             lineColor: (lineData, index, id) {
                               return id == 'Line 1'
                                   ? Colors.blue
@@ -378,7 +378,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.line(
+                child: DChartLine(
                   lineColor: (lineData, index, id) {
                     return id == 'Line 1'
                         ? Colors.blue
@@ -438,7 +438,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.pie(
+                child: DChartPie(
                   data: [
                     {'domain': 'Flutter', 'measure': 28},
                     {'domain': 'React Native', 'measure': 27},
@@ -453,7 +453,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.pie(
+                child: DChartPie(
                   data: [
                     {'domain': 'Flutter', 'measure': 28},
                     {'domain': 'React Native', 'measure': 27},
@@ -483,7 +483,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.pie(
+                child: DChartPie(
                   data: [
                     {'domain': 'Flutter', 'measure': 28},
                     {'domain': 'React Native', 'measure': 27},
@@ -516,7 +516,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.pie(
+                child: DChartPie(
                   data: [
                     {'domain': 'Flutter', 'measure': 28},
                     {'domain': 'React Native', 'measure': 27},
@@ -551,7 +551,7 @@ class Home extends StatelessWidget {
                 aspectRatio: 16 / 9,
                 child: Stack(
                   children: [
-                    DChart.pie(
+                    DChartPie(
                       data: [
                         {'domain': 'Flutter', 'measure': 28},
                         {'domain': 'React Native', 'measure': 27},
@@ -571,7 +571,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.pie(
+                child: DChartPie(
                   data: [
                     {'domain': 'Flutter', 'measure': 28},
                     {'domain': 'React Native', 'measure': 27},
@@ -606,7 +606,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.gauge(
+                child: DChartGauge(
                   data: [
                     {'domain': 'Flutter', 'measure': 28},
                     {'domain': 'React Native', 'measure': 27},
@@ -621,7 +621,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(16),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: DChart.gauge(
+                child: DChartGauge(
                   data: [
                     {'domain': 'Off', 'measure': 30},
                     {'domain': 'Warm', 'measure': 30},
@@ -653,7 +653,7 @@ class Home extends StatelessWidget {
                 aspectRatio: 16 / 9,
                 child: Stack(
                   children: [
-                    DChart.gauge(
+                    DChartGauge(
                       data: [
                         {'domain': 'OFF', 'measure': 1},
                         {'domain': 'N', 'measure': 1},

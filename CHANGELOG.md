@@ -1,3 +1,13 @@
+## 0.0.2
+
+Change call widget.
+
+Before -> call via method
+example: DChart.bar()
+
+After -> call via class
+example: DChartBar
+
 ## 0.0.1
 
 Chart Type :

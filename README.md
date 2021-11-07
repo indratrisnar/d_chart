@@ -74,7 +74,7 @@ DChartPie(
     fillColor: (pieData, index) => Colors.purple,
 ),
 
-DChart.pie(
+DChartPie(
     data: [
         {'domain': 'Flutter', 'measure': 28},
         {'domain': 'React Native', 'measure': 27},

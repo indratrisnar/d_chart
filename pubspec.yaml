@@ -1,6 +1,6 @@
 name: d_chart
 description: D'Chart is a package for compact chart widgets. The remake chart types include bar, line, pie, donut and gauge.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/indratrisnar/d_chart
 
 environment:

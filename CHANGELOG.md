@@ -1,3 +1,7 @@
+## 0.1.0
+
+add new view for custom bar, DChartBarCustom
+
 ## 0.0.4
 
 Add Youtube Tutorial.

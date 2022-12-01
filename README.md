@@ -2,12 +2,13 @@
 
 D'Chart is a package for compact chart widgets.\
 The purpose of this pakage is simple way to use chart from [community_charts_flutter](https://pub.dev/packages/community_charts_flutter).\
-Chart Available from community_charts_flutter:\
-- bar\
-- line\
-- pie\
-- donut\
-- gauge\
+Chart Available from community_charts_flutter:
+- bar
+- line
+- pie
+- donut
+- gauge
+
 The use of this package is made as concise as possible.
 
 ## Usage

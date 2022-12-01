@@ -1,8 +1,7 @@
 library d_chart;
 
-import 'dart:math' as math;
-
-import 'package:charts_flutter/flutter.dart' as _charts;
+import 'package:community_charts_flutter/community_charts_flutter.dart'
+    as _charts;
 import 'package:flutter/material.dart';
 
 /// [TitlePositionX] how to position title x axis

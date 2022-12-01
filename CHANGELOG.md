@@ -1,3 +1,9 @@
+## 1.0.0
+
+migrate source from 'charts_flutter' to 'community_charts_flutter'\
+how to use package: nothing different
+Fix issue => Warning: Operand of null-aware operation '!' has type 'SchedulerBinding' which excludes null.
+
 ## 0.1.0
 
 add new view for custom bar, DChartBarCustom

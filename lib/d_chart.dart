@@ -1103,9 +1103,9 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                     children: [
                       ...List.generate(widget.listData.length, (index) {
                         DChartBarDataCustom item = widget.listData[index];
+                        double height =
+                            (item.value / max) * constraintsChart.maxHeight;
                         return SizedBox(
-                          height:
-                              (item.value / max) * constraintsChart.maxHeight,
                           width: (constraintsChart.maxWidth /
                                   widget.listData.length) -
                               (widget.spaceBetweenItem ??
@@ -1114,31 +1114,45 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                                       0.1)),
                           child: Stack(
                             children: [
-                              _DChartBarItemValueView(
-                                barDataCustom: item,
-                                valuePadding: widget.valuePadding,
-                                valueAlign: widget.valueAlign,
-                                radiusBar: widget.radiusBar,
-                                verticalOffsetTooltip: (((item.value / max) *
-                                            constraintsChart.maxHeight) *
-                                        0.5) +
-                                    4,
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: SizedBox(
+                                  height: height,
+                                  child: _DChartBarItemValueView(
+                                    barDataCustom: item,
+                                    valuePadding: widget.valuePadding,
+                                    valueAlign: widget.valueAlign,
+                                    radiusBar: widget.radiusBar,
+                                    verticalOffsetTooltip: (((item.value /
+                                                    max) *
+                                                constraintsChart.maxHeight) *
+                                            0.5) +
+                                        4,
+                                  ),
+                                ),
                               ),
                               if (widget.showDomainLabel ?? false)
-                                Transform.translate(
-                                  offset: Offset(
-                                    0,
-                                    15 +
-                                        (widget.spaceDomainLabeltoChart ?? 5) +
-                                        ((widget.showDomainLine ?? false)
-                                            ? (widget.domainLineStyle == null
-                                                ? 0
-                                                : widget.domainLineStyle!.width)
-                                            : 0) +
-                                        (widget.spaceDomainLinetoChart ?? 0),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.bottomCenter,
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Transform.translate(
+                                    offset: Offset(
+                                      0,
+                                      height == 0
+                                          ? 20
+                                          : 0 +
+                                              15 +
+                                              (widget.spaceDomainLabeltoChart ??
+                                                  5) +
+                                              ((widget.showDomainLine ?? false)
+                                                  ? (widget.domainLineStyle ==
+                                                          null
+                                                      ? 0
+                                                      : widget.domainLineStyle!
+                                                          .width)
+                                                  : 0) +
+                                              (widget.spaceDomainLinetoChart ??
+                                                  0),
+                                    ),
                                     child: item.labelCustom ??
                                         Text(
                                           item.label,

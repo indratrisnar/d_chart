@@ -1,3 +1,9 @@
+## 1.0.1
+
+fix bug on DChartBarCustom
+
+- when value is null, label domain is gone (Fixed)
+
 ## 1.0.0
 
 migrate source from 'charts_flutter' to 'community_charts_flutter'\
@@ -29,6 +35,7 @@ example: DChartBar
 ## 0.0.1
 
 Chart Type :
+
 - Chart Bar (Simple, Horizontal, Vertical & Custom)
 - Chart Line (Simple, Point, Area & Custom)
 - Chart Pie (Simple, Donut & Custom)

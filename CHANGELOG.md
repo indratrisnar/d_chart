@@ -1,3 +1,7 @@
+## 1.0.2
+
+- add tutor link for DChartBarCustom
+
 ## 1.0.1
 
 fix bug on DChartBarCustom

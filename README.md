@@ -3,6 +3,7 @@
 D'Chart is a package for compact chart widgets.\
 The purpose of this pakage is simple way to use chart from [community_charts_flutter](https://pub.dev/packages/community_charts_flutter).\
 Chart Available from community_charts_flutter:
+
 - bar
 - line
 - pie
@@ -44,6 +45,7 @@ DChartBar(
     showBarValue: true,
 ),
 ```
+
 <hr>
 
 2. Line
@@ -67,6 +69,7 @@ DChartLine(
     lineColor: (lineData, index, id) => Colors.amber,
 ),
 ```
+
 <hr>
 
 3. Pie & Donut
@@ -97,6 +100,7 @@ DChartPie(
     labelColor: Colors.white,
 ),
 ```
+
 <hr>
 
 4. Gauge
@@ -129,6 +133,7 @@ DChartGauge(
     labelColor: Colors.white,
 ),
 ```
+
 <hr>
 
 5. Bar Custom
@@ -266,12 +271,13 @@ DChartBarCustom(
     }),
 ),
 ```
+
 <hr>
 
 Tutorial :
-[All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2), 
-[Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7), 
-[Bar Chart Custom] (Soon)
+[All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)\
+[Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)\
+[Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)\
 
 Support me for more feature & packages
 [Donate](https://www.paypal.com/paypalme/indratrisnar)

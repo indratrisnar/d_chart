@@ -32,7 +32,7 @@ SizedBox(
   - [Bar Custom](#bar-custom-image)
   - [Time](#time-image)
 - Example
-  - 1. [Bar](#bar) [Table](#table-of-content)
+  - 1. [Bar](#bar)
   - 2. [Line](#line)
   - 3. [Pie](#pie)
   - 4. [Donut](#donut)
@@ -51,11 +51,15 @@ SizedBox(
   - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)\
 - [Other](#other)
 
-## Bar Image
+<br>
+
+## Bar Image [Table](#table-of-content)
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar1.jpg" alt="dchart_bar1" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar2.jpg" alt="dchart_bar2" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar3.jpg" alt="dchart_bar3" height="540">
+
+<br>
 
 ## Line Image
 

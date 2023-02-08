@@ -23,7 +23,7 @@ SizedBox(
 
 # Table of Content
 
-1. [Bar](#bar)\
+1. [Bar](#bar)
    - [Image](#bar-image)
    - [Example](#bar-example)
 2. [Line](#line)
@@ -58,9 +58,11 @@ SizedBox(
 
 ### Bar Image
 
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar1.jpg" alt="dchart_bar1" height="540">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar2.jpg" alt="dchart_bar2" height="540">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar3.jpg" alt="dchart_bar3" height="540">
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar1.jpg" alt="dchart_bar1" height="540">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar2.jpg" alt="dchart_bar2" height="540">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar3.jpg" alt="dchart_bar3" height="540">
+</p>
 
 ### Bar Example
 

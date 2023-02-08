@@ -1,26 +1,89 @@
 # d_chart
 
-D'Chart is a package for compact chart widgets.\
+D'Chart is the development of an existing package chart, namely **community_charts_flutter**.\
 The purpose of this pakage is simple way to use chart from [community_charts_flutter](https://pub.dev/packages/community_charts_flutter).\
-Chart Available from community_charts_flutter:
 
-- bar
-- line
-- pie
-- donut
-- gauge
+# Usage
 
-The use of this package is made as concise as possible.
+- Wrap Chart with Widget Size like SizedBox, Container, Aspecration etc to set root size for chart
+- Example
 
-## Usage
+```dart
+AspectRation(
+    aspectRatio: 16/9,
+    child: DChartTime(),
+),
 
-Wrap Chart with Widget Size like SizedBox, Container, Aspecration etc to set root size for chart
+SizedBox(
+    width: 240,
+    height: 200,
+    child: DChartTime(),
+),
+```
 
-1. Bar
+# Table of Content
+
+- Image
+  - [Bar](#bar-image)
+  - [Line](#line-image)
+  - [Pie](#pie-image)
+  - [Donut](#donut-image)
+  - [Gauge](#gauge-image)
+  - [Bar Custom](#bar-custom-image)
+  - [Time](#time-image)
+- Example
+  - 1. [Bar](#bar) [Table](#table-of-content)
+  - 2. [Line](#line)
+  - 3. [Pie](#pie)
+  - 4. [Donut](#donut)
+  - 5. [Gauge](#gauge)
+  - 6. [Bar Custom](#bar-custom)
+  - 7. [Time](#time)
+- Render Chart
+  - Time
+    - 1. [Line](#)
+    - 2. [Bar](#)
+    - 3. [Target Line](#)
+    - 4. [Point](#)
+- Tutorial
+  - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)\
+  - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)\
+  - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)\
+- [Other](#other)
+
+## Bar Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar1.jpg" alt="dchart_bar1" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar2.jpg" alt="dchart_bar2" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar3.jpg" alt="dchart_bar3" height="540">
+
+## Line Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
+
+## Pie Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie1.jpg" alt="dchart_pie1" height="540">
+
+## Donut Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
+
+## Gauge Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
+
+## Bar Custom Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
+
+## Time Image
+
+(soon)
+
+## Bar
 
 ```dart
 DChartBar(
@@ -48,10 +111,7 @@ DChartBar(
 
 <hr>
 
-2. Line
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
+## Line
 
 ```dart
 DChartLine(
@@ -70,12 +130,7 @@ DChartLine(
 ),
 ```
 
-<hr>
-
-3. Pie & Donut
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie1.jpg" alt="dchart_pie1" height="540">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
+## Pie
 
 ```dart
 DChartPie(
@@ -87,7 +142,11 @@ DChartPie(
     ],
     fillColor: (pieData, index) => Colors.purple,
 ),
+```
 
+## Donut
+
+```dart
 DChartPie(
     data: [
         {'domain': 'Flutter', 'measure': 28},
@@ -101,11 +160,7 @@ DChartPie(
 ),
 ```
 
-<hr>
-
-4. Gauge
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
+## Gauge
 
 ```dart
 DChartGauge(
@@ -134,16 +189,12 @@ DChartGauge(
 ),
 ```
 
-<hr>
+## Bar Custom
 
-5. Bar Custom
-
-for chart size, wrap with box widget or which widget have size
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
+this is not depend on **community_charts_flutter**
 
 ```dart
+// example 1
 AspectRatio(
     aspectRatio: 16 / 9,
     child: DChartBarCustom(
@@ -166,7 +217,7 @@ AspectRatio(
     ),
 ),
 
-
+// example 2
 List ranking = [
     {'class': 'A', 'total': 23},
     {'class': 'B', 'total': 14},
@@ -272,12 +323,11 @@ DChartBarCustom(
 ),
 ```
 
-<hr>
+## Time
 
-Tutorial :
-[All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)\
-[Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)\
-[Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)\
+example under maintenance
+
+# Other
 
 Support me for more feature & packages
 [Donate](https://www.paypal.com/paypalme/indratrisnar)

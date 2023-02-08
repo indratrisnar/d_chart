@@ -96,8 +96,10 @@ DChartBar(
 
 ### Line Image
 
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
+</p>
 
 ### Line Example
 
@@ -124,7 +126,9 @@ DChartLine(
 
 ### Pie Image
 
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie1.jpg" alt="dchart_pie1" height="540">
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie1.jpg" alt="dchart_pie1" height="540">
+</p>
 
 ### Pie Example
 
@@ -146,7 +150,9 @@ DChartPie(
 
 ### Donut Image
 
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
+</p>
 
 ### Donut Example
 
@@ -170,7 +176,9 @@ DChartPie(
 
 ### Gauge Image
 
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
+</p>
 
 ### Gauge Example
 
@@ -209,8 +217,10 @@ this is not depend on **community_charts_flutter**
 
 ### Bar Custom Image
 
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
+</p>
 
 ### Bar Custom Example
 

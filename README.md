@@ -1,7 +1,7 @@
 # d_chart
 
 D'Chart is the development of an existing package chart, namely **community_charts_flutter**.\
-The purpose of this pakage is simple way to use chart from [community_charts_flutter](https://pub.dev/packages/community_charts_flutter).\
+The purpose of this pakage is simple way to use chart from [community_charts_flutter](https://pub.dev/packages/community_charts_flutter).
 
 # Usage
 
@@ -370,3 +370,4 @@ Support me for more feature & packages
 Check my app : [Visit](https://indratrisnar.github.io/projects.html){target="\_blank"}
 
 Check My Tutorial & Course : [Watch](https://www.youtube.com/channel/UC0d_xINEvCtlDCpWfBpnYpA){target="\_blank"}
+<a href="https://www.youtube.com/channel/UC0d_xINEvCtlDCpWfBpnYpA" target="_blank">Watch</a>

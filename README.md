@@ -32,19 +32,19 @@ SizedBox(
   - [Bar Custom](#bar-custom-image)
   - [Time](#time-image)
 - Example
-  - 1. [Bar](#bar)
-  - 2. [Line](#line)
-  - 3. [Pie](#pie)
-  - 4. [Donut](#donut)
-  - 5. [Gauge](#gauge)
-  - 6. [Bar Custom](#bar-custom)
-  - 7. [Time](#time)
+  1. [Bar](#bar)
+  2. [Line](#line)
+  3. [Pie](#pie)
+  4. [Donut](#donut)
+  5. [Gauge](#gauge)
+  6. [Bar Custom](#bar-custom)
+  7. [Time](#time)
 - Render Chart
   - Time
-    - 1. [Line](#)
-    - 2. [Bar](#)
-    - 3. [Target Line](#)
-    - 4. [Point](#)
+    - [Line](#)
+    - [Bar](#)
+    - [Target Line](#)
+    - [Point](#)
 - Tutorial
   - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)\
   - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)\
@@ -53,7 +53,7 @@ SizedBox(
 
 <br>
 
-## Bar Image [Table](#table-of-content)
+## Bar Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar1.jpg" alt="dchart_bar1" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar2.jpg" alt="dchart_bar2" height="540">
@@ -61,7 +61,7 @@ SizedBox(
 
 <br>
 
-## Line Image [Table](#table-of-content)
+## Line Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
@@ -74,32 +74,32 @@ SizedBox(
 
 <br>
 
-## Donut Image [Table](#table-of-content)
+## Donut Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
 
 <br>
 
-## Gauge Image [Table](#table-of-content)
+## Gauge Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
 
 <br>
 
-## Bar Custom Image [Table](#table-of-content)
+## Bar Custom Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
 
 <br>
 
-## Time Image [Table](#table-of-content)
+## Time Image
 
 (soon)
 
 <br>
 
-## Bar [Table](#table-of-content)
+## Bar
 
 ```dart
 DChartBar(
@@ -127,7 +127,7 @@ DChartBar(
 
 <br>
 
-## Line [Table](#table-of-content)
+## Line
 
 ```dart
 DChartLine(
@@ -148,7 +148,7 @@ DChartLine(
 
 <br>
 
-## Pie [Table](#table-of-content)
+## Pie
 
 ```dart
 DChartPie(
@@ -164,7 +164,7 @@ DChartPie(
 
 <br>
 
-## Donut [Table](#table-of-content)
+## Donut
 
 ```dart
 DChartPie(
@@ -182,7 +182,7 @@ DChartPie(
 
 <br>
 
-## Gauge [Table](#table-of-content)
+## Gauge
 
 ```dart
 DChartGauge(
@@ -213,7 +213,7 @@ DChartGauge(
 
 <br>
 
-## Bar Custom [Table](#table-of-content)
+## Bar Custom
 
 this is not depend on **community_charts_flutter**
 
@@ -349,17 +349,17 @@ DChartBarCustom(
 
 <br>
 
-## Time [Table](#table-of-content)
+## Time
 
 example under maintenance
 
 <br>
 
-# Other [Table](#table-of-content)
+# Other
 
 Support me for more feature & packages
-[Donate](https://www.paypal.com/paypalme/indratrisnar)
+[Donate](https://www.paypal.com/paypalme/indratrisnar){:target="\_blank" rel="noopener"}
 
-Check my app : [Visit](https://indratrisnar.github.io/projects.html)
+Check my app : [Visit](https://indratrisnar.github.io/projects.html){:target="\_blank" rel="noopener"}
 
-Check My Tutorial & Course : [Watch](https://www.youtube.com/channel/UC0d_xINEvCtlDCpWfBpnYpA)
+Check My Tutorial & Course : [Watch](https://www.youtube.com/channel/UC0d_xINEvCtlDCpWfBpnYpA){:target="\_blank" rel="noopener"}

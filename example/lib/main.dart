@@ -803,3 +803,258 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+/// call this to test example [DChartTime]
+class DChartTimeExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('DChart Time Example')),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          AspectRatio(
+            aspectRatio: 3,
+            child: DChartTime(
+              fillColor: (group, data, index) => Colors.transparent,
+              measureLabel: (value) => '${value}k',
+              // use format intl package to custom view datetime string
+              // domainLabel: (dateTime) =>
+              //     DateFormat('d MMM yy').format(dateTime!),
+              domainLabelStyle: const TextStyle(color: Colors.purple),
+              domainLineColor: Colors.grey[800],
+              chartRender: DRenderPoint(),
+              groupData: [
+                DChartTimeGroup(
+                  groupId: 'Keyboard',
+                  groupColor: Colors.blue,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
+                    DChartTimeData(time: DateTime(2023, 2, 2), value: 73),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 23),
+                    DChartTimeData(time: DateTime(2023, 2, 8), value: 56),
+                    DChartTimeData(time: DateTime(2023, 2, 9), value: 32),
+                    DChartTimeData(time: DateTime(2023, 2, 10), value: 21),
+                    DChartTimeData(time: DateTime(2023, 2, 12), value: 76),
+                    DChartTimeData(time: DateTime(2023, 2, 18), value: 91),
+                    DChartTimeData(time: DateTime(2023, 2, 20), value: 17),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 30),
+          AspectRatio(
+            aspectRatio: 3,
+            child: DChartTime(
+              chartRender: DRenderTargetLine(),
+              groupData: [
+                DChartTimeGroup(
+                  groupId: 'Keyboard',
+                  groupColor: Colors.blue,
+                  data: [
+                    DChartTimeData(
+                        time: DateTime(2023, 2, 1), value: 29, x: 'k'),
+                    DChartTimeData(
+                        time: DateTime(2023, 2, 2), value: 73, x: 'm'),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 54),
+                  ],
+                ),
+                DChartTimeGroup(
+                  groupId: 'Monitor',
+                  groupColor: Colors.amber,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
+                    DChartTimeData(time: DateTime(2023, 2, 2), value: 30),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 50),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 30),
+          AspectRatio(
+            aspectRatio: 3,
+            child: DChartTime(
+              chartRender: DRenderBar(
+                // borderWidth: 10,
+                barRadius: 8,
+                labelSpace: 10,
+                insideLabelStyle: const TextStyle(color: Colors.yellow),
+                outsideLabelStyle: const TextStyle(color: Colors.purple),
+                labelAlign: RBLabelAlign.end,
+              ),
+              // customLabelValue: (group, data, index) {
+              //   String unit =
+              //       data.x != null && data.x is String ? data.x.toString() : '';
+              //   return '${DateFormat('d MMM').format(data.time)} :\n${data.value}$unit';
+              // },
+              groupData: [
+                DChartTimeGroup(
+                  groupId: 'Keyboard',
+                  groupColor: Colors.blue,
+                  data: [
+                    DChartTimeData(
+                        time: DateTime(2023, 2, 1), value: 29, x: 'k'),
+                    DChartTimeData(
+                        time: DateTime(2023, 2, 3, 5), value: 73, x: 'm'),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 54),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 30),
+          AspectRatio(
+            aspectRatio: 3,
+            child: DChartTime(
+              chartRender: DRenderBar(
+                // borderWidth: 10,
+                barRadius: 16,
+                labelSpace: 10,
+                groupType: RBGroupType.stacked,
+              ),
+              groupData: [
+                DChartTimeGroup(
+                  groupId: 'Keyboard',
+                  groupColor: Colors.blue,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
+                    DChartTimeData(time: DateTime(2023, 2, 3, 5), value: 73),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 54),
+                  ],
+                ),
+                DChartTimeGroup(
+                  groupId: 'Monitor',
+                  groupColor: Colors.amber,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
+                    DChartTimeData(time: DateTime(2023, 2, 1, 5), value: 30),
+                    DChartTimeData(time: DateTime(2023, 2, 3), value: 50),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 30),
+          AspectRatio(
+            aspectRatio: 3,
+            child: DChartTime(
+              chartRender: DRenderLine(
+                showArea: true,
+                showPoint: true,
+                strokeWidth: 1.5,
+                pointSize: 5,
+              ),
+              groupData: [
+                DChartTimeGroup(
+                  groupId: 'Keyboard',
+                  groupColor: Colors.blue,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
+                    DChartTimeData(time: DateTime(2023, 2, 3, 5), value: 73),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 54),
+                  ],
+                ),
+                DChartTimeGroup(
+                  groupId: 'Monitor',
+                  groupColor: Colors.purple,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
+                    DChartTimeData(time: DateTime(2023, 2, 1, 5), value: 30),
+                    DChartTimeData(time: DateTime(2023, 2, 3), value: 50),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 30),
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: DChartTime(
+              showLegend: true,
+              legendJustify: DJustify.end,
+              legendPosition: DBehaviorPosition.top,
+              legendMaxColumn: 3,
+              legendHorizontally: true,
+              legendMeasure: (value) {
+                if (value == null) return '-';
+                return value.toString();
+              },
+
+              // legendTitle: (group) => group.groupId,
+              startDate: DateTime(2023, 1, 30),
+              endDate: DateTime(2023, 2, 6),
+              startFromZero: false,
+              title: 'Title Chart',
+              subtitle: 'subtitle',
+              measureLineColor: Colors.purple,
+              measureLineThickness: 1,
+              measureLabelStyle: const TextStyle(
+                color: Colors.green,
+                fontSize: 11,
+              ),
+              domainLineColor: Colors.pink,
+              domainLineThickness: 1,
+              domainLabelStyle: const TextStyle(
+                color: Colors.green,
+                fontSize: 14,
+              ),
+              titleJustify: DJustify.startDrawArea,
+              titlePosition: DBehaviorPosition.top,
+              innerPadding: 20,
+              outerPadding: 0,
+              changedListener: (groupId, data) {
+                // from package d_method to check on console
+                // DMethod.printTitle(
+                //   '$groupId : ${data.time.toIso8601String()}',
+                //   data.value.toString(),
+                // );
+              },
+              titleStyle: const TextStyle(
+                color: Colors.blue,
+                fontSize: 16,
+                height: 1,
+              ),
+              subtitleStyle: const TextStyle(
+                color: Colors.purple,
+                fontSize: 12,
+                height: 1,
+              ),
+              titlePadding: 4,
+              groupData: [
+                DChartTimeGroup(
+                  groupId: 'Keyboard',
+                  groupColor: Colors.blue,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
+                    DChartTimeData(time: DateTime(2023, 2, 3, 5), value: 73),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 54),
+                  ],
+                ),
+                DChartTimeGroup(
+                  groupId: 'Monitor',
+                  groupColor: Colors.amber,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
+                    DChartTimeData(time: DateTime(2023, 2, 1, 5), value: 30),
+                    DChartTimeData(time: DateTime(2023, 2, 3), value: 24),
+                  ],
+                ),
+                DChartTimeGroup(
+                  groupId: 'Speaker',
+                  groupColor: Colors.green,
+                  data: [
+                    DChartTimeData(time: DateTime(2023, 2, 1), value: 2),
+                    DChartTimeData(time: DateTime(2023, 2, 2, 5), value: 8),
+                    DChartTimeData(time: DateTime(2023, 2, 4), value: 30),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

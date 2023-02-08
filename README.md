@@ -23,7 +23,7 @@ SizedBox(
 
 # Table of Content
 
-- Image
+- [Image](#image)
   - [Bar](#bar-image)
   - [Line](#line-image)
   - [Pie](#pie-image)
@@ -31,7 +31,7 @@ SizedBox(
   - [Gauge](#gauge-image)
   - [Bar Custom](#bar-custom-image)
   - [Time](#time-image)
-- Example
+- [Example](#example)
   1. [Bar](#bar)
   2. [Line](#line)
   3. [Pie](#pie)
@@ -39,12 +39,12 @@ SizedBox(
   5. [Gauge](#gauge)
   6. [Bar Custom](#bar-custom)
   7. [Time](#time)
-- Render Chart
-  - Time
-    - [Line](#)
-    - [Bar](#)
-    - [Target Line](#)
-    - [Point](#)
+- [Render Chart]()
+  - [Time]()
+    - [Line]()
+    - [Bar]()
+    - [Target Line]()
+    - [Point]()
 - Tutorial
   - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)\
   - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)\
@@ -52,6 +52,8 @@ SizedBox(
 - [Other](#other)
 
 <br>
+
+# Image
 
 ## Bar Image
 
@@ -98,6 +100,8 @@ SizedBox(
 (soon)
 
 <br>
+
+# Example
 
 ## Bar
 

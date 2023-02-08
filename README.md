@@ -23,45 +23,32 @@ SizedBox(
 
 # Table of Content
 
-1. [Bar](#bar)
-
-- [Image](#bar-image)
-- [Example](#bar-example)
-
+1. [Bar](#bar)\
+   - [Image](#bar-image)
+   - [Example](#bar-example)
 2. [Line](#line)
-
    - [Image](#line-image)
    - [Example](#line-example)
    - Tutorial
      - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)
-
 3. [Pie](#pie)
    - [Image](#pie-image)
    - [Example](#pie-example)
 4. [Donut](#donut)
-
    - [Image](#donut-image)
    - [Example](#donut-example)
-
 5. [Gauge](#gauge)
-
    - [Image](#gauge-image)
    - [Example](#gauge-example)
-
 6. [Bar Custom](#bar-custom)
-
    - [Image](#bar-custom-image)
    - [Example](#bar-custom-example)
    - Tutorial
      - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)
-
 7. [Time](#time)
-
    - [Image]()
    - [Example]()
-
 8. [Other](#other)
-
 9. Universal Tutorial
    - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 

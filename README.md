@@ -23,87 +23,59 @@ SizedBox(
 
 # Table of Content
 
-- [Image](#image)
-  - [Bar](#bar-image)
-  - [Line](#line-image)
-  - [Pie](#pie-image)
-  - [Donut](#donut-image)
-  - [Gauge](#gauge-image)
-  - [Bar Custom](#bar-custom-image)
-  - [Time](#time-image)
-- [Example](#example)
-  1. [Bar](#bar)
-  2. [Line](#line)
-  3. [Pie](#pie)
-  4. [Donut](#donut)
-  5. [Gauge](#gauge)
-  6. [Bar Custom](#bar-custom)
-  7. [Time](#time)
-- [Render Chart]()
-  - [Time]()
-    - [Line]()
-    - [Bar]()
-    - [Target Line]()
-    - [Point]()
-- Tutorial
-  - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)\
-  - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)\
-  - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)\
-- [Other](#other)
+1. [Bar](#bar)
+
+   - [Image](#bar-image)
+   - [Example](#bar-example)
+
+2. [Line](#line)
+
+   - [Image](#line-image)
+   - [Example](#line-example)
+   - [Tutorial]
+     - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)
+
+3. [Pie](#pie)
+   - [Image](#pie-image)
+   - [Example](#pie-example)
+4. [Donut](#donut)
+
+   - [Image](#donut-image)
+   - [Example](#donut-example)
+
+5. [Gauge](#gauge)
+
+   - [Image](#gauge-image)
+   - [Example](#gauge-example)
+
+6. [Bar Custom](#bar-custom)
+
+   - [Image](#bar-custom-image)
+   - [Example](#bar-custom-example)
+   - [Tutorial]
+     - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)
+
+7. [Time](#time)
+
+   - [Image]()
+   - [Example]()
+
+8. [Other](#other)
+
+9. Universal Tutorial
+   - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 
 <br>
 
-# Image
+## Bar
 
-## Bar Image
+### Bar Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar1.jpg" alt="dchart_bar1" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar2.jpg" alt="dchart_bar2" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar3.jpg" alt="dchart_bar3" height="540">
 
-<br>
-
-## Line Image
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
-
-<br>
-
-## Pie Image
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie1.jpg" alt="dchart_pie1" height="540">
-
-<br>
-
-## Donut Image
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
-
-<br>
-
-## Gauge Image
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
-
-<br>
-
-## Bar Custom Image
-
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
-<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
-
-<br>
-
-## Time Image
-
-(soon)
-
-<br>
-
-# Example
-
-## Bar
+### Bar Example
 
 ```dart
 DChartBar(
@@ -133,6 +105,13 @@ DChartBar(
 
 ## Line
 
+### Line Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
+
+### Line Example
+
 ```dart
 DChartLine(
     data: [
@@ -154,6 +133,12 @@ DChartLine(
 
 ## Pie
 
+### Pie Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie1.jpg" alt="dchart_pie1" height="540">
+
+### Pie Example
+
 ```dart
 DChartPie(
     data: [
@@ -169,6 +154,12 @@ DChartPie(
 <br>
 
 ## Donut
+
+### Donut Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
+
+### Donut Example
 
 ```dart
 DChartPie(
@@ -187,6 +178,12 @@ DChartPie(
 <br>
 
 ## Gauge
+
+### Gauge Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
+
+### Gauge Example
 
 ```dart
 DChartGauge(
@@ -220,6 +217,13 @@ DChartGauge(
 ## Bar Custom
 
 this is not depend on **community_charts_flutter**
+
+### Bar Custom Image
+
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
+<img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
+
+### Bar Custom Example
 
 ```dart
 // example 1
@@ -355,7 +359,7 @@ DChartBarCustom(
 
 ## Time
 
-example under maintenance
+under maintenance
 
 <br>
 

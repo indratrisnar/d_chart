@@ -61,33 +61,45 @@ SizedBox(
 
 <br>
 
-## Line Image
+## Line Image [Table](#table-of-content)
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line1.jpg" alt="dchart_line1" height="540">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_line2.jpg" alt="dchart_line2" height="540">
+
+<br>
 
 ## Pie Image
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie1.jpg" alt="dchart_pie1" height="540">
 
-## Donut Image
+<br>
+
+## Donut Image [Table](#table-of-content)
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_pie2.jpg" alt="dchart_pie2" height="540">
 
-## Gauge Image
+<br>
+
+## Gauge Image [Table](#table-of-content)
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_gauge.jpg" alt="dchart_gauge" height="540">
 
-## Bar Custom Image
+<br>
+
+## Bar Custom Image [Table](#table-of-content)
 
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom1.png" alt="dchart_bar_custom1" height="240">
 <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/dchart_bar_custom2.png" alt="dchart_bar_custom2" height="240">
 
-## Time Image
+<br>
+
+## Time Image [Table](#table-of-content)
 
 (soon)
 
-## Bar
+<br>
+
+## Bar [Table](#table-of-content)
 
 ```dart
 DChartBar(
@@ -113,9 +125,9 @@ DChartBar(
 ),
 ```
 
-<hr>
+<br>
 
-## Line
+## Line [Table](#table-of-content)
 
 ```dart
 DChartLine(
@@ -134,7 +146,9 @@ DChartLine(
 ),
 ```
 
-## Pie
+<br>
+
+## Pie [Table](#table-of-content)
 
 ```dart
 DChartPie(
@@ -148,7 +162,9 @@ DChartPie(
 ),
 ```
 
-## Donut
+<br>
+
+## Donut [Table](#table-of-content)
 
 ```dart
 DChartPie(
@@ -164,7 +180,9 @@ DChartPie(
 ),
 ```
 
-## Gauge
+<br>
+
+## Gauge [Table](#table-of-content)
 
 ```dart
 DChartGauge(
@@ -193,7 +211,9 @@ DChartGauge(
 ),
 ```
 
-## Bar Custom
+<br>
+
+## Bar Custom [Table](#table-of-content)
 
 this is not depend on **community_charts_flutter**
 
@@ -327,11 +347,15 @@ DChartBarCustom(
 ),
 ```
 
-## Time
+<br>
+
+## Time [Table](#table-of-content)
 
 example under maintenance
 
-# Other
+<br>
+
+# Other [Table](#table-of-content)
 
 Support me for more feature & packages
 [Donate](https://www.paypal.com/paypalme/indratrisnar)

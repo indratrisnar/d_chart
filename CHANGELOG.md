@@ -1,3 +1,7 @@
+## 1.1.0
+
+- add src Time Series Chart, called DChartTime
+
 ## 1.0.2
 
 - add tutor link for DChartBarCustom

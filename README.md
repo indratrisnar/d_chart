@@ -25,14 +25,14 @@ SizedBox(
 
 1. [Bar](#bar)
 
-   - [Image](#bar-image)
-   - [Example](#bar-example)
+- [Image](#bar-image)
+- [Example](#bar-example)
 
 2. [Line](#line)
 
    - [Image](#line-image)
    - [Example](#line-example)
-   - [Tutorial]
+   - Tutorial
      - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)
 
 3. [Pie](#pie)
@@ -52,7 +52,7 @@ SizedBox(
 
    - [Image](#bar-custom-image)
    - [Example](#bar-custom-example)
-   - [Tutorial]
+   - Tutorial
      - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)
 
 7. [Time](#time)

@@ -1,6 +1,8 @@
-## 1.1.0
+## 2.0.0
 
-- add src Time Series Chart, called DChartTime
+- add Time Series Chart, called DChartTime
+- DChartTime pic
+- DChartTime example
 
 ## 1.0.2
 

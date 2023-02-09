@@ -30,7 +30,7 @@ SizedBox(
    - [Image](#line-image)
    - [Example](#line-example)
    - Tutorial
-     - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7){target="\_blank"}
+     - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)
 3. [Pie](#pie)
    - [Image](#pie-image)
    - [Example](#pie-example)
@@ -44,13 +44,13 @@ SizedBox(
    - [Image](#bar-custom-image)
    - [Example](#bar-custom-example)
    - Tutorial
-     - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4){target="\_blank"}
+     - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)
 7. [Time](#time)
-   - [Image]()
-   - [Example]()
+   - [Image](#time-image)
+   - [Example](#time-example)
 8. [Other](#other)
 9. Universal Tutorial
-   - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2){target="\_blank"}
+   - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 
 <br>
 
@@ -358,16 +358,60 @@ DChartBarCustom(
 
 ## Time
 
-under maintenance
+Chart for Time Series, it can be group and custom render chart view\
+Render type:
+
+1. DRenderLine
+2. DRenderBar
+3. DRenderTargetLine
+4. DRenderPoint
+
+### Time Image
+
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_bar.png" alt="dchart_bar1" width="200">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_line.png" alt="dchart_bar2" width="200">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_point.png" alt="dchart_bar3" width="200">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_target_line.png" alt="dchart_bar3" width="200">
+</p>
+
+### Time Example
+
+```dart
+DChartTime(
+    chartRender: DRenderLine(),
+    measureLabel: (value) => '${value}k',
+    domainLabel: (dateTime) {
+        // [DateFormat] from intl package
+        return DateFormat('d MMM yy').format(dateTime!);
+    },
+    groupData: [
+        DChartTimeGroup(
+            groupId: 'Keyboard',
+            groupColor: Colors.blue,
+            data: [
+                DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
+                DChartTimeData(time: DateTime(2023, 2, 2), value: 73),
+                DChartTimeData(time: DateTime(2023, 2, 4), value: 23),
+                DChartTimeData(time: DateTime(2023, 2, 8), value: 56),
+                DChartTimeData(time: DateTime(2023, 2, 9), value: 32),
+                DChartTimeData(time: DateTime(2023, 2, 10), value: 21),
+                DChartTimeData(time: DateTime(2023, 2, 12), value: 76),
+                DChartTimeData(time: DateTime(2023, 2, 18), value: 91),
+                DChartTimeData(time: DateTime(2023, 2, 20), value: 17),
+            ],
+        ),
+    ],
+),
+```
 
 <br>
 
 # Other
 
 Support me for more feature & packages
-[Donate](https://www.paypal.com/paypalme/indratrisnar){target="\_blank"}
+[Donate](https://www.paypal.com/paypalme/indratrisnar)
 
-Check my app : [Visit](https://indratrisnar.github.io/projects.html){target="\_blank"}
+Check my app : [Visit](https://indratrisnar.github.io/projects.html)
 
-Check My Tutorial & Course : [Watch](https://www.youtube.com/channel/UC0d_xINEvCtlDCpWfBpnYpA){target="\_blank"}
-<a href="https://www.youtube.com/channel/UC0d_xINEvCtlDCpWfBpnYpA" target="_blank">Watch</a>
+Check My Tutorial & Course : [Watch](https://www.youtube.com/channel/UC0d_xINEvCtlDCpWfBpnYpA)

@@ -369,10 +369,10 @@ Render type:
 ### Time Image
 
 <p float="left">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_bar.png" alt="dchart_bar1" width="290">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_line.png" alt="dchart_bar2" width="290">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_point.png" alt="dchart_bar3" width="290">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_target_line.png" alt="dchart_bar3" width="290">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_bar.png" alt="dchart_bar1" width="340">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_line.png" alt="dchart_bar2" width="340">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_point.png" alt="dchart_bar3" width="340">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/time/dchart_time_target_line.png" alt="dchart_bar3" width="340">
 </p>
 
 ### Time Example

@@ -1,3 +1,7 @@
+## 2.0.1
+
+- error/bug LegendMeasure typedef fixed
+
 ## 2.0.0
 
 - add Time Series Chart, called DChartTime

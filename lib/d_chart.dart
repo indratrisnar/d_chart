@@ -179,7 +179,7 @@ typedef FillColor = Color Function(
     DChartTimeGroup group, DChartTimeData data, int? index);
 typedef SeriesColor = Color Function(DChartTimeGroup group);
 typedef ChangedListener = void Function(String groupId, DChartTimeData data);
-typedef LegendMeasure = String Function(num? value)?;
+typedef LegendMeasure = String Function(num? value);
 typedef LegendTitle = String? Function(DChartTimeGroup group);
 typedef CustomLabelValue = String Function(
     DChartTimeGroup group, DChartTimeData data, int? index);

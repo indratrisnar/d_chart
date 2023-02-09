@@ -1,3 +1,7 @@
+## 2.0.2
+
+- add tutorial for Intro DChartTime
+
 ## 2.0.1
 
 - error/bug LegendMeasure typedef fixed

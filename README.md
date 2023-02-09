@@ -48,6 +48,8 @@ SizedBox(
 7. [Time](#time)
    - [Image](#time-image)
    - [Example](#time-example)
+   - Tutorial
+     - [Intro Time Chart](https://youtu.be/WFkIh3IcCuY)
 8. [Other](#other)
 9. Universal Tutorial
    - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)

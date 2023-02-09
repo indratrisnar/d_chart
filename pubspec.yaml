@@ -1,6 +1,6 @@
 name: d_chart
-description: D'Chart is a package for compact chart widgets.
-version: 2.0.1
+description: D'Chart is the development of an existing package chart and simple way to use it.
+version: 2.0.2
 homepage: https://github.com/indratrisnar/d_chart
 
 environment:

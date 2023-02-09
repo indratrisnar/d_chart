@@ -280,150 +280,151 @@ String _defaultBarValue(Map<String, dynamic> barData, int? index) => '';
 class DChartBar extends StatelessWidget {
   /// [data] of chart. key for data map as String and value is dynamic
   /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
-  List<Map<String, dynamic>> data;
+  final List<Map<String, dynamic>> data;
 
   /// [barColor] return color of bar. can be custom based on bar data
-  BarColor<Color> barColor;
+  final BarColor<Color> barColor;
 
   /// [barValue] return template string for label on bar.
   /// Default: _defaultBarValue
-  BarValue<String> barValue;
+  final BarValue<String> barValue;
 
   /// [barValueAnchor] return BarValueAnchor to position [barValue] inside bar
-  BarValueAnchor? barValueAnchor;
+  final BarValueAnchor? barValueAnchor;
 
   /// [barValuePosition] return BarValuePosition to type position [barValue]
-  BarValuePosition? barValuePosition;
+  final BarValuePosition? barValuePosition;
 
   /// [barValueFontSize] return fontSize for [barValue].
   /// Default : 14
-  int barValueFontSize;
+  final int barValueFontSize;
 
   /// [barValueColor] return color of [barValue]
-  Color? barValueColor;
+  final Color? barValueColor;
 
   /// [showBarValue] if true, [barValue] will be shown
   /// Default: false
-  bool showBarValue;
+  final bool showBarValue;
 
   /// [borderColor] return color for border bar
-  Color? borderColor;
+  final Color? borderColor;
 
   /// [borderWidth] return width of line border bar
-  double? borderWidth;
+  final double? borderWidth;
 
   /// [animate] BarChart will be animate when launch if true.
-  bool? animate;
+  final bool? animate;
 
   /// [animationDuration] return Duration of animation launch
-  Duration? animationDuration;
+  final Duration? animationDuration;
 
   /// [verticalDirection] if true, bar will raised to top or horizontally
   /// Default: true
-  bool verticalDirection;
+  final bool verticalDirection;
 
   /// [showMeasureLine] if true, measure line will be show
-  bool? showMeasureLine;
+  final bool? showMeasureLine;
 
   /// [showDomainLine] if true, measure line will be show
-  bool? showDomainLine;
+  final bool? showDomainLine;
 
   /// [axisLineColor] return color of axis line
-  Color? axisLineColor;
+  final Color? axisLineColor;
 
   /// [axisLineTick] return thickness/width of axis line
-  int? axisLineTick;
+  final int? axisLineTick;
 
   /// [axisLineTick] return thickness/width of point line
-  int? axisLinePointTick;
+  final int? axisLinePointTick;
 
   /// [axisLinePointWidth] return length of point line
-  int? axisLinePointWidth;
+  final int? axisLinePointWidth;
 
   /// [domainLabelRotation] return rotation label at domain axis
-  int? domainLabelRotation;
+  final int? domainLabelRotation;
 
   /// [domainLabelFontSize] return fontSize for label domain
-  int? domainLabelFontSize;
+  final int? domainLabelFontSize;
 
   /// [domainLabelColor] return color for label domain
-  Color? domainLabelColor;
+  final Color? domainLabelColor;
 
   /// [domainLabelPaddingToTick] return padding between label & point line
-  int? domainLabelPaddingToTick;
+  final int? domainLabelPaddingToTick;
 
   /// [domainLabelPaddingToAxisLine] return padding between label & axis line
-  int? domainLabelPaddingToAxisLine;
+  final int? domainLabelPaddingToAxisLine;
 
   /// [measureLabelRotation] return rotation label at measure axis
-  int? measureLabelRotation;
+  final int? measureLabelRotation;
 
   /// [measureLabelFontSize] return fontSize for label measure
-  int? measureLabelFontSize;
+  final int? measureLabelFontSize;
 
   /// [measureLabelColor] return color for label measure
-  Color? measureLabelColor;
+  final Color? measureLabelColor;
 
   /// [measureLabelPaddingToTick] return padding between label & point line
-  int? measureLabelPaddingToTick;
+  final int? measureLabelPaddingToTick;
 
   /// [measureLabelPaddingToAxisLine] return padding between label & axis line
-  int? measureLabelPaddingToAxisLine;
+  final int? measureLabelPaddingToAxisLine;
 
   /// [measureMin] return minimum value for measure
-  int? measureMin;
+  final int? measureMin;
 
   /// [measureMin] return maximum value for measure
-  int? measureMax;
+  final int? measureMax;
 
   /// [measureAxisTitle] return title for y/vertical axis
-  String? yAxisTitle;
+  final String? yAxisTitle;
 
   /// [measureAxisTitleColor] return color for title measureAxis
   /// Default: Colors.black
-  Color measureAxisTitleColor;
+  final Color measureAxisTitleColor;
 
   /// [measureAxisTitleFontSize] return fontSize for title measureAxis
   /// Default: 14
-  int measureAxisTitleFontSize;
+  final int measureAxisTitleFontSize;
 
   /// [measureAxisTitleInPadding] return padding between title and measureAxis
   /// Default: 8
-  int measureAxisTitleInPadding;
+  final int measureAxisTitleInPadding;
 
   /// [measureAxisTitleOutPadding] return padding between title and out box / margin
   /// Default: 0
-  int measureAxisTitleOutPadding;
+  final int measureAxisTitleOutPadding;
 
   /// [measureAxisTitlePosition] return TitlePositionY
   /// Default: TitlePositionY.left
-  TitlePositionY measureAxisTitlePosition;
+  final TitlePositionY measureAxisTitlePosition;
 
   /// [domainAxisTitle] return title for x/horizontal axis
-  String? xAxisTitle;
+  final String? xAxisTitle;
 
   /// [measureAxisTitleColor] return color for title domainAxis
   /// Default: Colors.black
-  Color domainAxisTitleColor;
+  final Color domainAxisTitleColor;
 
   /// [domainAxisTitleFontSize] return fontSize for title domainAxis
   /// Default: 14
-  int domainAxisTitleFontSize;
+  final int domainAxisTitleFontSize;
 
   /// [domainAxisTitleInPadding] return padding between title and domainAxis
   /// Default: 8
-  int domainAxisTitleInPadding;
+  final int domainAxisTitleInPadding;
 
   /// [domainAxisTitleOutPadding] return padding between title and out box / margin
   /// Default: 0
-  int domainAxisTitleOutPadding;
+  final int domainAxisTitleOutPadding;
 
   /// [domainAxisTitlePosition] return TitlePositionX
   /// Default: TitlePositionX.bottom
-  TitlePositionX domainAxisTitlePosition;
+  final TitlePositionX domainAxisTitlePosition;
 
   /// [minimumPaddingBetweenLabel] return padding between label
-  int? minimumPaddingBetweenLabel;
+  final int? minimumPaddingBetweenLabel;
+
   DChartBar({
     this.animate,
     this.animationDuration,
@@ -473,7 +474,6 @@ class DChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    axisLinePointTick = axisLinePointTick ?? axisLineTick;
     return _charts.BarChart(
       List.generate(data.length, (index) {
         var groupBarData = data[index];
@@ -521,7 +521,7 @@ class DChartBar extends StatelessWidget {
             color: axisLineColor == null
                 ? null
                 : _charts.ColorUtil.fromDartColor(axisLineColor!),
-            thickness: axisLinePointTick,
+            thickness: axisLinePointTick ?? axisLineTick,
           ),
           tickLengthPx: axisLinePointWidth,
           labelRotation: domainLabelRotation,
@@ -589,32 +589,32 @@ class DChartBar extends StatelessWidget {
 class DChartLine extends StatelessWidget {
   // [data] of chart. key for data map as String and value is dynamic
   /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
-  List<Map<String, dynamic>> data;
+  final List<Map<String, dynamic>> data;
 
   /// [lineColor] return color of line. can be custom based on line data
-  LineColor<Color> lineColor;
+  final LineColor<Color> lineColor;
   // [pointColor] return color of point at line
-  LineColor<Color>? pointColor;
+  final LineColor<Color>? pointColor;
 
   /// [areaColor] return color of area below line
-  LineColor<Color>? areaColor;
+  final LineColor<Color>? areaColor;
 
   /// [includeArea] if true will be show the area
   /// Default: false
-  bool includeArea;
+  final bool includeArea;
 
   /// [includePoints] if true will be show the points
   /// Default: false
-  bool includePoints;
+  final bool includePoints;
 
   /// [lineWidth] return width of each line
-  double? lineWidth;
+  final double? lineWidth;
 
   /// [animate] if true, line chart will be animated when widget chart launch
-  bool? animate;
+  final bool? animate;
 
   /// [animationDuration] return duration of animation
-  Duration? animationDuration;
+  final Duration? animationDuration;
   DChartLine({
     this.animate,
     this.animationDuration,
@@ -665,58 +665,59 @@ class DChartLine extends StatelessWidget {
 class DChartPie extends StatelessWidget {
   /// [data] of chart. key for data map as String and value is dynamic
   /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
-  List<Map<String, dynamic>> data;
+  final List<Map<String, dynamic>> data;
 
   /// [fillColor] return color of pie. can be custom based on pie data
-  PieColor fillColor;
+  final PieColor fillColor;
 
   /// [pieLabel] return PieLabel data. can be custom based on pie data
-  PieLabel? pieLabel;
+  final PieLabel? pieLabel;
 
   /// [labelPosition] return PieLabelPosition
   /// Default: PieLabelPosition.auto
-  PieLabelPosition labelPosition;
+  final PieLabelPosition labelPosition;
 
   /// [labelFontSize] return fontSize of label
   /// Default: 12
-  int labelFontSize;
+  final int labelFontSize;
 
   /// [labelColor] return color of label
   /// Default: Colors.black
-  Color labelColor;
+  final Color labelColor;
 
   /// [showLabelLine] if true, will be show label line
   /// Default: true
-  bool showLabelLine;
+  final bool showLabelLine;
 
   /// [labelLineColor] return color of label line
   /// Default: Colors.black
-  Color labelLineColor;
+  final Color labelLineColor;
 
   /// [labelLinelength] return length of label line
   /// Default: 16
-  double labelLinelength;
+  final double labelLinelength;
 
   /// [labelLineThickness] return thickness of label line
   /// Default: 1
-  double labelLineThickness;
+  final double labelLineThickness;
 
   /// [labelPadding] return padding of label
   /// Default: 5
-  int labelPadding;
+  final int labelPadding;
 
   /// [donutWidth] return width of donut chart. if null will be return Pie Chart
-  int? donutWidth;
+  final int? donutWidth;
 
   /// [strokeWidth] return width of stroke/limit between part data in pie chart
   /// Default: 2
-  double strokeWidth;
+  final double strokeWidth;
 
   /// [animate] if true, line chart will be animated when widget chart launch
-  bool? animate;
+  final bool? animate;
 
   /// [animationDuration] return duration of animation
-  Duration? animationDuration;
+  final Duration? animationDuration;
+
   DChartPie({
     this.animate,
     this.animationDuration,
@@ -781,58 +782,59 @@ class DChartPie extends StatelessWidget {
 class DChartGauge extends StatelessWidget {
   /// [data] of chart. key for data map as String and value is dynamic
   /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
-  List<Map<String, dynamic>> data;
+  final List<Map<String, dynamic>> data;
 
   /// [fillColor] return color of pie. can be custom based on pie data
-  PieColor fillColor;
+  final PieColor fillColor;
 
   /// [pieLabel] return PieLabel data. can be custom based on pie data
-  PieLabel? pieLabel;
+  final PieLabel? pieLabel;
 
   /// [labelPosition] return PieLabelPosition
   /// Default: PieLabelPosition.auto
-  PieLabelPosition labelPosition;
+  final PieLabelPosition labelPosition;
 
   /// [labelFontSize] return fontSize of label
   /// Default: 12
-  int labelFontSize;
+  final int labelFontSize;
 
   /// [labelColor] return color of label
   /// Default: Colors.black
-  Color labelColor;
+  final Color labelColor;
 
   /// [showLabelLine] if true, will be show label line
   /// Default: true
-  bool showLabelLine;
+  final bool showLabelLine;
 
   /// [labelLineColor] return color of label line
   /// Default: Colors.black
-  Color labelLineColor;
+  final Color labelLineColor;
 
   /// [labelLinelength] return length of label line
   /// Default: 16
-  double labelLinelength;
+  final double labelLinelength;
 
   /// [labelLineThickness] return thickness of label line
   /// Default: 1
-  double labelLineThickness;
+  final double labelLineThickness;
 
   /// [labelPadding] return padding of label
   /// Default: 5
-  int labelPadding;
+  final int labelPadding;
 
   /// [donutWidth] return width of donut chart. if null will be return Pie Chart
-  int? donutWidth;
+  final int? donutWidth;
 
   /// [strokeWidth] return width of stroke/limit between part data in pie chart
   /// Default: 2
-  double strokeWidth;
+  final double strokeWidth;
 
   /// [animate] if true, line chart will be animated when widget chart launch
-  bool? animate;
+  final bool? animate;
 
   /// [animationDuration] return duration of animation
-  Duration? animationDuration;
+  final Duration? animationDuration;
+
   DChartGauge({
     this.animate,
     this.animationDuration,

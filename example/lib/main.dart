@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  List ranking = [
+  final List ranking = [
     {'class': 'A', 'total': 23},
     {'class': 'B', 'total': 14},
     {'class': 'C', 'total': 8},

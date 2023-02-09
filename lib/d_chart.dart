@@ -2,10 +2,8 @@ library d_chart;
 
 import 'dart:math' as _math;
 
-import 'package:community_charts_common/src/chart/common/series_renderer_config.dart'
-    show RendererAttributes;
-import 'package:community_charts_common/src/common/symbol_renderer.dart'
-    show SymbolRenderer;
+import 'package:community_charts_common/community_charts_common.dart'
+    as _common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as _charts;
 import 'package:flutter/material.dart';
@@ -1584,7 +1582,7 @@ class DChartTime extends StatelessWidget {
   /// - DRenderTargetLine
   /// - DRenderPoint\
   /// Default: DRenderLine
-  final _charts.SeriesRendererConfig<DateTime>? chartRender;
+  final _common.SeriesRendererConfig<DateTime>? chartRender;
 
   /// flip chart vertical axis (measureAxis)
   final bool? flipVerticalAxis;
@@ -1939,7 +1937,7 @@ class DChartTime extends StatelessWidget {
   }
 }
 
-class DRenderLine extends _charts.SeriesRendererConfig<DateTime> {
+class DRenderLine extends _common.LineRendererConfig<DateTime> {
   /// icon for all legend
   final IconData? legendIcon;
 
@@ -1982,9 +1980,9 @@ class DRenderLine extends _charts.SeriesRendererConfig<DateTime> {
   });
 
   @override
-  _charts.SeriesRenderer<DateTime> build() {
-    return _charts.LineRenderer(
-      config: _charts.LineRendererConfig(
+  _common.LineRenderer<DateTime> build() {
+    return _common.LineRenderer(
+      config: _common.LineRendererConfig(
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         includeArea: showArea ?? false,
         areaOpacity: opacityArea == null
@@ -2002,18 +2000,9 @@ class DRenderLine extends _charts.SeriesRendererConfig<DateTime> {
       ),
     );
   }
-
-  @override
-  String? get customRendererId => null;
-
-  @override
-  RendererAttributes get rendererAttributes => RendererAttributes();
-
-  @override
-  SymbolRenderer? get symbolRenderer => null;
 }
 
-class DRenderBar extends _charts.SeriesRendererConfig<DateTime> {
+class DRenderBar extends _common.BarRendererConfig<DateTime> {
   /// icon for all legend
   final IconData? legendIcon;
 
@@ -2085,14 +2074,14 @@ class DRenderBar extends _charts.SeriesRendererConfig<DateTime> {
   });
 
   @override
-  _charts.SeriesRenderer<DateTime> build() {
-    return _charts.BarRenderer(
-      config: _charts.BarRendererConfig(
+  _common.BarRenderer<DateTime> build() {
+    return _common.BarRenderer(
+      config: _common.BarRendererConfig(
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         strokeWidthPx: borderWidth ?? 2,
-        cornerStrategy: _charts.ConstCornerStrategy(barRadius ?? 0),
+        cornerStrategy: _common.ConstCornerStrategy(barRadius ?? 0),
         maxBarWidthPx: maxBarWidth,
-        barRendererDecorator: _charts.BarLabelDecorator(
+        barRendererDecorator: _common.BarLabelDecorator(
           labelPosition: _getBarLabelPosition(labelPosition),
           insideLabelStyleSpec: _getTextStyleSpec(insideLabelStyle),
           outsideLabelStyleSpec: _getTextStyleSpec(outsideLabelStyle),
@@ -2100,25 +2089,16 @@ class DRenderBar extends _charts.SeriesRendererConfig<DateTime> {
           labelPadding: labelSpace ?? 5,
         ),
         fillPattern: (solidFill ?? true)
-            ? _charts.FillPatternType.solid
-            : _charts.FillPatternType.forwardHatch,
+            ? _common.FillPatternType.solid
+            : _common.FillPatternType.forwardHatch,
         groupingType: _getBarGroupingType(groupType),
         barGroupInnerPaddingPx: innerPaddingGroup ?? 2,
       ),
     );
   }
-
-  @override
-  String? get customRendererId => null;
-
-  @override
-  RendererAttributes get rendererAttributes => RendererAttributes();
-
-  @override
-  SymbolRenderer? get symbolRenderer => null;
 }
 
-class DRenderTargetLine extends _charts.SeriesRendererConfig<DateTime> {
+class DRenderTargetLine extends _common.BarTargetLineRendererConfig<DateTime> {
   /// icon for all legend
   final IconData? legendIcon;
 
@@ -2162,9 +2142,9 @@ class DRenderTargetLine extends _charts.SeriesRendererConfig<DateTime> {
   });
 
   @override
-  _charts.SeriesRenderer<DateTime> build() {
-    return _charts.BarTargetLineRenderer(
-      config: _charts.BarTargetLineRendererConfig(
+  _common.BarTargetLineRenderer<DateTime> build() {
+    return _common.BarTargetLineRenderer(
+      config: _common.BarTargetLineRendererConfig(
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         strokeWidthPx: borderWidth ?? 2,
         dashPattern: dashPattern,
@@ -2175,18 +2155,9 @@ class DRenderTargetLine extends _charts.SeriesRendererConfig<DateTime> {
       ),
     );
   }
-
-  @override
-  String? get customRendererId => null;
-
-  @override
-  RendererAttributes get rendererAttributes => RendererAttributes();
-
-  @override
-  SymbolRenderer? get symbolRenderer => null;
 }
 
-class DRenderPoint extends _charts.SeriesRendererConfig<DateTime> {
+class DRenderPoint extends _common.PointRendererConfig<DateTime> {
   /// icon for all legend
   final IconData? legendIcon;
 
@@ -2204,22 +2175,13 @@ class DRenderPoint extends _charts.SeriesRendererConfig<DateTime> {
   });
 
   @override
-  _charts.SeriesRenderer<DateTime> build() {
-    return _charts.PointRenderer(
-      config: _charts.PointRendererConfig(
+  _common.PointRenderer<DateTime> build() {
+    return _common.PointRenderer(
+      config: _common.PointRendererConfig(
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         strokeWidthPx: borderWidth ?? 2,
         radiusPx: pointSize ?? 3.5,
       ),
     );
   }
-
-  @override
-  String? get customRendererId => null;
-
-  @override
-  RendererAttributes get rendererAttributes => RendererAttributes();
-
-  @override
-  SymbolRenderer? get symbolRenderer => null;
 }

@@ -826,8 +826,8 @@ class DChartTimeExample extends StatelessWidget {
               chartRender: DRenderPoint(),
               groupData: [
                 DChartTimeGroup(
-                  groupId: 'Keyboard',
-                  groupColor: Colors.blue,
+                  id: 'Keyboard',
+                  color: Colors.blue,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
                     DChartTimeData(time: DateTime(2023, 2, 2), value: 73),
@@ -850,8 +850,8 @@ class DChartTimeExample extends StatelessWidget {
               chartRender: DRenderTargetLine(),
               groupData: [
                 DChartTimeGroup(
-                  groupId: 'Keyboard',
-                  groupColor: Colors.blue,
+                  id: 'Keyboard',
+                  color: Colors.blue,
                   data: [
                     DChartTimeData(
                         time: DateTime(2023, 2, 1), value: 29, x: 'k'),
@@ -861,8 +861,8 @@ class DChartTimeExample extends StatelessWidget {
                   ],
                 ),
                 DChartTimeGroup(
-                  groupId: 'Monitor',
-                  groupColor: Colors.amber,
+                  id: 'Monitor',
+                  color: Colors.amber,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
                     DChartTimeData(time: DateTime(2023, 2, 2), value: 30),
@@ -891,8 +891,8 @@ class DChartTimeExample extends StatelessWidget {
               // },
               groupData: [
                 DChartTimeGroup(
-                  groupId: 'Keyboard',
-                  groupColor: Colors.blue,
+                  id: 'Keyboard',
+                  color: Colors.blue,
                   data: [
                     DChartTimeData(
                         time: DateTime(2023, 2, 1), value: 29, x: 'k'),
@@ -916,8 +916,8 @@ class DChartTimeExample extends StatelessWidget {
               ),
               groupData: [
                 DChartTimeGroup(
-                  groupId: 'Keyboard',
-                  groupColor: Colors.blue,
+                  id: 'Keyboard',
+                  color: Colors.blue,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
                     DChartTimeData(time: DateTime(2023, 2, 3, 5), value: 73),
@@ -925,8 +925,8 @@ class DChartTimeExample extends StatelessWidget {
                   ],
                 ),
                 DChartTimeGroup(
-                  groupId: 'Monitor',
-                  groupColor: Colors.amber,
+                  id: 'Monitor',
+                  color: Colors.amber,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
                     DChartTimeData(time: DateTime(2023, 2, 1, 5), value: 30),
@@ -948,8 +948,8 @@ class DChartTimeExample extends StatelessWidget {
               ),
               groupData: [
                 DChartTimeGroup(
-                  groupId: 'Keyboard',
-                  groupColor: Colors.blue,
+                  id: 'Keyboard',
+                  color: Colors.blue,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
                     DChartTimeData(time: DateTime(2023, 2, 3, 5), value: 73),
@@ -957,8 +957,8 @@ class DChartTimeExample extends StatelessWidget {
                   ],
                 ),
                 DChartTimeGroup(
-                  groupId: 'Monitor',
-                  groupColor: Colors.purple,
+                  id: 'Monitor',
+                  color: Colors.purple,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
                     DChartTimeData(time: DateTime(2023, 2, 1, 5), value: 30),
@@ -1024,8 +1024,8 @@ class DChartTimeExample extends StatelessWidget {
               titlePadding: 4,
               groupData: [
                 DChartTimeGroup(
-                  groupId: 'Keyboard',
-                  groupColor: Colors.blue,
+                  id: 'Keyboard',
+                  color: Colors.blue,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
                     DChartTimeData(time: DateTime(2023, 2, 3, 5), value: 73),
@@ -1033,8 +1033,8 @@ class DChartTimeExample extends StatelessWidget {
                   ],
                 ),
                 DChartTimeGroup(
-                  groupId: 'Monitor',
-                  groupColor: Colors.amber,
+                  id: 'Monitor',
+                  color: Colors.amber,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 15),
                     DChartTimeData(time: DateTime(2023, 2, 1, 5), value: 30),
@@ -1042,8 +1042,8 @@ class DChartTimeExample extends StatelessWidget {
                   ],
                 ),
                 DChartTimeGroup(
-                  groupId: 'Speaker',
-                  groupColor: Colors.green,
+                  id: 'Speaker',
+                  color: Colors.green,
                   data: [
                     DChartTimeData(time: DateTime(2023, 2, 1), value: 2),
                     DChartTimeData(time: DateTime(2023, 2, 2, 5), value: 8),

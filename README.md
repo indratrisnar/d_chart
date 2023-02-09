@@ -387,8 +387,8 @@ DChartTime(
     },
     groupData: [
         DChartTimeGroup(
-            groupId: 'Keyboard',
-            groupColor: Colors.blue,
+            id: 'Keyboard',
+            color: Colors.blue,
             data: [
                 DChartTimeData(time: DateTime(2023, 2, 1), value: 29),
                 DChartTimeData(time: DateTime(2023, 2, 2), value: 73),

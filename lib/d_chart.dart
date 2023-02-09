@@ -77,18 +77,18 @@ class _IconRenderer extends _charts.CustomSymbolRenderer {
 /// model Time Group
 class DChartTimeGroup {
   /// id for group data time series
-  final String groupId;
+  final String id;
 
   /// data each group
   final List<DChartTimeData> data;
 
   // set color for same group
-  final Color? groupColor;
+  final Color? color;
 
   DChartTimeGroup({
-    required this.groupId,
+    required this.id,
     required this.data,
-    this.groupColor,
+    this.color,
   });
 }
 
@@ -1762,11 +1762,11 @@ class DChartTime extends StatelessWidget {
           DChartTimeGroup group = groupData[indexGroup];
           List<DChartTimeData> dataPergroup = group.data;
           // return List.generate(dataPergroup.length, (index) {
-          Color colorPerGroup = groupData[indexGroup].groupColor ??
+          Color colorPerGroup = groupData[indexGroup].color ??
               Color((_math.Random().nextDouble() * 0xFFFFFF).toInt())
                   .withOpacity(1.0);
           return _charts.Series<DChartTimeData, DateTime>(
-            id: group.groupId,
+            id: group.id,
             data: List.generate(dataPergroup.length, (index) {
               return DChartTimeData(
                 time: dataPergroup[index].time,

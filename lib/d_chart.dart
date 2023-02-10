@@ -8,6 +8,43 @@ import 'package:community_charts_flutter/community_charts_flutter.dart'
     as _charts;
 import 'package:flutter/material.dart';
 
+String _getSymbolType(SymbolType? type) {
+  switch (type) {
+    case SymbolType.rect:
+      return 'rect';
+    case SymbolType.triangle:
+      return 'triangle';
+    default:
+      return 'circle';
+  }
+}
+
+_common.PointSymbolRenderer _getComparisonTrack(TrackType? type) {
+  if (type == TrackType.rectangle) {
+    return _common.RectangleRangeSymbolRenderer();
+  }
+  return _common.CylinderSymbolRenderer();
+}
+
+_charts.OutsideJustification? _getOutsideJustify(DJustify? justify) {
+  switch (justify) {
+    case DJustify.start:
+      return _charts.OutsideJustification.start;
+    case DJustify.startDrawArea:
+      return _charts.OutsideJustification.startDrawArea;
+    case DJustify.middle:
+      return _charts.OutsideJustification.middle;
+    case DJustify.middleDrawArea:
+      return _charts.OutsideJustification.middleDrawArea;
+    case DJustify.end:
+      return _charts.OutsideJustification.end;
+    case DJustify.endDrawArea:
+      return _charts.OutsideJustification.endDrawArea;
+    default:
+      return null;
+  }
+}
+
 _charts.BehaviorPosition? _getBehaviorPosition(DBehaviorPosition? position) {
   switch (position) {
     case DBehaviorPosition.left:
@@ -60,14 +97,23 @@ _charts.BarGroupingType _getBarGroupingType(RBGroupType? type) {
 
 class _IconRenderer extends _charts.CustomSymbolRenderer {
   final IconData icon;
+  final double? size;
 
-  _IconRenderer(this.icon);
+  _IconRenderer(this.icon, {this.size});
   @override
   Widget build(BuildContext context,
       {Color? color, required Size size, bool enabled = true}) {
     return SizedBox.fromSize(
       size: size,
-      child: Icon(icon, color: color, size: 12),
+      child: Icon(
+        icon,
+        color: color == null
+            ? null
+            : color.opacity < 1
+                ? color.withAlpha(255)
+                : color,
+        size: this.size ?? 12,
+      ),
     );
   }
 }
@@ -108,6 +154,55 @@ class DChartTimeData {
     this.x,
   });
 }
+
+class DChartScatterGroup {
+  final String id;
+  final Color? color;
+  final List<DChartScatterData> data;
+
+  DChartScatterGroup({
+    required this.id,
+    this.color,
+    required this.data,
+  });
+}
+
+class DPlot {
+  /// in default direction: horizontal,\
+  /// it is called x axis
+  final double? domain;
+
+  /// in default direction: horizontal,\
+  /// it is called y axis
+  final double? measure;
+
+  DPlot(this.domain, this.measure);
+}
+
+class DChartScatterData {
+  final num measure;
+  final num domain;
+
+  /// default 5
+  final double? size;
+  final SymbolType? type;
+
+  /// for track scatter point\
+  /// end plot auto same with (domain,measure)
+  final DPlot? startPlot;
+
+  DChartScatterData({
+    required this.measure,
+    required this.domain,
+    this.size,
+    this.type,
+    this.startPlot,
+  });
+}
+
+enum SymbolType { circle, rect, triangle }
+
+enum TrackType { cylinder, rectangle }
 
 enum RenderType {
   line,
@@ -171,20 +266,38 @@ typedef PieColor<Color> = Color Function(
 typedef PieLabel<String> = String Function(
     Map<String, dynamic> pieData, int? index);
 
-typedef PrimaryColor = Color Function(
+// Time
+typedef TimePrimaryColor = Color Function(
     DChartTimeGroup group, DChartTimeData data);
-typedef AreaColor = Color Function(
+typedef TimeAreaColor = Color Function(
     DChartTimeGroup group, DChartTimeData data, int? index);
-typedef FillColor = Color Function(
+typedef TimeFillColor = Color Function(
     DChartTimeGroup group, DChartTimeData data, int? index);
-typedef SeriesColor = Color Function(DChartTimeGroup group);
-typedef ChangedListener = void Function(String groupId, DChartTimeData data);
-typedef LegendMeasure = String Function(num? value);
-typedef LegendTitle = String? Function(DChartTimeGroup group);
-typedef CustomLabelValue = String Function(
+typedef TimeSeriesColor = Color Function(DChartTimeGroup group);
+typedef TimeChangedListener = void Function(
+    String groupId, DChartTimeData data);
+typedef TimeLegendMeasure = String Function(num? value);
+typedef TimeLegendTitle = String? Function(DChartTimeGroup group);
+typedef TimeLabelValue = String Function(
     DChartTimeGroup group, DChartTimeData data, int? index);
-typedef MeasureLabel = String Function(num? value);
-typedef DomainTimeLabel = String Function(DateTime? dateTime);
+typedef TimeMeasureLabel = String Function(num? value);
+typedef TimeDomainLabel = String Function(DateTime? dateTime);
+
+// Scatter
+typedef ScatterBorderColor = Color Function(
+    Color random, DChartScatterGroup group, DChartScatterData data);
+typedef ScatterFillColor = Color Function(
+    Color random, DChartScatterGroup group, DChartScatterData data);
+typedef ScatterChangedListener = void Function(
+    String groupId, DChartScatterData data);
+typedef ScatterLegendMeasure = String Function(num? value);
+typedef ScatterLegendTitle = String? Function(DChartScatterGroup group);
+typedef ScatterLabelValue = String Function(
+    DChartScatterGroup group, DChartScatterData data, int? index);
+typedef ScatterMeasureLabel = String Function(num? value);
+typedef ScatterDomainLabel = String Function(num? value);
+typedef ScatterBorderWidth = double Function(
+    DChartScatterGroup group, DChartScatterData data, int? index);
 
 /// get color util to color charts
 _charts.Color _getColor(Color color) {
@@ -1517,13 +1630,13 @@ class DChartTime extends StatelessWidget {
 
   /// color for line
   /// Default: Random, each group has same color
-  final PrimaryColor? primaryColor;
+  final TimePrimaryColor? primaryColor;
 
   /// color for fill item chart
-  final FillColor? fillColor;
+  final TimeFillColor? fillColor;
 
   /// changed listener for selected point
-  final ChangedListener? changedListener;
+  final TimeChangedListener? changedListener;
 
   /// chart title
   final String? title;
@@ -1573,10 +1686,6 @@ class DChartTime extends StatelessWidget {
   /// Left to Right - LTR\
   /// Default: LTR
   final TextDirection? textDirection;
-
-  /// render chart\
-  /// Default: Line
-  // final RenderType? renderType;
 
   /// use one of this:\
   /// - DRenderLine
@@ -1678,30 +1787,30 @@ class DChartTime extends StatelessWidget {
 
   /// style value measure on legend
   /// will show when selected
-  final LegendMeasure? legendMeasure;
+  final TimeLegendMeasure? legendMeasure;
 
   /// display title lagend
-  final LegendTitle? legendTitle;
+  final TimeLegendTitle? legendTitle;
 
   /// set value on item data chart\
   /// Default: ''
-  final CustomLabelValue? customLabelValue;
+  final TimeLabelValue? customLabelValue;
 
   /// fill area\
   /// default: group color with opacity 0.1
-  final AreaColor? areaColor;
+  final TimeAreaColor? areaColor;
 
   /// symbol legend color
   /// default: groupColor
-  final SeriesColor? seriesColor;
+  final TimeSeriesColor? seriesColor;
 
   /// set custom measure label\
   /// default: just value
-  final MeasureLabel? measureLabel;
+  final TimeMeasureLabel? measureLabel;
 
   /// set custom domain label\
   /// default: auto available from format 'MMM d'
-  final DomainTimeLabel? domainLabel;
+  final TimeDomainLabel? domainLabel;
 
   const DChartTime({
     required this.groupData,
@@ -1761,8 +1870,7 @@ class DChartTime extends StatelessWidget {
         List.generate(groupData.length, (indexGroup) {
           DChartTimeGroup group = groupData[indexGroup];
           List<DChartTimeData> dataPergroup = group.data;
-          // return List.generate(dataPergroup.length, (index) {
-          Color colorPerGroup = groupData[indexGroup].color ??
+          Color colorPerGroup = group.color ??
               Color((_math.Random().nextDouble() * 0xFFFFFF).toInt())
                   .withOpacity(1.0);
           return _charts.Series<DChartTimeData, DateTime>(
@@ -1802,7 +1910,7 @@ class DChartTime extends StatelessWidget {
           );
           // }).toList();
         }),
-        animate: false,
+        animate: animate,
         flipVerticalAxis: flipVerticalAxis ?? false,
         defaultRenderer: chartRender,
         primaryMeasureAxis: _charts.NumericAxisSpec(
@@ -1872,7 +1980,7 @@ class DChartTime extends StatelessWidget {
                       fontSize: titleStyle!.fontSize?.toInt(),
                       lineHeight: titleStyle!.height,
                     ),
-              subTitleStyleSpec: _getTextStyleSpec(subtitleStyle!),
+              subTitleStyleSpec: _getTextStyleSpec(subtitleStyle),
               titlePadding: titlePadding ?? 0,
             ),
           if (showLegend ?? false)
@@ -1917,25 +2025,6 @@ class DChartTime extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  _charts.OutsideJustification? _getOutsideJustify(DJustify? justify) {
-    switch (justify) {
-      case DJustify.start:
-        return _charts.OutsideJustification.start;
-      case DJustify.startDrawArea:
-        return _charts.OutsideJustification.startDrawArea;
-      case DJustify.middle:
-        return _charts.OutsideJustification.middle;
-      case DJustify.middleDrawArea:
-        return _charts.OutsideJustification.middleDrawArea;
-      case DJustify.end:
-        return _charts.OutsideJustification.end;
-      case DJustify.endDrawArea:
-        return _charts.OutsideJustification.endDrawArea;
-      default:
-        return null;
-    }
   }
 }
 
@@ -2183,6 +2272,415 @@ class DRenderPoint extends _common.PointRendererConfig<DateTime> {
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         strokeWidthPx: borderWidth ?? 2,
         radiusPx: pointSize ?? 3.5,
+      ),
+    );
+  }
+}
+
+class DChartScatter extends StatelessWidget {
+  final List<DChartScatterGroup> groupData;
+
+  /// animate chart when it build?
+  final bool? animate;
+
+  /// border width for icon point\
+  /// only work if Symbol Type is rect or circle
+  final ScatterBorderWidth? borderWidth;
+
+  /// color for border point if its available\
+  /// only work if Symbol Type is rect or circle\
+  /// also set for track color\
+  /// Default: Random, each group has same color
+  final ScatterBorderColor? borderColor;
+
+  /// color for fill item chart
+  final ScatterFillColor? fillColor;
+
+  /// changed listener for selected point
+  final ScatterChangedListener? changedListener;
+
+  /// chart title
+  final String? title;
+
+  /// chart subtitle\
+  /// title must not null
+  final String? subtitle;
+
+  /// title position
+  final DBehaviorPosition? titlePosition;
+
+  /// title align
+  final DJustify? titleJustify;
+
+  /// inner padding\
+  /// if DBehaviorPosition == horizontal, padding will be set beetween title & outside\
+  /// if DBehaviorPosition == vertical, padding will be set beetween title & chart\
+  /// Deafult: 0
+  final int? innerPadding;
+
+  /// inner padding\
+  /// if DBehaviorPosition == horizontal, padding will be set between title & chart\
+  /// if DBehaviorPosition == vertical, padding will be set between title & outside\
+  /// Deafult: 0
+  final int? outerPadding;
+
+  /// padding between title & subtitle\
+  /// Default: 0
+  final int? titlePadding;
+
+  /// style for title\
+  /// available:
+  /// - color
+  /// - fontSize
+  /// - height
+  final TextStyle? titleStyle;
+
+  /// style for subtitle\
+  /// available:
+  /// - color
+  /// - fontSize
+  /// - height
+  final TextStyle? subtitleStyle;
+
+  /// text direction\
+  /// Right to Left - RTL\
+  /// Left to Right - LTR\
+  /// Default: LTR
+  final TextDirection? textDirection;
+
+  /// flip chart vertical axis (measureAxis)
+  final bool? flipVerticalAxis;
+
+  /// visibility
+  final bool? showMeasureLine;
+
+  /// length label line\
+  /// Default: 3
+  final int? measureTickLength;
+
+  /// set color measure line
+  final Color? measureLineColor;
+
+  /// line pattern
+  final List<int>? measureLineDashPattern;
+
+  /// thickness
+  final int? measureLineThickness;
+
+  /// label style for measureAxis
+  /// available:
+  /// - color
+  /// - fontSize
+  /// - height
+  final TextStyle? measureLabelStyle;
+
+  /// visibility
+  final bool? showDomainLine;
+
+  /// length label line\
+  /// Default: 3
+  final int? domainTickLength;
+
+  /// set color domain line
+  final Color? domainLineColor;
+
+  /// line pattern
+  final List<int>? domainLineDashPattern;
+
+  /// thickness
+  final int? domainLineThickness;
+
+  /// label style for domainAxis
+  /// available:
+  /// - color
+  /// - fontSize
+  /// - height
+  final TextStyle? domainLabelStyle;
+
+  /// measure value start from zero\
+  /// if false, will start from the minimum value\
+  /// Work when there is just one group data\
+  /// Default: true
+  final bool? startFromZero;
+
+  /// show default legend\
+  /// Name: GroupId
+  final bool? showLegend;
+
+  /// legend position
+  final DBehaviorPosition? legendPosition;
+
+  /// legend align
+  final DJustify? legendJustify;
+
+  /// padding for legend
+  final EdgeInsets? legendPadding;
+
+  /// styling legend text/label
+  final TextStyle? legendLabelStyle;
+
+  /// set layout legend as horizontal
+  final bool? legendHorizontally;
+
+  /// connect with [legendHorizontally] when false\
+  /// as much as possible to fill the available space in the row
+  final int? legendMaxRow;
+
+  /// connect with [legendHorizontally] when true\
+  /// as much as possible to fill the available space in the column
+  final int? legendMaxColumn;
+
+  /// style value measure on legend
+  /// will show when selected
+  final ScatterLegendMeasure? legendMeasure;
+
+  /// display title lagend
+  final ScatterLegendTitle? legendTitle;
+
+  /// set value on item data chart\
+  /// Default: ''
+  final ScatterLabelValue? customLabelValue;
+
+  /// set custom measure label\
+  /// default: just value
+  final ScatterMeasureLabel? measureLabel;
+
+  /// set custom domain label\
+  /// default: auto available from format
+  final ScatterDomainLabel? domainLabel;
+
+  /// work with DChartScatterData.startPlot\
+  /// for color get from [borderColor]\
+  /// Default: Cylinder type
+  final TrackType? trackType;
+
+  /// icon for legend
+  final IconData? legendIcon;
+
+  /// size for [legendIcon]
+  final double? legendIconSize;
+
+  const DChartScatter({
+    required this.groupData,
+    this.animate,
+    this.changedListener,
+    this.customLabelValue,
+    this.domainLabelStyle,
+    this.domainLineColor,
+    this.domainLineDashPattern,
+    this.domainLineThickness,
+    this.domainTickLength,
+    this.fillColor,
+    this.flipVerticalAxis,
+    this.innerPadding,
+    this.legendHorizontally,
+    this.legendJustify,
+    this.legendLabelStyle,
+    this.legendMaxColumn,
+    this.legendMaxRow,
+    this.legendMeasure,
+    this.legendPadding,
+    this.legendPosition,
+    this.legendTitle,
+    this.measureLabel,
+    this.measureLabelStyle,
+    this.measureLineColor,
+    this.measureLineDashPattern,
+    this.measureLineThickness,
+    this.measureTickLength,
+    this.outerPadding,
+    this.borderColor,
+    this.showDomainLine,
+    this.showLegend,
+    this.showMeasureLine,
+    this.startFromZero,
+    this.subtitle,
+    this.subtitleStyle,
+    this.textDirection,
+    this.title,
+    this.titleJustify,
+    this.titlePadding,
+    this.titlePosition,
+    this.titleStyle,
+    this.domainLabel,
+    this.borderWidth,
+    this.trackType,
+    this.legendIcon,
+    this.legendIconSize,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: textDirection ?? TextDirection.ltr,
+      child: _charts.ScatterPlotChart(
+        List.generate(groupData.length, (index) {
+          DChartScatterGroup group = groupData[index];
+          Color colorPerGroup = group.color ??
+              Color((_math.Random().nextDouble() * 0xFFFFFF).toInt())
+                  .withOpacity(1.0);
+          return _common.Series<DChartScatterData, num>(
+            id: group.id,
+            data: group.data,
+            domainFn: (datum, index) => datum.domain,
+            measureFn: (datum, index) => datum.measure,
+            radiusPxFn: (datum, index) => datum.size ?? 5,
+            fillColorFn: (datum, index) => _getColor(
+              fillColor == null
+                  ? colorPerGroup
+                  : fillColor!(colorPerGroup, group, datum),
+            ),
+            strokeWidthPxFn: (datum, index) =>
+                borderWidth == null ? null : borderWidth!(group, datum, index),
+            colorFn: (datum, index) => _getColor(
+              borderColor == null
+                  ? colorPerGroup.withOpacity(0.3)
+                  : borderColor!(colorPerGroup, group, datum),
+            ),
+            labelAccessorFn: (datum, index) {
+              if (customLabelValue == null) return '';
+              return customLabelValue!(group, datum, index);
+            },
+            domainLowerBoundFn: (datum, index) =>
+                datum.startPlot == null ? null : datum.startPlot!.domain,
+            domainUpperBoundFn: (datum, index) =>
+                datum.startPlot == null ? null : datum.domain,
+            measureLowerBoundFn: (datum, index) =>
+                datum.startPlot == null ? null : datum.startPlot!.measure,
+            measureUpperBoundFn: (datum, index) =>
+                datum.startPlot == null ? null : datum.measure,
+            displayName: legendTitle == null ? null : legendTitle!(group),
+          )
+            ..setAttribute(
+              _charts.pointSymbolRendererFnKey,
+              (int? i) =>
+                  i == null ? 'circle' : _getSymbolType(group.data[i].type),
+            )
+            ..setAttribute(_charts.pointSymbolRendererIdKey, 'circle');
+        }),
+        defaultRenderer: _common.PointRendererConfig<num>(
+          symbolRenderer: legendIcon == null
+              ? null
+              : _IconRenderer(legendIcon!, size: legendIconSize),
+          radiusPx: 20,
+          pointRendererDecorators: [
+            _common.ComparisonPointsDecorator(
+              symbolRenderer: _getComparisonTrack(trackType),
+            ),
+          ],
+          customSymbolRenderers: {
+            'circle': _common.CircleSymbolRenderer(),
+            'rect': _common.RectSymbolRenderer(),
+            'triangle': _common.TriangleSymbolRenderer(),
+          },
+        ),
+        animate: animate,
+        flipVerticalAxis: flipVerticalAxis ?? false,
+        primaryMeasureAxis: _charts.NumericAxisSpec(
+          showAxisLine: showMeasureLine,
+          tickProviderSpec: _charts.BasicNumericTickProviderSpec(
+            zeroBound: startFromZero ?? true,
+          ),
+          renderSpec: _charts.SmallTickRendererSpec(
+            lineStyle: _charts.LineStyleSpec(
+              color: measureLineColor == null
+                  ? null
+                  : _getColor(measureLineColor!),
+              dashPattern: measureLineDashPattern,
+              thickness: measureLineThickness,
+            ),
+            labelStyle: _getTextStyleSpec(measureLabelStyle),
+            tickLengthPx: measureTickLength ?? 3,
+          ),
+          tickFormatterSpec: _charts.BasicNumericTickFormatterSpec(
+            (measure) {
+              if (measureLabel == null) return '$measure';
+              return measureLabel!(measure);
+            },
+          ),
+        ),
+        domainAxis: _charts.NumericAxisSpec(
+          tickProviderSpec: _charts.BasicNumericTickProviderSpec(
+            zeroBound: startFromZero ?? false,
+          ),
+          showAxisLine: showDomainLine,
+          renderSpec: _charts.SmallTickRendererSpec(
+            lineStyle: _charts.LineStyleSpec(
+              color:
+                  domainLineColor == null ? null : _getColor(domainLineColor!),
+              dashPattern: domainLineDashPattern,
+              thickness: domainLineThickness,
+            ),
+            labelStyle: _getTextStyleSpec(domainLabelStyle),
+            tickLengthPx: domainTickLength ?? 3,
+          ),
+          tickFormatterSpec: domainLabel == null
+              ? null
+              : _charts.BasicNumericTickFormatterSpec(
+                  (datetime) => domainLabel!(datetime),
+                ),
+        ),
+        behaviors: [
+          if (title != null)
+            _charts.ChartTitle(
+              title!,
+              behaviorPosition: _getBehaviorPosition(titlePosition),
+              subTitle: subtitle,
+              titleOutsideJustification: _getOutsideJustify(titleJustify),
+              innerPadding: innerPadding ?? 0,
+              outerPadding: outerPadding ?? 0,
+              titleStyleSpec: titleStyle == null
+                  ? null
+                  : _charts.TextStyleSpec(
+                      color: titleStyle!.color == null
+                          ? null
+                          : _charts.ColorUtil.fromDartColor(titleStyle!.color!),
+                      fontSize: titleStyle!.fontSize?.toInt(),
+                      lineHeight: titleStyle!.height,
+                    ),
+              subTitleStyleSpec: _getTextStyleSpec(subtitleStyle),
+              titlePadding: titlePadding ?? 0,
+            ),
+          if (showLegend ?? false)
+            _charts.SeriesLegend(
+              outsideJustification: _getOutsideJustify(legendJustify),
+              cellPadding: legendPadding,
+              position: _getBehaviorPosition(legendPosition),
+              entryTextStyle: _getTextStyleSpec(legendLabelStyle),
+              horizontalFirst: legendHorizontally,
+              desiredMaxRows: legendMaxRow,
+              desiredMaxColumns: legendMaxColumn,
+              measureFormatter: legendMeasure,
+              showMeasures: legendMeasure != null,
+              legendDefaultMeasure: _charts.LegendDefaultMeasure.none,
+            ),
+          _charts.LinePointHighlighter(
+            showHorizontalFollowLine:
+                _charts.LinePointHighlighterFollowLineType.nearest,
+            showVerticalFollowLine:
+                _charts.LinePointHighlighterFollowLineType.nearest,
+          ),
+          _charts.SelectNearest(
+            eventTrigger: _charts.SelectionTrigger.tapAndDrag,
+          ),
+        ],
+        selectionModels: [
+          _charts.SelectionModelConfig(
+            type: _charts.SelectionModelType.info,
+            changedListener: (model) {
+              if (model.selectedDatum.isNotEmpty) {
+                if (model.selectedDatum.first.datum is DChartScatterData) {
+                  DChartScatterData item = model.selectedDatum.first.datum;
+                  if (model.selectedSeries.isNotEmpty) {
+                    if (changedListener != null) {
+                      changedListener!(model.selectedSeries.first.id, item);
+                    }
+                  }
+                }
+              }
+            },
+          ),
+        ],
       ),
     );
   }

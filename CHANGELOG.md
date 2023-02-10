@@ -1,3 +1,7 @@
+## 2.1.0
+
+- add src DChartScatter (new chart)
+
 ## 2.0.2
 
 - add tutorial for Intro DChartTime

@@ -1,3 +1,7 @@
+## 2.1.1
+
+- add link tutor domain DChartTime
+
 ## 2.1.0
 
 - add src DChartScatter (new chart)

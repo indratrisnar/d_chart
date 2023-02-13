@@ -1,3 +1,7 @@
+## 2.1.2
+
+- add properti domainLabelAlignVertical to DChartBarCustom
+
 ## 2.1.1
 
 - add link tutor domain DChartTime

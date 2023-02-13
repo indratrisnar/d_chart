@@ -1013,30 +1013,31 @@ class DChartGauge extends StatelessWidget {
 
 /// Custom Bar Chart extends to default flutter framework
 class DChartBarCustom extends StatefulWidget {
-  const DChartBarCustom(
-      {Key? key,
-      this.max,
-      required this.listData,
-      this.verticalDirection,
-      this.domainLineStyle,
-      this.measureLineStyle,
-      this.showDomainLine,
-      this.showMeasureLine,
-      this.spaceBetweenItem,
-      this.valueAlign,
-      this.domainLabelStyle,
-      this.measureLabelStyle,
-      this.showDomainLabel,
-      this.showMeasureLabel,
-      this.spaceDomainLabeltoChart,
-      this.spaceMeasureLabeltoChart,
-      this.showLoading,
-      this.loadingDuration,
-      this.valuePadding,
-      this.radiusBar,
-      this.spaceDomainLinetoChart,
-      this.spaceMeasureLinetoChart})
-      : super(key: key);
+  const DChartBarCustom({
+    Key? key,
+    this.max,
+    required this.listData,
+    this.verticalDirection,
+    this.domainLineStyle,
+    this.measureLineStyle,
+    this.showDomainLine,
+    this.showMeasureLine,
+    this.spaceBetweenItem,
+    this.valueAlign,
+    this.domainLabelStyle,
+    this.measureLabelStyle,
+    this.showDomainLabel,
+    this.showMeasureLabel,
+    this.spaceDomainLabeltoChart,
+    this.spaceMeasureLabeltoChart,
+    this.showLoading,
+    this.loadingDuration,
+    this.valuePadding,
+    this.radiusBar,
+    this.spaceDomainLinetoChart,
+    this.spaceMeasureLinetoChart,
+    this.domainLabelAlignVertical,
+  }) : super(key: key);
 
   /// Limit top value for value chart, beside top domainAxis Line
   ///
@@ -1139,6 +1140,9 @@ class DChartBarCustom extends StatefulWidget {
   /// radius for item bar view
   final BorderRadius? radiusBar;
 
+  /// default: CrossAxisAlignment.end
+  final CrossAxisAlignment? domainLabelAlignVertical;
+
   @override
   State<DChartBarCustom> createState() => _DChartBarCustomState();
 }
@@ -1231,7 +1235,8 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                 child: LayoutBuilder(
                     builder: (context, constrainsDomainLabelHorz) {
                   return Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: widget.domainLabelAlignVertical ??
+                        CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(widget.listData.length, (index) {
                       DChartBarDataCustom item = widget.listData[index];

@@ -1,3 +1,7 @@
+## 2.1.3
+
+- fix showMeasureLabel on DChartBarCustom
+
 ## 2.1.2
 
 - add properti domainLabelAlignVertical to DChartBarCustom

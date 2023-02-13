@@ -1306,33 +1306,18 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                       }),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Transform.translate(
-                      offset: Offset(
-                        0 +
-                            (widget.spaceDomainLinetoChart ?? 0) +
-                            ((widget.showMeasureLine ?? false)
-                                ? (widget.measureLineStyle == null
-                                    ? 0
-                                    : widget.measureLineStyle!.width)
-                                : 0),
-                        12 +
-                            ((widget.showMeasureLine ?? false)
-                                ? (widget.measureLineStyle == null
-                                    ? 0
-                                    : widget.measureLineStyle!.width)
-                                : 0) +
-                            (widget.spaceMeasureLabeltoChart ?? 5),
-                      ),
-                      child: minLabel(),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Transform.translate(
+                  if (widget.showMeasureLabel ?? false)
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Transform.translate(
                         offset: Offset(
-                          0,
+                          0 +
+                              (widget.spaceDomainLinetoChart ?? 0) +
+                              ((widget.showMeasureLine ?? false)
+                                  ? (widget.measureLineStyle == null
+                                      ? 0
+                                      : widget.measureLineStyle!.width)
+                                  : 0),
                           12 +
                               ((widget.showMeasureLine ?? false)
                                   ? (widget.measureLineStyle == null
@@ -1341,8 +1326,25 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                                   : 0) +
                               (widget.spaceMeasureLabeltoChart ?? 5),
                         ),
-                        child: maxLabel()),
-                  ),
+                        child: minLabel(),
+                      ),
+                    ),
+                  if (widget.showMeasureLabel ?? false)
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Transform.translate(
+                          offset: Offset(
+                            0,
+                            12 +
+                                ((widget.showMeasureLine ?? false)
+                                    ? (widget.measureLineStyle == null
+                                        ? 0
+                                        : widget.measureLineStyle!.width)
+                                    : 0) +
+                                (widget.spaceMeasureLabeltoChart ?? 5),
+                          ),
+                          child: maxLabel()),
+                    ),
                 ],
               ),
             ),

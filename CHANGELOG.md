@@ -1,3 +1,7 @@
+## 2.1.4
+
+- add link tutor measure DChartTime
+
 ## 2.1.3
 
 - fix showMeasureLabel on DChartBarCustom

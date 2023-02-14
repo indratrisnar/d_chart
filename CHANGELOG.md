@@ -1,3 +1,8 @@
+## 2.2.5
+
+- add link tutor DCharTime [Title & Subtitle]
+- restyle default source (has no effect on the others)
+
 ## 2.2.4
 
 - add new chart: DChartSingleBar

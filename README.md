@@ -52,6 +52,7 @@ SizedBox(
      - [Intro Time Chart](https://youtu.be/WFkIh3IcCuY)
      - [Domain](https://youtu.be/lWO_dx9UIUM)
      - [Measure](https://youtu.be/2JTk8WTc0_w)
+     - [Title & Subtitle](https://youtu.be/lXZke9YcR9s)
 8. [Other](#other)
 9. Universal Tutorial
    - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)

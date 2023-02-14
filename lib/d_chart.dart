@@ -1982,15 +1982,7 @@ class DChartTime extends StatelessWidget {
               titleOutsideJustification: _getOutsideJustify(titleJustify),
               innerPadding: innerPadding ?? 0,
               outerPadding: outerPadding ?? 0,
-              titleStyleSpec: titleStyle == null
-                  ? null
-                  : _charts.TextStyleSpec(
-                      color: titleStyle!.color == null
-                          ? null
-                          : _charts.ColorUtil.fromDartColor(titleStyle!.color!),
-                      fontSize: titleStyle!.fontSize?.toInt(),
-                      lineHeight: titleStyle!.height,
-                    ),
+              titleStyleSpec: _getTextStyleSpec(titleStyle),
               subTitleStyleSpec: _getTextStyleSpec(subtitleStyle),
               titlePadding: titlePadding ?? 0,
             ),
@@ -2640,15 +2632,7 @@ class DChartScatter extends StatelessWidget {
               titleOutsideJustification: _getOutsideJustify(titleJustify),
               innerPadding: innerPadding ?? 0,
               outerPadding: outerPadding ?? 0,
-              titleStyleSpec: titleStyle == null
-                  ? null
-                  : _charts.TextStyleSpec(
-                      color: titleStyle!.color == null
-                          ? null
-                          : _charts.ColorUtil.fromDartColor(titleStyle!.color!),
-                      fontSize: titleStyle!.fontSize?.toInt(),
-                      lineHeight: titleStyle!.height,
-                    ),
+              titleStyleSpec: _getTextStyleSpec(titleStyle),
               subTitleStyleSpec: _getTextStyleSpec(subtitleStyle),
               titlePadding: titlePadding ?? 0,
             ),

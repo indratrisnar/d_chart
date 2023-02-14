@@ -1,3 +1,8 @@
+## 2.2.4
+
+- add new chart: DChartSingleBar
+  used for percentage comparisons
+
 ## 2.1.4
 
 - add link tutor measure DChartTime

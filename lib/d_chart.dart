@@ -299,6 +299,10 @@ typedef ScatterDomainLabel = String Function(num? value);
 typedef ScatterBorderWidth = double Function(
     DChartScatterGroup group, DChartScatterData data, int? index);
 
+// Single Bar
+typedef OnBackgroud = void Function(double max);
+typedef OnForground = void Function(double value);
+
 /// get color util to color charts
 _charts.Color _getColor(Color color) {
   return _charts.ColorUtil.fromDartColor(color);
@@ -2688,6 +2692,100 @@ class DChartScatter extends StatelessWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// used for percentage comparisons
+class DChartSingleBar extends StatelessWidget {
+  /// set color for back side\
+  /// Default: 10% opacity from [forgroundColor]
+  final Color? backgroundColor;
+
+  /// set color for front side
+  final Color forgroundColor;
+
+  /// radius for corner bar\
+  /// set for back and front layer
+  final BorderRadius? radius;
+
+  /// value for divide\
+  /// must 0 < value <= max
+  final double value;
+
+  /// max value\
+  /// in percentage equal to 100%\
+  /// must 0 >
+  final double max;
+
+  /// set click on background
+  final OnBackgroud? onBackground;
+
+  /// set click on forground
+  final OnForground? onForground;
+
+  /// direction\
+  /// ltr -> Left to Right\
+  /// if false -> Right to Left
+  /// default: true
+  final bool? ltr;
+
+  const DChartSingleBar({
+    this.backgroundColor,
+    required this.forgroundColor,
+    this.radius,
+    required this.value,
+    required this.max,
+    this.onBackground,
+    this.onForground,
+    this.ltr,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: (ltr ?? true) ? TextDirection.ltr : TextDirection.rtl,
+      child: LayoutBuilder(
+        builder: (_, constraints) {
+          double newMax = max < 0 ? 0 : max;
+          double newValue = value < 0
+              ? 0
+              : value > newMax
+                  ? newMax
+                  : value;
+          double width = (newValue / newMax) * constraints.maxWidth;
+          return Stack(
+            children: [
+              Material(
+                color: backgroundColor ?? forgroundColor.withOpacity(0.1),
+                borderRadius: radius,
+                child: InkWell(
+                  onTap:
+                      onBackground == null ? null : () => onBackground!(newMax),
+                  borderRadius: radius,
+                  child: SizedBox(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight,
+                  ),
+                ),
+              ),
+              Material(
+                color: forgroundColor,
+                borderRadius: radius,
+                child: InkWell(
+                  onTap:
+                      onForground == null ? null : () => onForground!(newValue),
+                  borderRadius: radius,
+                  child: SizedBox(
+                    width: width,
+                    height: constraints.maxHeight,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

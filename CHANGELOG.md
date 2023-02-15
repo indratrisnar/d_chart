@@ -1,3 +1,7 @@
+## 2.2.6
+
+- add link tutor DCharTime [Legend]
+
 ## 2.2.5
 
 - add link tutor DCharTime [Title & Subtitle]

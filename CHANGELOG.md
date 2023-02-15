@@ -1,3 +1,7 @@
+## 2.2.7
+
+- remove property areaOpacity in DRenderLine
+
 ## 2.2.6
 
 - add link tutor DCharTime [Legend]

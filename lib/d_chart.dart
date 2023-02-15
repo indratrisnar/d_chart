@@ -2047,10 +2047,6 @@ class DRenderLine extends _common.LineRendererConfig<DateTime> {
   /// default: false
   final bool? showArea;
 
-  /// 0-1\
-  /// default: 0.1
-  final double? opacityArea;
-
   /// pattern for line
   final List<int>? dashPattern;
 
@@ -2067,7 +2063,6 @@ class DRenderLine extends _common.LineRendererConfig<DateTime> {
     this.showLine,
     this.showPoint,
     this.showArea,
-    this.opacityArea,
     this.dashPattern,
     this.pointSize,
     this.strokeWidth,
@@ -2079,13 +2074,6 @@ class DRenderLine extends _common.LineRendererConfig<DateTime> {
       config: _common.LineRendererConfig(
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         includeArea: showArea ?? false,
-        areaOpacity: opacityArea == null
-            ? 0.1
-            : opacityArea! > 1
-                ? 1
-                : opacityArea! < 0
-                    ? 0
-                    : opacityArea!,
         dashPattern: dashPattern,
         includeLine: showLine ?? true,
         includePoints: showPoint ?? false,

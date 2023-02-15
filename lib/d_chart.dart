@@ -2240,19 +2240,10 @@ class DRenderTargetLine extends _common.BarTargetLineRendererConfig<DateTime> {
 }
 
 class DRenderPoint extends _common.PointRendererConfig<DateTime> {
-  /// icon for all legend
-  final IconData? legendIcon;
-
-  /// stroke width of line\
-  /// default: 0
-  final double? borderWidth;
-
   /// default: 3.5
   final double? pointSize;
 
   DRenderPoint({
-    this.legendIcon,
-    this.borderWidth,
     this.pointSize,
   });
 
@@ -2260,8 +2251,6 @@ class DRenderPoint extends _common.PointRendererConfig<DateTime> {
   _common.PointRenderer<DateTime> build() {
     return _common.PointRenderer(
       config: _common.PointRendererConfig(
-        symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
-        strokeWidthPx: borderWidth ?? 2,
         radiusPx: pointSize ?? 3.5,
       ),
     );

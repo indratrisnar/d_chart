@@ -1,3 +1,8 @@
+## 2.2.8
+
+- add link tutor DCharTime [DRenderLine] & [DRenderTargetLine]
+- remove property borderWith and legendIon in DRenderPoint
+
 ## 2.2.7
 
 - remove property areaOpacity in DRenderLine

@@ -1,3 +1,7 @@
+## 2.2.10
+
+- add DChartScatter example documentation
+
 ## 2.2.9
 
 - update comment on color DChartTime

@@ -60,9 +60,15 @@ SizedBox(
      - [Issue Symbol Renderer When Change Render Type](https://youtu.be/CYx1tlsBMNY)
      - [Color](https://youtu.be/cqgfzj9Elqg)
      - [Action Listener](https://youtu.be/Df8nXgpTZgo)
-8. [Other](#other)
-9. Universal Tutorial
-   - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
+8. [Scatter](#scatter)
+   - [Image](#scatter-image)
+   - [Example](#scatter-example)
+   - Tutorial
+     - [Intro Scatter Chart](https://youtu.be/J6Pg56IYrRI)
+9. [Other](#other)
+10. Universal Tutorial
+
+- [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 
 <br>
 
@@ -412,6 +418,66 @@ DChartTime(
                 DChartTimeData(time: DateTime(2023, 2, 18), value: 91),
                 DChartTimeData(time: DateTime(2023, 2, 20), value: 17),
             ],
+        ),
+    ],
+),
+```
+
+<br>
+
+## Scatter
+
+Chart for Scatter Plot/Point Series, it can be group.
+
+### Scatter Image
+
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/scatter/dchart_scatter.png" alt="dchart_scatter" width="340">
+</p>
+
+### Scatter Example
+
+```dart
+final group1 = [
+    DChartScatterData(
+        domain: 1,
+        measure: 23,
+        size: 10,
+        startPlot: DPlot(2, 10),
+        type: SymbolType.rect,
+    ),
+    DChartScatterData(
+        domain: 2,
+        measure: 12,
+        type: SymbolType.circle,
+    ),
+    DChartScatterData(domain: 3, measure: 19),
+];
+final group2 = [
+    DChartScatterData(
+        domain: 1,
+        measure: 15,
+        type: SymbolType.triangle,
+    ),
+    DChartScatterData(
+        domain: 3, measure: 25, type: SymbolType.triangle, size: 15),
+    DChartScatterData(domain: 5, measure: 7),
+];
+
+DChartScatter(
+    trackType: TrackType.rectangle,
+    borderWidth: (group, data, index) => 2,
+    borderColor: (random, group, data) => Colors.red.withOpacity(0.8),
+    groupData: [
+        DChartScatterGroup(
+            id: 'id',
+            data: group1,
+            color: Colors.amber,
+        ),
+        DChartScatterGroup(
+            id: 'id2',
+            data: group2,
+            color: Colors.purple,
         ),
     ],
 ),

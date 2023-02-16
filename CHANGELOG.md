@@ -1,3 +1,11 @@
+## 2.2.9
+
+- update comment on color DChartTime
+- add link tutor DCharTime [DRenderBar]
+- add link tutor DCharTime [Issue Symbol Renderer When Change Render Type]
+- add link tutor DCharTime [Color]
+- add link tutor DCharTime [Action Listener]
+
 ## 2.2.8
 
 - add link tutor DCharTime [DRenderLine] & [DRenderTargetLine]

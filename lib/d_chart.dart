@@ -1639,11 +1639,18 @@ class DChartTime extends StatelessWidget {
   /// animate chart when it build?
   final bool? animate;
 
-  /// color for line
+  /// DRenderBar: color for border\
+  /// DRenderLine: color for line chart\
+  /// DRenderTargetLine: color for line chart\
+  /// DRenderPoint: -
   /// Default: Random, each group has same color
   final TimePrimaryColor? primaryColor;
 
-  /// color for fill item chart
+  /// color for fill item chart\
+  /// DRenderBar: color for content bar item fill\
+  /// DRenderLine: -\
+  /// DRenderTargetLine: -\
+  /// DRenderPoint: color for point\
   final TimeFillColor? fillColor;
 
   /// changed listener for selected point
@@ -1808,10 +1815,16 @@ class DChartTime extends StatelessWidget {
   final TimeLabelValue? customLabelValue;
 
   /// fill area\
+  /// set true for showArea in DRenderLine\
+  /// DRenderBar: -\
+  /// DRenderLine: color for area\
+  /// DRenderTargetLine: -\
+  /// DRenderPoint: -\
   /// default: group color with opacity 0.1
   final TimeAreaColor? areaColor;
 
-  /// symbol legend color
+  /// symbol legend color\
+  /// available on all render Type\
   /// default: groupColor
   final TimeSeriesColor? seriesColor;
 

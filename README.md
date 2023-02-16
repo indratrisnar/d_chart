@@ -56,6 +56,10 @@ SizedBox(
      - [Legend](https://youtu.be/lqcB19ciNBk)
      - [DRenderLine](https://youtu.be/AmMQnxg8kqI)
      - [DRenderTargetLine](https://youtu.be/oPxmlrvdOPo)
+     - [DRenderBar](https://youtu.be/5BFXZKRB7cg)
+     - [Issue Symbol Renderer When Change Render Type](https://youtu.be/CYx1tlsBMNY)
+     - [Color](https://youtu.be/cqgfzj9Elqg)
+     - [Action Listener](https://youtu.be/Df8nXgpTZgo)
 8. [Other](#other)
 9. Universal Tutorial
    - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)

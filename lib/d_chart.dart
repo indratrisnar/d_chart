@@ -2671,14 +2671,34 @@ class DChartScatter extends StatelessWidget {
   }
 }
 
-/// used for percentage comparisons
+/// used for comparisons nad progress
 class DChartSingleBar extends StatelessWidget {
   /// set color for back side\
   /// Default: 10% opacity from [forgroundColor]
   final Color? backgroundColor;
 
+  /// label between background and forground\
+  /// usually use widget Text/Icon
+  final Widget? backgroundLabel;
+
+  /// default: Alignment.centerRight
+  final AlignmentGeometry? backgroundLabelAlign;
+
+  /// default: const EdgeInsets.all(0)
+  final EdgeInsetsGeometry? backgroundLabelPadding;
+
   /// set color for front side
   final Color forgroundColor;
+
+  /// label in front of forground\
+  /// usually use widget Text/Icon
+  final Widget? forgroundLabel;
+
+  /// default: Alignment.centerRight
+  final AlignmentGeometry? forgroundLabelAlign;
+
+  /// default: const EdgeInsets.all(0)
+  final EdgeInsetsGeometry? forgroundLabelPadding;
 
   /// radius for corner bar\
   /// set for back and front layer
@@ -2714,6 +2734,12 @@ class DChartSingleBar extends StatelessWidget {
     this.onBackground,
     this.onForground,
     this.ltr,
+    this.backgroundLabel,
+    this.backgroundLabelAlign = Alignment.centerRight,
+    this.backgroundLabelPadding = const EdgeInsets.all(0),
+    this.forgroundLabel,
+    this.forgroundLabelAlign = Alignment.centerRight,
+    this.forgroundLabelPadding = const EdgeInsets.all(0),
   });
 
   @override
@@ -2741,6 +2767,15 @@ class DChartSingleBar extends StatelessWidget {
                   child: SizedBox(
                     width: constraints.maxWidth,
                     height: constraints.maxHeight,
+                    child: backgroundLabel == null
+                        ? null
+                        : Align(
+                            alignment: backgroundLabelAlign!,
+                            child: Padding(
+                              padding: backgroundLabelPadding!,
+                              child: backgroundLabel,
+                            ),
+                          ),
                   ),
                 ),
               ),
@@ -2754,6 +2789,15 @@ class DChartSingleBar extends StatelessWidget {
                   child: SizedBox(
                     width: width,
                     height: constraints.maxHeight,
+                    child: forgroundLabel == null
+                        ? null
+                        : Align(
+                            alignment: forgroundLabelAlign!,
+                            child: Padding(
+                              padding: forgroundLabelPadding!,
+                              child: forgroundLabel,
+                            ),
+                          ),
                   ),
                 ),
               ),

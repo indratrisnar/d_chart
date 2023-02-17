@@ -433,6 +433,7 @@ Chart for Scatter Plot/Point Series, it can be group.
 
 <p float="left">
     <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/scatter/dchart_scatter.png" alt="dchart_scatter" width="340">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/scatter/dchart_scatter_2.png" alt="dchart_scatter" width="340">
 </p>
 
 ### Scatter Example
@@ -480,6 +481,28 @@ DChartScatter(
             color: Colors.purple,
         ),
     ],
+),
+```
+
+<br>
+
+## Single Bar
+
+This chart is devoted to making a comparison bar and progress bar display.
+
+### Single Bar Image
+
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/singlebar/dchart_singlebar.png" alt="dchart_scatter" width="340">
+</p>
+
+### Single Bar Example
+
+```dart
+DChartSingleBar(
+    forgroundColor: Colors.green,
+    value: 30,
+    max: 80,
 ),
 ```
 

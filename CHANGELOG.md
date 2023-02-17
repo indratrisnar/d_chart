@@ -1,3 +1,9 @@
+## 2.2.11
+
+- update src DChartSingleBar
+- add documentation for DChartSingleBar
+- add example image for DChartScatter
+
 ## 2.2.10
 
 - add DChartScatter example documentation

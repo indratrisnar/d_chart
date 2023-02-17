@@ -65,8 +65,13 @@ SizedBox(
    - [Example](#scatter-example)
    - Tutorial
      - [Intro Scatter Chart](https://youtu.be/J6Pg56IYrRI)
-9. [Other](#other)
-10. Universal Tutorial
+9. [Single Bar](#single-bar)
+   - [Image](#single-bar-image)
+   - [Example](#single-bar-example)
+   - Tutorial
+     - [Intro Single Bar]()
+10. [Other](#other)
+11. Universal Tutorial
 
 - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 

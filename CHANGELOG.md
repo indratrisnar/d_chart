@@ -1,3 +1,10 @@
+## 2.3.0
+
+- change sdk: ">=2.17.0 <4.0.0"
+- Chart Combo\
+  Support multi type: line, plot, bar\
+  also can single just line/plot/bar
+
 ## 2.2.11
 
 - update src DChartSingleBar

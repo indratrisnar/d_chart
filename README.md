@@ -29,8 +29,6 @@ SizedBox(
 2. [Line](#line)
    - [Image](#line-image)
    - [Example](#line-example)
-   - Tutorial
-     - [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)
 3. [Pie](#pie)
    - [Image](#pie-image)
    - [Example](#pie-example)
@@ -43,35 +41,18 @@ SizedBox(
 6. [Bar Custom](#bar-custom)
    - [Image](#bar-custom-image)
    - [Example](#bar-custom-example)
-   - Tutorial
-     - [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)
 7. [Time](#time)
    - [Image](#time-image)
    - [Example](#time-example)
-   - Tutorial
-     - [Intro Time Chart](https://youtu.be/WFkIh3IcCuY)
-     - [Domain](https://youtu.be/lWO_dx9UIUM)
-     - [Measure](https://youtu.be/2JTk8WTc0_w)
-     - [Title & Subtitle](https://youtu.be/lXZke9YcR9s)
-     - [Legend](https://youtu.be/lqcB19ciNBk)
-     - [DRenderLine](https://youtu.be/AmMQnxg8kqI)
-     - [DRenderTargetLine](https://youtu.be/oPxmlrvdOPo)
-     - [DRenderBar](https://youtu.be/5BFXZKRB7cg)
-     - [Issue Symbol Renderer When Change Render Type](https://youtu.be/CYx1tlsBMNY)
-     - [Color](https://youtu.be/cqgfzj9Elqg)
-     - [Action Listener](https://youtu.be/Df8nXgpTZgo)
 8. [Scatter](#scatter)
    - [Image](#scatter-image)
    - [Example](#scatter-example)
-   - Tutorial
-     - [Intro Scatter Chart](https://youtu.be/J6Pg56IYrRI)
 9. [Single Bar](#single-bar)
    - [Image](#single-bar-image)
    - [Example](#single-bar-example)
-   - Tutorial
-     - [Intro Single Bar] Soon
-10. [Other](#other)
-11. Universal Tutorial
+10. [Combo]
+11. [Other](#other)
+12. Universal Tutorial
 
 - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 
@@ -116,6 +97,10 @@ DChartBar(
 <br>
 
 ## Line
+
+Tutorial:
+
+- [Line Chart From Data Collection](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OdumjOowVcNmW_nVPPUVfa&index=7)
 
 ### Line Image
 
@@ -236,7 +221,11 @@ DChartGauge(
 
 ## Bar Custom
 
-this is not depend on **community_charts_flutter**
+this is not depend on **community_charts_flutter**\
+
+Tutorial:
+
+- [Bar Chart Custom](https://www.youtube.com/watch?v=bm_80bzQ_M4&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&index=4)
 
 ### Bar Custom Image
 
@@ -389,6 +378,20 @@ Render type:
 3. DRenderTargetLine
 4. DRenderPoint
 
+Tutorial:
+
+- [Intro Time Chart](https://youtu.be/WFkIh3IcCuY)
+- [Domain](https://youtu.be/lWO_dx9UIUM)
+- [Measure](https://youtu.be/2JTk8WTc0_w)
+- [Title & Subtitle](https://youtu.be/lXZke9YcR9s)
+- [Legend](https://youtu.be/lqcB19ciNBk)
+- [DRenderLine](https://youtu.be/AmMQnxg8kqI)
+- [DRenderTargetLine](https://youtu.be/oPxmlrvdOPo)
+- [DRenderBar](https://youtu.be/5BFXZKRB7cg)
+- [Issue Symbol Renderer When Change Render Type](https://youtu.be/CYx1tlsBMNY)
+- [Color](https://youtu.be/cqgfzj9Elqg)
+- [Action Listener](https://youtu.be/Df8nXgpTZgo)
+
 ### Time Image
 
 <p float="left">
@@ -432,7 +435,11 @@ DChartTime(
 
 ## Scatter
 
-Chart for Scatter Plot/Point Series, it can be group.
+Chart for Scatter Plot/Point Series, it can be group.\
+
+Tutorial:
+
+- [Intro Scatter Chart](https://youtu.be/J6Pg56IYrRI)
 
 ### Scatter Image
 
@@ -493,7 +500,11 @@ DChartScatter(
 
 ## Single Bar
 
-This chart is devoted to making a comparison bar and progress bar display.
+This chart is devoted to making a comparison bar and progress bar display.\
+
+Tutorial:
+
+- [Intro Single Bar Chart](https://youtu.be/2JPnDN4VnV4)
 
 ### Single Bar Image
 
@@ -508,6 +519,65 @@ DChartSingleBar(
     forgroundColor: Colors.green,
     value: 30,
     max: 80,
+),
+```
+
+<br>
+
+## Combo
+
+Multi type chart in 1 widget chart.\
+divided into 3 types of axis domains:
+
+- Numeric
+- Ordinal
+- Time
+
+### Combo Image
+
+<p float="left">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_numeric.png" alt="combo_numeric" width="680">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_ordinal.png" alt="combo_ordinal" width="680">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_time.png" alt="combo_time" width="680">
+</p>
+
+### Combo Example
+
+```dart
+DChartComboT(
+    configRenderPoint: ConfigRenderPoint(radiusPx: 8),
+    groupList: [
+        TimeGroup(
+            id: '1',
+            chartType: ChartType.line,
+            color: Colors.green,
+            data: [
+                TimeData(domain: DateTime(2023, 1, 1), measure: 10),
+                TimeData(domain: DateTime(2023, 1, 2), measure: 4),
+                TimeData(domain: DateTime(2023, 1, 3), measure: 7),
+            ],
+        ),
+        TimeGroup(
+            id: '2',
+            chartType: ChartType.bar,
+            color: Colors.amber,
+            data: [
+                TimeData(domain: DateTime(2023, 1, 1), measure: 7),
+                TimeData(domain: DateTime(2023, 1, 2), measure: 4),
+                TimeData(domain: DateTime(2023, 1, 3), measure: 6),
+            ],
+        ),
+        TimeGroup(
+            id: '4',
+            chartType: ChartType.scatterPlot,
+            color: Colors.red,
+            data: [
+                TimeData(domain: DateTime(2023, 1, 1), measure: 4),
+                TimeData(domain: DateTime(2023, 1, 2), measure: 7),
+                TimeData(domain: DateTime(2023, 1, 3), measure: 2),
+            ],
+        ),
+    ],
 ),
 ```
 

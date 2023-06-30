@@ -1,17 +1,17 @@
 name: d_chart
 description: D'Chart is the development of an existing package chart and simple way to use it.
-version: 2.2.11
+version: 2.3.0
 homepage: https://github.com/indratrisnar/d_chart
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.17.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  community_charts_flutter: ^1.0.0
-  community_charts_common: ^1.0.0
+  community_charts_flutter: ^1.0.1
+  community_charts_common: ^1.0.1
 
 dev_dependencies:
   flutter_test:

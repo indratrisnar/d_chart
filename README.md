@@ -24,35 +24,55 @@ SizedBox(
 # Table of Content
 
 1. [Bar](#bar)
+
    - [Image](#bar-image)
    - [Example](#bar-example)
+
 2. [Line](#line)
+
    - [Image](#line-image)
    - [Example](#line-example)
+
 3. [Pie](#pie)
+
    - [Image](#pie-image)
    - [Example](#pie-example)
+
 4. [Donut](#donut)
+
    - [Image](#donut-image)
    - [Example](#donut-example)
+
 5. [Gauge](#gauge)
+
    - [Image](#gauge-image)
    - [Example](#gauge-example)
+
 6. [Bar Custom](#bar-custom)
+
    - [Image](#bar-custom-image)
    - [Example](#bar-custom-example)
+
 7. [Time](#time)
+
    - [Image](#time-image)
    - [Example](#time-example)
+
 8. [Scatter](#scatter)
+
    - [Image](#scatter-image)
    - [Example](#scatter-example)
+
 9. [Single Bar](#single-bar)
+
    - [Image](#single-bar-image)
-   - [Example](#single-bar-example)
-10. [Combo]
-11. [Other](#other)
-12. Universal Tutorial
+   - [Example](#single-bar-example) 10.[Combo](#combo)
+   - [Image](#combo-image)
+   - [Example](#combo-example)
+
+10. [Other](#other)
+
+11. Universal Tutorial
 
 - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 
@@ -532,6 +552,8 @@ divided into 3 types of axis domains:
 - Numeric
 - Ordinal
 - Time
+
+Tutorial: soon
 
 ### Combo Image
 

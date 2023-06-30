@@ -561,9 +561,9 @@ Tutorial: soon
 ### Combo Image
 
 <p float="left">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_numeric.png" alt="combo_numeric" width="680">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_ordinal.png" alt="combo_ordinal" width="680">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_time.png" alt="combo_time" width="680">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_numeric.png" alt="combo_numeric" width="750">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_ordinal.png" alt="combo_ordinal" width="750">
+    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_time.png" alt="combo_time" width="750">
 </p>
 
 ### Combo Example

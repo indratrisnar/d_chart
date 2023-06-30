@@ -66,13 +66,16 @@ SizedBox(
 9. [Single Bar](#single-bar)
 
    - [Image](#single-bar-image)
-   - [Example](#single-bar-example) 10.[Combo](#combo)
-   - [Image](#combo-image)
-   - [Example](#combo-example)
+   - [Example](#single-bar-example)
 
-10. [Other](#other)
+10. [Combo](#combo)
 
-11. Universal Tutorial
+- [Image](#combo-image)
+- [Example](#combo-example)
+
+11. [Other](#other)
+
+12. Universal Tutorial
 
 - [All Chart](https://www.youtube.com/watch?v=pw1GEJl7edU&list=PLMeCG4xYek-NxSGp2i2mINmeM7k1Rzj4U&index=2)
 

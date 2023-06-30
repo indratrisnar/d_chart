@@ -4,6 +4,9 @@
 - Chart Combo\
   Support multi type: line, plot, bar\
   also can single just line/plot/bar
+- update package resource depend on:
+  community_charts_flutter: ^1.0.1
+  community_charts_common: ^1.0.1
 
 ## 2.2.11
 

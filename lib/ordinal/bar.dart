@@ -8,10 +8,8 @@ import 'package:flutter/material.dart';
 import '../commons/axis.dart';
 import '../commons/config_render.dart';
 import '../commons/data_model.dart';
-import '../commons/enums.dart';
 import '../commons/method_common.dart';
 import '../commons/method_type.dart';
-import '../commons/viewport.dart';
 
 /// Ordinal Bar Chart\
 /// also can use for single other type but cannot be set horizontal measure

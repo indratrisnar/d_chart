@@ -24,6 +24,7 @@ class OrdinalGroup {
   /// as key chart
   final String id;
 
+  /// work when use in DChartCombo\
   /// default: `ChartType.line`
   final ChartType chartType;
 
@@ -62,6 +63,7 @@ class NumericGroup {
   /// as key chart
   final String id;
 
+  /// work when use in DChartCombo\
   /// default: `ChartType.line`
   final ChartType chartType;
 
@@ -100,6 +102,7 @@ class TimeGroup {
   /// as key chart
   final String id;
 
+  /// work when use in DChartCombo\
   /// default: `ChartType.line`
   final ChartType chartType;
 

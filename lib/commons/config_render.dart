@@ -96,6 +96,19 @@ class ConfigRenderLine extends ConfigRender {
       strokeWidthPx: strokeWidthPx,
     );
   }
+
+  common.LineRendererConfig<num> getRenderLineN() {
+    return common.LineRendererConfig(
+      areaOpacity: areaOpacity,
+      dashPattern: dashPattern,
+      includeArea: includeArea,
+      includeLine: includeLine,
+      includePoints: includePoints,
+      radiusPx: radiusPx,
+      roundEndCaps: roundEndCaps,
+      strokeWidthPx: strokeWidthPx,
+    );
+  }
 }
 
 class ConfigRenderBar extends ConfigRender {
@@ -264,6 +277,14 @@ class ConfigRenderPoint extends ConfigRender {
   common.SeriesRendererConfig<DateTime> getRenderTime(String? renderId) {
     return charts.PointRendererConfig(
       customRendererId: renderId,
+      radiusPx: radiusPx,
+      strokeWidthPx: strokeWidthPx,
+      symbolRenderer: symbolRender?.getRenderer(),
+    );
+  }
+
+  common.PointRendererConfig<num> getRenderPointN() {
+    return common.PointRendererConfig(
       radiusPx: radiusPx,
       strokeWidthPx: strokeWidthPx,
       symbolRenderer: symbolRender?.getRenderer(),

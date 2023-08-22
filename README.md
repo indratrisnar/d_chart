@@ -5,19 +5,20 @@ The purpose of this pakage is simple way to use chart from [community_charts_flu
 
 # Usage
 
+- Full [Documentation](https://flutterdlux.netlify.app/d_chart/)
 - Wrap Chart with Widget Size like SizedBox, Container, Aspecration etc to set root size for chart
 - Example
 
 ```dart
-AspectRation(
+AspectRatio(
     aspectRatio: 16/9,
-    child: DChartTime(),
+    child: DChartComboO(),
 ),
 
 SizedBox(
     width: 240,
     height: 200,
-    child: DChartTime(),
+    child: DChartComboN(),
 ),
 ```
 
@@ -68,10 +69,7 @@ SizedBox(
    - [Image](#single-bar-image)
    - [Example](#single-bar-example)
 
-10. [Combo](#combo)
-
-- [Image](#combo-image)
-- [Example](#combo-example)
+10. Combo: [Move to Web Documentation](https://flutterdlux.netlify.app/d_chart_combo/)
 
 11. [Other](#other)
 
@@ -542,67 +540,6 @@ DChartSingleBar(
     forgroundColor: Colors.green,
     value: 30,
     max: 80,
-),
-```
-
-<br>
-
-## Combo
-
-Multi type chart in 1 widget chart.\
-divided into 3 types of axis domains:
-
-- Numeric
-- Ordinal
-- Time
-
-Tutorial: soon
-
-### Combo Image
-
-<p float="left">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_numeric.png" alt="combo_numeric" width="750">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_ordinal.png" alt="combo_ordinal" width="750">
-    <img src="https://github.com/indratrisnar/d_chart/raw/master/pic/combo/combo_time.png" alt="combo_time" width="750">
-</p>
-
-### Combo Example
-
-```dart
-DChartComboT(
-    configRenderPoint: ConfigRenderPoint(radiusPx: 8),
-    groupList: [
-        TimeGroup(
-            id: '1',
-            chartType: ChartType.line,
-            color: Colors.green,
-            data: [
-                TimeData(domain: DateTime(2023, 1, 1), measure: 10),
-                TimeData(domain: DateTime(2023, 1, 2), measure: 4),
-                TimeData(domain: DateTime(2023, 1, 3), measure: 7),
-            ],
-        ),
-        TimeGroup(
-            id: '2',
-            chartType: ChartType.bar,
-            color: Colors.amber,
-            data: [
-                TimeData(domain: DateTime(2023, 1, 1), measure: 7),
-                TimeData(domain: DateTime(2023, 1, 2), measure: 4),
-                TimeData(domain: DateTime(2023, 1, 3), measure: 6),
-            ],
-        ),
-        TimeGroup(
-            id: '4',
-            chartType: ChartType.scatterPlot,
-            color: Colors.red,
-            data: [
-                TimeData(domain: DateTime(2023, 1, 1), measure: 4),
-                TimeData(domain: DateTime(2023, 1, 2), measure: 7),
-                TimeData(domain: DateTime(2023, 1, 3), measure: 2),
-            ],
-        ),
-    ],
 ),
 ```
 

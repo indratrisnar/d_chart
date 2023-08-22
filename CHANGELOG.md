@@ -1,3 +1,9 @@
+## 2.4.0
+
+- add new chart (copy from combo) & set to single bar chart [DChartBarO]
+- add full documentation web
+- add viewport for combo and DChartBarO
+
 ## 2.3.0
 
 - change sdk: ">=2.17.0 <4.0.0"

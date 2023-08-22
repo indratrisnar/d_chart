@@ -1,3 +1,13 @@
+## 2.5.0
+
+add new chart:
+
+- DChartLineN
+- DChartScatterN
+- DChartBarT
+- DChartLineT
+- DChartScatterT
+
 ## 2.4.0
 
 - add new chart (copy from combo) & set to single bar chart [DChartBarO]

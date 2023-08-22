@@ -165,6 +165,7 @@ class DChartComboO extends StatelessWidget {
       domainAxis: domainAxis == null
           ? null
           : common.OrdinalAxisSpec(
+              viewport: domainAxis?.ordinalViewport?.getRender(),
               renderSpec: common.SmallTickRendererSpec(
                 axisLineStyle: domainAxis?.lineStyle.getRender(),
                 labelStyle: domainAxis?.labelStyle.getRender(),

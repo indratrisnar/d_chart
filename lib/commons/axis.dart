@@ -1,8 +1,7 @@
-import 'method_type.dart';
-
 import 'enums.dart';
-
+import 'method_type.dart';
 import 'style.dart';
+import 'viewport.dart';
 
 class DomainAxis {
   /// show domain line\
@@ -26,6 +25,15 @@ class DomainAxis {
   /// default: 3
   final int thickLength;
 
+  /// set limit view for domain axis
+  final OrdinalViewport? ordinalViewport;
+
+  /// set limit view for domain axis
+  final NumericViewport? numericViewport;
+
+  /// set limit view for domain axis
+  final TimeViewport? timeViewport;
+
   const DomainAxis({
     this.showLine = true,
     this.lineStyle = const LineStyle(),
@@ -33,6 +41,9 @@ class DomainAxis {
     this.gapAxisToLabel = 5,
     this.labelAnchor = LabelAnchor.centered,
     this.thickLength = 3,
+    this.ordinalViewport,
+    this.numericViewport,
+    this.timeViewport,
   });
 }
 

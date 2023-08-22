@@ -165,6 +165,7 @@ class DChartComboT extends StatelessWidget {
       domainAxis: domainAxis == null
           ? null
           : common.DateTimeAxisSpec(
+              viewport: domainAxis?.timeViewport?.getRender(),
               renderSpec: common.SmallTickRendererSpec(
                 lineStyle: domainAxis?.lineStyle.getRender(),
                 labelStyle: domainAxis?.labelStyle.getRender(),

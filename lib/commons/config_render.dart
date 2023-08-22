@@ -203,6 +203,23 @@ class ConfigRenderBar extends ConfigRender {
       barRendererDecorator: barLabelDecorator?.getRenderTime(),
     );
   }
+
+  common.BarRendererConfig<String> getRenderBarO(
+    BarLabelDecorator? barLabelDecorator,
+  ) {
+    return common.BarRendererConfig(
+      barGroupInnerPaddingPx: barGroupInnerPaddingPx,
+      fillPattern: MethodCommon.fillPattern(fillPattern),
+      cornerStrategy: common.ConstCornerStrategy(radius),
+      groupingType: MethodCommon.barGroupingType(barGroupingType),
+      maxBarWidthPx: maxBarWidthPx,
+      minBarLengthPx: minBarLengthPx,
+      stackedBarPaddingPx: stackedBarPaddingPx,
+      strokeWidthPx: strokeWidthPx,
+      weightPattern: weightPattern,
+      barRendererDecorator: barLabelDecorator?.getRenderOrdinal(),
+    );
+  }
 }
 
 class ConfigRenderPoint extends ConfigRender {

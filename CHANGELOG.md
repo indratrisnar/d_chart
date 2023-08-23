@@ -1,3 +1,7 @@
+## 2.5.1
+
+- add propert flipVertical to Combo Time
+
 ## 2.5.0
 
 add new chart:

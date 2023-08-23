@@ -74,6 +74,11 @@ class DChartComboT extends StatelessWidget {
   /// styling label item chart bar
   final OutsideBarLabelStyleT? outsideBarLabelStyle;
 
+  /// when `vertical` is true, chart will be flip\
+  /// sort reversed measure axis/
+  /// default: false
+  final bool? flipVertical;
+
   /// Numeric Combo Chart\
   /// also can use for single other type but cannot be set horizontal measure
   /// - only bar
@@ -97,6 +102,7 @@ class DChartComboT extends StatelessWidget {
     this.outsideBarLabelStyle,
     this.barLabelValue,
     this.barLabelDecorator,
+    this.flipVertical = false,
   });
 
   @override
@@ -154,6 +160,7 @@ class DChartComboT extends StatelessWidget {
                   outsideBarLabelStyle!(group, datum, index).getRender(),
         )..setAttribute(charts.rendererIdKey, group.chartType.name);
       }),
+      flipVerticalAxis: flipVertical,
       animate: animate,
       animationDuration: animationDuration,
       defaultRenderer: common.LineRendererConfig(),

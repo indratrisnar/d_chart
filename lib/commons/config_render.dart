@@ -1,7 +1,8 @@
-import 'package:community_charts_common/community_charts_common.dart' as common;
-import 'package:community_charts_flutter/community_charts_flutter.dart'
-    as charts;
+import 'dart:math';
 
+import 'package:community_charts_common/community_charts_common.dart' as common;
+
+import 'decorator.dart';
 import 'enums.dart';
 import 'method_common.dart';
 import 'symbol_render.dart';
@@ -257,7 +258,7 @@ class ConfigRenderPoint extends ConfigRender {
     this.strokeWidthPx = 0.0,
   });
   common.SeriesRendererConfig<num> getRenderNumeric(String? renderId) {
-    return charts.PointRendererConfig(
+    return common.PointRendererConfig(
       customRendererId: renderId,
       radiusPx: radiusPx,
       strokeWidthPx: strokeWidthPx,
@@ -266,7 +267,7 @@ class ConfigRenderPoint extends ConfigRender {
   }
 
   common.SeriesRendererConfig<String> getRenderOrdinal(String? renderId) {
-    return charts.PointRendererConfig(
+    return common.PointRendererConfig(
       customRendererId: renderId,
       radiusPx: radiusPx,
       strokeWidthPx: strokeWidthPx,
@@ -275,7 +276,7 @@ class ConfigRenderPoint extends ConfigRender {
   }
 
   common.SeriesRendererConfig<DateTime> getRenderTime(String? renderId) {
-    return charts.PointRendererConfig(
+    return common.PointRendererConfig(
       customRendererId: renderId,
       radiusPx: radiusPx,
       strokeWidthPx: strokeWidthPx,
@@ -292,45 +293,76 @@ class ConfigRenderPoint extends ConfigRender {
   }
 }
 
-class BarLabelDecorator {
-  /// position label bar chart item
-  final BarLabelAnchor? labelAnchor;
+class ConfigRenderPie {
+  /// Total arc length, in radians.
+  ///
+  /// The default arcLength is 2π.
+  final double arcLength;
 
-  /// Configures where to place the label relative to the bars.\
-  /// default: `BarLabelPosition.auto`
-  final BarLabelPosition barLabelPosition;
+  /// If set, configures the arcWidth to be a percentage of the radius.
+  final double? arcRatio;
 
-  /// Space before and after the label text.\
-  /// default: 5
-  final int labelPadding;
+  /// Fixed width of the arc within the radius.
+  ///
+  /// If arcRatio is set, this value will be ignored.
+  final int? arcWidth;
 
-  BarLabelDecorator({
-    this.labelAnchor,
-    this.labelPadding = 5,
-    this.barLabelPosition = BarLabelPosition.auto,
+  /// Start angle for pie slices, in radians.
+  ///
+  /// Angles are defined from the positive x axis in Cartesian space. The
+  /// default startAngle is -π/2.
+  final double startAngle;
+
+  /// Stroke width of the border of the arcs.
+  final double strokeWidthPx;
+
+  final ArcLabelDecorator? arcLabelDecorator;
+
+  const ConfigRenderPie({
+    this.arcLength = 2 * pi,
+    this.arcWidth,
+    this.arcLabelDecorator,
+    this.arcRatio,
+    this.startAngle = -pi / 2,
+    this.strokeWidthPx = 2.0,
   });
 
-  common.BarLabelDecorator<num> getRenderNumeric() {
-    return common.BarLabelDecorator(
-      labelAnchor: MethodCommon.barLabelAnchor(labelAnchor),
-      labelPadding: labelPadding,
-      labelPosition: MethodCommon.barLabelPosition(barLabelPosition),
+  common.ArcRendererConfig<String> getRenderOrdinal() {
+    return common.ArcRendererConfig<String>(
+      arcLength: arcLength,
+      arcWidth: arcWidth,
+      arcRendererDecorators: [
+        if (arcLabelDecorator != null) arcLabelDecorator!.getRenderOrdinal(),
+      ],
+      startAngle: startAngle,
+      strokeWidthPx: strokeWidthPx,
+      arcRatio: arcRatio,
     );
   }
 
-  common.BarLabelDecorator<String> getRenderOrdinal() {
-    return common.BarLabelDecorator(
-      labelAnchor: MethodCommon.barLabelAnchor(labelAnchor),
-      labelPadding: labelPadding,
-      labelPosition: MethodCommon.barLabelPosition(barLabelPosition),
+  common.ArcRendererConfig<num> getRenderNumeric() {
+    return common.ArcRendererConfig<num>(
+      arcLength: arcLength,
+      arcWidth: arcWidth,
+      arcRendererDecorators: [
+        if (arcLabelDecorator != null) arcLabelDecorator!.getRenderNumeric(),
+      ],
+      startAngle: startAngle,
+      strokeWidthPx: strokeWidthPx,
+      arcRatio: arcRatio,
     );
   }
 
-  common.BarLabelDecorator<DateTime> getRenderTime() {
-    return common.BarLabelDecorator(
-      labelAnchor: MethodCommon.barLabelAnchor(labelAnchor),
-      labelPadding: labelPadding,
-      labelPosition: MethodCommon.barLabelPosition(barLabelPosition),
+  common.ArcRendererConfig<DateTime> getRenderTime() {
+    return common.ArcRendererConfig<DateTime>(
+      arcLength: arcLength,
+      arcWidth: arcWidth,
+      arcRendererDecorators: [
+        if (arcLabelDecorator != null) arcLabelDecorator!.getRenderTime(),
+      ],
+      startAngle: startAngle,
+      strokeWidthPx: strokeWidthPx,
+      arcRatio: arcRatio,
     );
   }
 }

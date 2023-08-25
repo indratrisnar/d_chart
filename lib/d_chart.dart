@@ -1,11 +1,10 @@
 library d_chart;
 
-import 'dart:math' as _math;
+import 'dart:math' as math;
 
-import 'package:community_charts_common/community_charts_common.dart'
-    as _common;
+import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
-    as _charts;
+    as charts;
 import 'package:flutter/material.dart';
 
 String _getSymbolType(SymbolType? type) {
@@ -19,83 +18,83 @@ String _getSymbolType(SymbolType? type) {
   }
 }
 
-_common.PointSymbolRenderer _getComparisonTrack(TrackType? type) {
+common.PointSymbolRenderer _getComparisonTrack(TrackType? type) {
   if (type == TrackType.rectangle) {
-    return _common.RectangleRangeSymbolRenderer();
+    return common.RectangleRangeSymbolRenderer();
   }
-  return _common.CylinderSymbolRenderer();
+  return common.CylinderSymbolRenderer();
 }
 
-_charts.OutsideJustification? _getOutsideJustify(DJustify? justify) {
+charts.OutsideJustification? _getOutsideJustify(DJustify? justify) {
   switch (justify) {
     case DJustify.start:
-      return _charts.OutsideJustification.start;
+      return charts.OutsideJustification.start;
     case DJustify.startDrawArea:
-      return _charts.OutsideJustification.startDrawArea;
+      return charts.OutsideJustification.startDrawArea;
     case DJustify.middle:
-      return _charts.OutsideJustification.middle;
+      return charts.OutsideJustification.middle;
     case DJustify.middleDrawArea:
-      return _charts.OutsideJustification.middleDrawArea;
+      return charts.OutsideJustification.middleDrawArea;
     case DJustify.end:
-      return _charts.OutsideJustification.end;
+      return charts.OutsideJustification.end;
     case DJustify.endDrawArea:
-      return _charts.OutsideJustification.endDrawArea;
+      return charts.OutsideJustification.endDrawArea;
     default:
       return null;
   }
 }
 
-_charts.BehaviorPosition? _getBehaviorPosition(DBehaviorPosition? position) {
+charts.BehaviorPosition? _getBehaviorPosition(DBehaviorPosition? position) {
   switch (position) {
     case DBehaviorPosition.left:
-      return _charts.BehaviorPosition.start;
+      return charts.BehaviorPosition.start;
     case DBehaviorPosition.top:
-      return _charts.BehaviorPosition.top;
+      return charts.BehaviorPosition.top;
     case DBehaviorPosition.right:
-      return _charts.BehaviorPosition.end;
+      return charts.BehaviorPosition.end;
     case DBehaviorPosition.bottom:
-      return _charts.BehaviorPosition.bottom;
+      return charts.BehaviorPosition.bottom;
     default:
       return null;
   }
 }
 
-_charts.BarLabelPosition _getBarLabelPosition(RBLabelPosition? labelPosition) {
+charts.BarLabelPosition _getBarLabelPosition(RBLabelPosition? labelPosition) {
   switch (labelPosition) {
     case RBLabelPosition.inside:
-      return _charts.BarLabelPosition.inside;
+      return charts.BarLabelPosition.inside;
     case RBLabelPosition.outside:
-      return _charts.BarLabelPosition.outside;
+      return charts.BarLabelPosition.outside;
     case RBLabelPosition.right:
-      return _charts.BarLabelPosition.right;
+      return charts.BarLabelPosition.right;
     default:
-      return _charts.BarLabelPosition.auto;
+      return charts.BarLabelPosition.auto;
   }
 }
 
-_charts.BarLabelAnchor _getBarLabelAnchor(RBLabelAlign? align) {
+charts.BarLabelAnchor _getBarLabelAnchor(RBLabelAlign? align) {
   switch (align) {
     case RBLabelAlign.middle:
-      return _charts.BarLabelAnchor.middle;
+      return charts.BarLabelAnchor.middle;
     case RBLabelAlign.end:
-      return _charts.BarLabelAnchor.end;
+      return charts.BarLabelAnchor.end;
     default:
-      return _charts.BarLabelAnchor.start;
+      return charts.BarLabelAnchor.start;
   }
 }
 
-_charts.BarGroupingType _getBarGroupingType(RBGroupType? type) {
+charts.BarGroupingType _getBarGroupingType(RBGroupType? type) {
   switch (type) {
     case RBGroupType.stacked:
-      return _charts.BarGroupingType.stacked;
+      return charts.BarGroupingType.stacked;
     case RBGroupType.groupedStacked:
-      return _charts.BarGroupingType.groupedStacked;
+      return charts.BarGroupingType.groupedStacked;
     default:
-      return _charts.BarGroupingType.grouped;
+      return charts.BarGroupingType.grouped;
   }
 }
 
-class _IconRenderer extends _charts.CustomSymbolRenderer {
+class _IconRenderer extends charts.CustomSymbolRenderer {
   final IconData icon;
   final double? size;
 
@@ -304,50 +303,50 @@ typedef OnBackgroud = void Function(double max);
 typedef OnForground = void Function(double value);
 
 /// get color util to color charts
-_charts.Color _getColor(Color color) {
-  return _charts.ColorUtil.fromDartColor(color);
+charts.Color _getColor(Color color) {
+  return charts.ColorUtil.fromDartColor(color);
 }
 
 /// get textStyleSpec from TextStyle
-_charts.TextStyleSpec? _getTextStyleSpec(TextStyle? textStyle) {
+charts.TextStyleSpec? _getTextStyleSpec(TextStyle? textStyle) {
   if (textStyle == null) return null;
-  return _charts.TextStyleSpec(
+  return charts.TextStyleSpec(
     color: textStyle.color == null
         ? null
-        : _charts.ColorUtil.fromDartColor(textStyle.color!),
+        : charts.ColorUtil.fromDartColor(textStyle.color!),
     fontSize: textStyle.fontSize?.toInt(),
     lineHeight: textStyle.height,
   );
 }
 
 /// [_textStyleSpec] styling textsStyle on spec render chart
-_charts.TextStyleSpec _textStyleSpec(int? fontSize, Color? color) {
-  return _charts.TextStyleSpec(
-    color: color == null ? null : _charts.ColorUtil.fromDartColor(color),
+charts.TextStyleSpec _textStyleSpec(int? fontSize, Color? color) {
+  return charts.TextStyleSpec(
+    color: color == null ? null : charts.ColorUtil.fromDartColor(color),
     fontSize: fontSize,
   );
 }
 
 /// [_getTitlePositionX] convert d'chart title position to chart_flutter position
-_charts.BehaviorPosition? _getTitlePositionX(TitlePositionX? position) {
+charts.BehaviorPosition? _getTitlePositionX(TitlePositionX? position) {
   switch (position) {
     case TitlePositionX.top:
-      return _charts.BehaviorPosition.top;
+      return charts.BehaviorPosition.top;
     case TitlePositionX.bottom:
-      return _charts.BehaviorPosition.bottom;
+      return charts.BehaviorPosition.bottom;
     default:
       return null;
   }
 }
 
 /// [_getTitlePositionY] convert d'chart title position to chart_flutter position
-_charts.BehaviorPosition? _getTitlePositionY(TitlePositionY? position) {
+charts.BehaviorPosition? _getTitlePositionY(TitlePositionY? position) {
   switch (position) {
     case TitlePositionY.left:
-      return _charts.BehaviorPosition.start;
+      return charts.BehaviorPosition.start;
 
     case TitlePositionY.right:
-      return _charts.BehaviorPosition.end;
+      return charts.BehaviorPosition.end;
 
     default:
       return null;
@@ -355,45 +354,46 @@ _charts.BehaviorPosition? _getTitlePositionY(TitlePositionY? position) {
 }
 
 /// [_getBarValueAnchor] convert d'chart value position inside bar to chart_flutter position
-_charts.BarLabelAnchor? _getBarValueAnchor(BarValueAnchor? position) {
+charts.BarLabelAnchor? _getBarValueAnchor(BarValueAnchor? position) {
   switch (position) {
     case BarValueAnchor.start:
-      return _charts.BarLabelAnchor.start;
+      return charts.BarLabelAnchor.start;
     case BarValueAnchor.middle:
-      return _charts.BarLabelAnchor.middle;
+      return charts.BarLabelAnchor.middle;
     case BarValueAnchor.end:
-      return _charts.BarLabelAnchor.end;
+      return charts.BarLabelAnchor.end;
     default:
       return null;
   }
 }
 
 /// [_getBarValuePosition] convert d'chart value bar position to chart_flutter position
-_charts.BarLabelPosition _getBarValuePosition(BarValuePosition? position) {
+charts.BarLabelPosition _getBarValuePosition(BarValuePosition? position) {
   switch (position) {
     case BarValuePosition.inside:
-      return _charts.BarLabelPosition.inside;
+      return charts.BarLabelPosition.inside;
     case BarValuePosition.outside:
-      return _charts.BarLabelPosition.outside;
+      return charts.BarLabelPosition.outside;
     default:
-      return _charts.BarLabelPosition.auto;
+      return charts.BarLabelPosition.auto;
   }
 }
 
 /// [_getPieLabelPosition] convert pie d'chart position to chart_flutter position
-_charts.ArcLabelPosition _getPieLabelPosition(PieLabelPosition position) {
+charts.ArcLabelPosition _getPieLabelPosition(PieLabelPosition position) {
   switch (position) {
     case PieLabelPosition.inside:
-      return _charts.ArcLabelPosition.inside;
+      return charts.ArcLabelPosition.inside;
     case PieLabelPosition.outside:
-      return _charts.ArcLabelPosition.outside;
+      return charts.ArcLabelPosition.outside;
     default:
-      return _charts.ArcLabelPosition.auto;
+      return charts.ArcLabelPosition.auto;
   }
 }
 
 String _defaultBarValue(Map<String, dynamic> barData, int? index) => '';
 
+@Deprecated('Please use [DCartBarO] or [DCartBarT]')
 class DChartBar extends StatelessWidget {
   /// [data] of chart. key for data map as String and value is dynamic
   /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
@@ -591,16 +591,16 @@ class DChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _charts.BarChart(
+    return charts.BarChart(
       List.generate(data.length, (index) {
         var groupBarData = data[index];
-        return _charts.Series<Map<String, dynamic>, String>(
+        return charts.Series<Map<String, dynamic>, String>(
           id: groupBarData['id'],
           domainFn: (Map<String, dynamic> axis, _) => axis['domain'],
           measureFn: (Map<String, dynamic> axis, _) => axis['measure'],
           data: groupBarData['data'],
           fillColorFn: (datum, index) {
-            return _charts.ColorUtil.fromDartColor(
+            return charts.ColorUtil.fromDartColor(
               barColor(datum, index, groupBarData['id']),
             );
           },
@@ -611,11 +611,11 @@ class DChartBar extends StatelessWidget {
           strokeWidthPxFn: (datum, index) => borderWidth,
           seriesColor: borderColor == null
               ? null
-              : _charts.ColorUtil.fromDartColor(borderColor!),
+              : charts.ColorUtil.fromDartColor(borderColor!),
         );
       }),
       barRendererDecorator: showBarValue
-          ? _charts.BarLabelDecorator(
+          ? charts.BarLabelDecorator(
               labelAnchor: _getBarValueAnchor(barValueAnchor),
               outsideLabelStyleSpec:
                   _textStyleSpec(barValueFontSize, barValueColor),
@@ -625,19 +625,19 @@ class DChartBar extends StatelessWidget {
               labelPosition: _getBarValuePosition(barValuePosition),
             )
           : null,
-      domainAxis: _charts.OrdinalAxisSpec(
-        renderSpec: _charts.SmallTickRendererSpec(
-          axisLineStyle: _charts.LineStyleSpec(
+      domainAxis: charts.OrdinalAxisSpec(
+        renderSpec: charts.SmallTickRendererSpec(
+          axisLineStyle: charts.LineStyleSpec(
             color: axisLineColor == null
                 ? null
-                : _charts.ColorUtil.fromDartColor(axisLineColor!),
+                : charts.ColorUtil.fromDartColor(axisLineColor!),
             thickness: axisLineTick,
           ),
-          labelAnchor: _charts.TickLabelAnchor.centered,
-          lineStyle: _charts.LineStyleSpec(
+          labelAnchor: charts.TickLabelAnchor.centered,
+          lineStyle: charts.LineStyleSpec(
             color: axisLineColor == null
                 ? null
-                : _charts.ColorUtil.fromDartColor(axisLineColor!),
+                : charts.ColorUtil.fromDartColor(axisLineColor!),
             thickness: axisLinePointTick ?? axisLineTick,
           ),
           tickLengthPx: axisLinePointWidth,
@@ -648,20 +648,20 @@ class DChartBar extends StatelessWidget {
         ),
         showAxisLine: showDomainLine,
       ),
-      primaryMeasureAxis: _charts.NumericAxisSpec(
-        renderSpec: _charts.SmallTickRendererSpec(
+      primaryMeasureAxis: charts.NumericAxisSpec(
+        renderSpec: charts.SmallTickRendererSpec(
           minimumPaddingBetweenLabelsPx: minimumPaddingBetweenLabel,
-          axisLineStyle: _charts.LineStyleSpec(
+          axisLineStyle: charts.LineStyleSpec(
             color: axisLineColor == null
                 ? null
-                : _charts.ColorUtil.fromDartColor(axisLineColor!),
+                : charts.ColorUtil.fromDartColor(axisLineColor!),
             thickness: axisLineTick,
           ),
-          labelAnchor: _charts.TickLabelAnchor.centered,
-          lineStyle: _charts.LineStyleSpec(
+          labelAnchor: charts.TickLabelAnchor.centered,
+          lineStyle: charts.LineStyleSpec(
             color: axisLineColor == null
                 ? null
-                : _charts.ColorUtil.fromDartColor(axisLineColor!),
+                : charts.ColorUtil.fromDartColor(axisLineColor!),
             thickness: axisLinePointTick,
           ),
           tickLengthPx: axisLinePointWidth,
@@ -672,11 +672,11 @@ class DChartBar extends StatelessWidget {
         ),
         showAxisLine: showMeasureLine,
         viewport: measureMin != null && measureMax != null
-            ? _charts.NumericExtents(measureMin!, measureMax!)
+            ? charts.NumericExtents(measureMin!, measureMax!)
             : null,
       ),
       behaviors: [
-        _charts.ChartTitle(
+        charts.ChartTitle(
           yAxisTitle ?? '',
           behaviorPosition: _getTitlePositionY(measureAxisTitlePosition),
           titleStyleSpec:
@@ -685,7 +685,7 @@ class DChartBar extends StatelessWidget {
           innerPadding: measureAxisTitleOutPadding,
           layoutPreferredSize: yAxisTitle == null ? 0 : null,
         ),
-        _charts.ChartTitle(
+        charts.ChartTitle(
           xAxisTitle ?? '',
           behaviorPosition: _getTitlePositionX(domainAxisTitlePosition),
           titleStyleSpec:
@@ -698,11 +698,12 @@ class DChartBar extends StatelessWidget {
       animate: animate,
       animationDuration: animationDuration,
       vertical: verticalDirection,
-      barGroupingType: _charts.BarGroupingType.grouped,
+      barGroupingType: charts.BarGroupingType.grouped,
     );
   }
 }
 
+@Deprecated('Please use [DCartLineN] or [DCartLineT]')
 class DChartLine extends StatelessWidget {
   // [data] of chart. key for data map as String and value is dynamic
   /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
@@ -732,7 +733,8 @@ class DChartLine extends StatelessWidget {
 
   /// [animationDuration] return duration of animation
   final Duration? animationDuration;
-  DChartLine({
+  const DChartLine({
+    super.key,
     this.animate,
     this.animationDuration,
     this.areaColor,
@@ -746,29 +748,29 @@ class DChartLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _charts.LineChart(
+    return charts.LineChart(
       List.generate(data.length, (index) {
         var groupBarData = data[index];
-        return _charts.Series<Map<String, dynamic>, num>(
+        return charts.Series<Map<String, dynamic>, num>(
           id: groupBarData['id'],
           domainFn: (Map<String, dynamic> axis, _) => axis['domain'],
           measureFn: (Map<String, dynamic> axis, _) => axis['measure'],
           data: groupBarData['data'],
           fillColorFn: (datum, index) {
             if (pointColor == null) return null;
-            return _charts.ColorUtil.fromDartColor(
+            return charts.ColorUtil.fromDartColor(
               pointColor!(datum, index, groupBarData['id']),
             );
           },
           colorFn: (datum, index) {
-            return _charts.ColorUtil.fromDartColor(
+            return charts.ColorUtil.fromDartColor(
               lineColor(datum, index, groupBarData['id']),
             );
           },
           strokeWidthPxFn: (datum, index) => lineWidth,
         );
       }),
-      defaultRenderer: _charts.LineRendererConfig(
+      defaultRenderer: charts.LineRendererConfig(
         includePoints: includePoints,
         includeArea: includeArea,
         strokeWidthPx: lineWidth ?? 2,
@@ -779,6 +781,7 @@ class DChartLine extends StatelessWidget {
   }
 }
 
+@Deprecated('Please use [DCartPieN], [DCartPieO], [DCartPieT]')
 class DChartPie extends StatelessWidget {
   /// [data] of chart. key for data map as String and value is dynamic
   /// For axis data, use key 'domain' for domain axis and use key 'measure' for measure axis
@@ -835,7 +838,9 @@ class DChartPie extends StatelessWidget {
   /// [animationDuration] return duration of animation
   final Duration? animationDuration;
 
-  DChartPie({
+  @Deprecated('Please use [DCartPieN], [DCartPieO], [DCartPieT]')
+  const DChartPie({
+    super.key,
     this.animate,
     this.animationDuration,
     required this.data,
@@ -855,9 +860,9 @@ class DChartPie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _charts.PieChart(
+    return charts.PieChart(
       [
-        _charts.Series<Map<String, dynamic>, String>(
+        charts.Series<Map<String, dynamic>, String>(
           id: 'Pie',
           domainFn: (Map<String, dynamic> axis, _) => axis['domain'],
           measureFn: (Map<String, dynamic> axis, _) => axis['measure'],
@@ -868,18 +873,18 @@ class DChartPie extends StatelessWidget {
                 : pieLabel!(datum, index);
           },
           colorFn: (datum, index) {
-            return _charts.ColorUtil.fromDartColor(fillColor(datum, index));
+            return charts.ColorUtil.fromDartColor(fillColor(datum, index));
           },
         ),
       ],
-      defaultRenderer: _charts.ArcRendererConfig<String>(
+      defaultRenderer: charts.ArcRendererConfig<String>(
         arcWidth: donutWidth,
         strokeWidthPx: strokeWidth,
         arcRendererDecorators: [
-          _charts.ArcLabelDecorator(
+          charts.ArcLabelDecorator(
             labelPadding: labelPadding,
-            leaderLineStyleSpec: _charts.ArcLabelLeaderLineStyleSpec(
-              color: _charts.ColorUtil.fromDartColor(labelLineColor),
+            leaderLineStyleSpec: charts.ArcLabelLeaderLineStyleSpec(
+              color: charts.ColorUtil.fromDartColor(labelLineColor),
               length: labelLinelength,
               thickness: labelLineThickness,
             ),
@@ -952,7 +957,8 @@ class DChartGauge extends StatelessWidget {
   /// [animationDuration] return duration of animation
   final Duration? animationDuration;
 
-  DChartGauge({
+  const DChartGauge({
+    super.key,
     this.animate,
     this.animationDuration,
     required this.data,
@@ -972,9 +978,9 @@ class DChartGauge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _charts.PieChart(
+    return charts.PieChart(
       [
-        _charts.Series<Map<String, dynamic>, String>(
+        charts.Series<Map<String, dynamic>, String>(
           id: 'Pie',
           domainFn: (Map<String, dynamic> axis, _) => axis['domain'],
           measureFn: (Map<String, dynamic> axis, _) => axis['measure'],
@@ -985,20 +991,20 @@ class DChartGauge extends StatelessWidget {
                 : pieLabel!(datum, index);
           },
           colorFn: (datum, index) {
-            return _charts.ColorUtil.fromDartColor(fillColor(datum, index));
+            return charts.ColorUtil.fromDartColor(fillColor(datum, index));
           },
         ),
       ],
-      defaultRenderer: _charts.ArcRendererConfig<String>(
+      defaultRenderer: charts.ArcRendererConfig<String>(
         arcWidth: donutWidth ?? 30,
         strokeWidthPx: strokeWidth,
         startAngle: 4 / 5 * 3.14,
         arcLength: 7 / 5 * 3.14,
         arcRendererDecorators: [
-          _charts.ArcLabelDecorator(
+          charts.ArcLabelDecorator(
             labelPadding: labelPadding,
-            leaderLineStyleSpec: _charts.ArcLabelLeaderLineStyleSpec(
-              color: _charts.ColorUtil.fromDartColor(labelLineColor),
+            leaderLineStyleSpec: charts.ArcLabelLeaderLineStyleSpec(
+              color: charts.ColorUtil.fromDartColor(labelLineColor),
               length: labelLinelength,
               thickness: labelLineThickness,
             ),
@@ -1333,22 +1339,21 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                         child: minLabel(),
                       ),
                     ),
-                  if (widget.showMeasureLabel ?? false)
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Transform.translate(
-                          offset: Offset(
-                            0,
-                            12 +
-                                ((widget.showMeasureLine ?? false)
-                                    ? (widget.measureLineStyle == null
-                                        ? 0
-                                        : widget.measureLineStyle!.width)
-                                    : 0) +
-                                (widget.spaceMeasureLabeltoChart ?? 5),
-                          ),
-                          child: maxLabel()),
-                    ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Transform.translate(
+                        offset: Offset(
+                          0,
+                          12 +
+                              ((widget.showMeasureLine ?? false)
+                                  ? (widget.measureLineStyle == null
+                                      ? 0
+                                      : widget.measureLineStyle!.width)
+                                  : 0) +
+                              (widget.spaceMeasureLabeltoChart ?? 5),
+                        ),
+                        child: maxLabel()),
+                  ),
                 ],
               ),
             ),
@@ -1615,6 +1620,9 @@ String _numberAutoDigit(double value, [int maxDigit = 3]) {
   }
 }
 
+@Deprecated(
+    'Please use [DCartBarT], [DCartLineT], [DChartScatterT], [DChartComboT]')
+
 /// Time Series Chart\
 class DChartTime extends StatelessWidget {
   /// Data Chart\
@@ -1711,7 +1719,7 @@ class DChartTime extends StatelessWidget {
   /// - DRenderTargetLine
   /// - DRenderPoint\
   /// Default: DRenderLine
-  final _common.SeriesRendererConfig<DateTime>? chartRender;
+  final charts.SeriesRendererConfig<DateTime>? chartRender;
 
   /// flip chart vertical axis (measureAxis)
   final bool? flipVerticalAxis;
@@ -1837,6 +1845,7 @@ class DChartTime extends StatelessWidget {
   final TimeDomainLabel? domainLabel;
 
   const DChartTime({
+    super.key,
     required this.groupData,
     this.animate,
     this.primaryColor,
@@ -1890,14 +1899,14 @@ class DChartTime extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: textDirection ?? TextDirection.ltr,
-      child: _charts.TimeSeriesChart(
+      child: charts.TimeSeriesChart(
         List.generate(groupData.length, (indexGroup) {
           DChartTimeGroup group = groupData[indexGroup];
           List<DChartTimeData> dataPergroup = group.data;
           Color colorPerGroup = group.color ??
-              Color((_math.Random().nextDouble() * 0xFFFFFF).toInt())
+              Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
                   .withOpacity(1.0);
-          return _charts.Series<DChartTimeData, DateTime>(
+          return charts.Series<DChartTimeData, DateTime>(
             id: group.id,
             data: List.generate(dataPergroup.length, (index) {
               return DChartTimeData(
@@ -1937,13 +1946,13 @@ class DChartTime extends StatelessWidget {
         animate: animate,
         flipVerticalAxis: flipVerticalAxis ?? false,
         defaultRenderer: chartRender,
-        primaryMeasureAxis: _charts.NumericAxisSpec(
+        primaryMeasureAxis: charts.NumericAxisSpec(
           showAxisLine: showMeasureLine,
-          tickProviderSpec: _charts.BasicNumericTickProviderSpec(
+          tickProviderSpec: charts.BasicNumericTickProviderSpec(
             zeroBound: startFromZero ?? true,
           ),
-          renderSpec: _charts.SmallTickRendererSpec(
-            lineStyle: _charts.LineStyleSpec(
+          renderSpec: charts.SmallTickRendererSpec(
+            lineStyle: charts.LineStyleSpec(
               color: measureLineColor == null
                   ? null
                   : _getColor(measureLineColor!),
@@ -1952,26 +1961,26 @@ class DChartTime extends StatelessWidget {
             ),
             labelStyle: _getTextStyleSpec(measureLabelStyle),
             tickLengthPx: measureTickLength ?? 3,
-            // labelAnchor: _charts.TickLabelAnchor.centered,
-            // labelJustification: _charts.TickLabelJustification.inside,
+            // labelAnchor: charts.TickLabelAnchor.centered,
+            // labelJustification: charts.TickLabelJustification.inside,
           ),
-          tickFormatterSpec: _charts.BasicNumericTickFormatterSpec(
+          tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
             (measure) {
               if (measureLabel == null) return '$measure';
               return measureLabel!(measure);
             },
           ),
         ),
-        domainAxis: _charts.DateTimeAxisSpec(
+        domainAxis: charts.DateTimeAxisSpec(
           showAxisLine: showDomainLine,
           viewport: (startDate != null && endDate != null)
-              ? _charts.DateTimeExtents(
+              ? charts.DateTimeExtents(
                   start: startDate!,
                   end: endDate!,
                 )
               : null,
-          renderSpec: _charts.SmallTickRendererSpec(
-            lineStyle: _charts.LineStyleSpec(
+          renderSpec: charts.SmallTickRendererSpec(
+            lineStyle: charts.LineStyleSpec(
               color:
                   domainLineColor == null ? null : _getColor(domainLineColor!),
               dashPattern: domainLineDashPattern,
@@ -1982,13 +1991,13 @@ class DChartTime extends StatelessWidget {
           ),
           tickFormatterSpec: domainLabel == null
               ? null
-              : _charts.BasicDateTimeTickFormatterSpec(
+              : charts.BasicDateTimeTickFormatterSpec(
                   (datetime) => domainLabel!(datetime),
                 ),
         ),
         behaviors: [
           if (title != null)
-            _charts.ChartTitle(
+            charts.ChartTitle(
               title!,
               behaviorPosition: _getBehaviorPosition(titlePosition),
               subTitle: subtitle,
@@ -2000,7 +2009,7 @@ class DChartTime extends StatelessWidget {
               titlePadding: titlePadding ?? 0,
             ),
           if (showLegend ?? false)
-            _charts.SeriesLegend(
+            charts.SeriesLegend(
               outsideJustification: _getOutsideJustify(legendJustify),
               cellPadding: legendPadding,
               position: _getBehaviorPosition(legendPosition),
@@ -2010,21 +2019,21 @@ class DChartTime extends StatelessWidget {
               desiredMaxColumns: legendMaxColumn,
               measureFormatter: legendMeasure,
               showMeasures: legendMeasure != null,
-              legendDefaultMeasure: _charts.LegendDefaultMeasure.none,
+              legendDefaultMeasure: charts.LegendDefaultMeasure.none,
             ),
-          _charts.LinePointHighlighter(
+          charts.LinePointHighlighter(
             showHorizontalFollowLine:
-                _charts.LinePointHighlighterFollowLineType.nearest,
+                charts.LinePointHighlighterFollowLineType.nearest,
             showVerticalFollowLine:
-                _charts.LinePointHighlighterFollowLineType.nearest,
+                charts.LinePointHighlighterFollowLineType.nearest,
           ),
-          _charts.SelectNearest(
-            eventTrigger: _charts.SelectionTrigger.tapAndDrag,
+          charts.SelectNearest(
+            eventTrigger: charts.SelectionTrigger.tapAndDrag,
           ),
         ],
         selectionModels: [
-          _charts.SelectionModelConfig(
-            type: _charts.SelectionModelType.info,
+          charts.SelectionModelConfig(
+            type: charts.SelectionModelType.info,
             changedListener: (model) {
               if (model.selectedDatum.isNotEmpty) {
                 if (model.selectedDatum.first.datum is DChartTimeData) {
@@ -2044,7 +2053,7 @@ class DChartTime extends StatelessWidget {
   }
 }
 
-class DRenderLine extends _common.LineRendererConfig<DateTime> {
+class DRenderLine extends common.LineRendererConfig<DateTime> {
   /// icon for all legend
   final IconData? legendIcon;
 
@@ -2059,6 +2068,10 @@ class DRenderLine extends _common.LineRendererConfig<DateTime> {
   /// set area visible\
   /// default: false
   final bool? showArea;
+
+  /// 0-1\
+  /// default: 0.1
+  final double? opacityArea;
 
   /// pattern for line
   final List<int>? dashPattern;
@@ -2076,17 +2089,26 @@ class DRenderLine extends _common.LineRendererConfig<DateTime> {
     this.showLine,
     this.showPoint,
     this.showArea,
+    this.opacityArea,
     this.dashPattern,
     this.pointSize,
     this.strokeWidth,
   });
 
   @override
-  _common.LineRenderer<DateTime> build() {
-    return _common.LineRenderer(
-      config: _common.LineRendererConfig(
+  common.LineRenderer<DateTime> build() {
+    return common.LineRenderer(
+      config: common.LineRendererConfig(
+        customRendererId: _getStringRenderType(RenderType.line),
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         includeArea: showArea ?? false,
+        areaOpacity: opacityArea == null
+            ? 0.1
+            : opacityArea! > 1
+                ? 1
+                : opacityArea! < 0
+                    ? 0
+                    : opacityArea!,
         dashPattern: dashPattern,
         includeLine: showLine ?? true,
         includePoints: showPoint ?? false,
@@ -2097,7 +2119,7 @@ class DRenderLine extends _common.LineRendererConfig<DateTime> {
   }
 }
 
-class DRenderBar extends _common.BarRendererConfig<DateTime> {
+class DRenderBar extends common.BarRendererConfig<DateTime> {
   /// icon for all legend
   final IconData? legendIcon;
 
@@ -2169,14 +2191,15 @@ class DRenderBar extends _common.BarRendererConfig<DateTime> {
   });
 
   @override
-  _common.BarRenderer<DateTime> build() {
-    return _common.BarRenderer(
-      config: _common.BarRendererConfig(
+  common.BarRenderer<DateTime> build() {
+    return common.BarRenderer(
+      config: common.BarRendererConfig(
+        customRendererId: _getStringRenderType(RenderType.bar),
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         strokeWidthPx: borderWidth ?? 2,
-        cornerStrategy: _common.ConstCornerStrategy(barRadius ?? 0),
+        cornerStrategy: common.ConstCornerStrategy(barRadius ?? 0),
         maxBarWidthPx: maxBarWidth,
-        barRendererDecorator: _common.BarLabelDecorator(
+        barRendererDecorator: common.BarLabelDecorator(
           labelPosition: _getBarLabelPosition(labelPosition),
           insideLabelStyleSpec: _getTextStyleSpec(insideLabelStyle),
           outsideLabelStyleSpec: _getTextStyleSpec(outsideLabelStyle),
@@ -2184,8 +2207,8 @@ class DRenderBar extends _common.BarRendererConfig<DateTime> {
           labelPadding: labelSpace ?? 5,
         ),
         fillPattern: (solidFill ?? true)
-            ? _common.FillPatternType.solid
-            : _common.FillPatternType.forwardHatch,
+            ? common.FillPatternType.solid
+            : common.FillPatternType.forwardHatch,
         groupingType: _getBarGroupingType(groupType),
         barGroupInnerPaddingPx: innerPaddingGroup ?? 2,
       ),
@@ -2193,7 +2216,7 @@ class DRenderBar extends _common.BarRendererConfig<DateTime> {
   }
 }
 
-class DRenderTargetLine extends _common.BarTargetLineRendererConfig<DateTime> {
+class DRenderTargetLine extends common.BarTargetLineRendererConfig<DateTime> {
   /// icon for all legend
   final IconData? legendIcon;
 
@@ -2237,9 +2260,10 @@ class DRenderTargetLine extends _common.BarTargetLineRendererConfig<DateTime> {
   });
 
   @override
-  _common.BarTargetLineRenderer<DateTime> build() {
-    return _common.BarTargetLineRenderer(
-      config: _common.BarTargetLineRendererConfig(
+  common.BarTargetLineRenderer<DateTime> build() {
+    return common.BarTargetLineRenderer(
+      config: common.BarTargetLineRendererConfig(
+        customRendererId: _getStringRenderType(RenderType.barTargetLine),
         symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
         strokeWidthPx: borderWidth ?? 2,
         dashPattern: dashPattern,
@@ -2252,24 +2276,37 @@ class DRenderTargetLine extends _common.BarTargetLineRendererConfig<DateTime> {
   }
 }
 
-class DRenderPoint extends _common.PointRendererConfig<DateTime> {
+class DRenderPoint extends common.PointRendererConfig<DateTime> {
+  /// icon for all legend
+  final IconData? legendIcon;
+
+  /// stroke width of line\
+  /// default: 0
+  final double? borderWidth;
+
   /// default: 3.5
   final double? pointSize;
 
   DRenderPoint({
+    this.legendIcon,
+    this.borderWidth,
     this.pointSize,
   });
 
   @override
-  _common.PointRenderer<DateTime> build() {
-    return _common.PointRenderer(
-      config: _common.PointRendererConfig(
+  common.PointRenderer<DateTime> build() {
+    return common.PointRenderer(
+      config: common.PointRendererConfig(
+        customRendererId: _getStringRenderType(RenderType.point),
+        symbolRenderer: legendIcon == null ? null : _IconRenderer(legendIcon!),
+        strokeWidthPx: borderWidth ?? 2,
         radiusPx: pointSize ?? 3.5,
       ),
     );
   }
 }
 
+@Deprecated('Please use [DCartScatterN] or [DCartScatterT]')
 class DChartScatter extends StatelessWidget {
   final List<DChartScatterGroup> groupData;
 
@@ -2454,6 +2491,7 @@ class DChartScatter extends StatelessWidget {
   final double? legendIconSize;
 
   const DChartScatter({
+    super.key,
     required this.groupData,
     this.animate,
     this.changedListener,
@@ -2506,13 +2544,13 @@ class DChartScatter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: textDirection ?? TextDirection.ltr,
-      child: _charts.ScatterPlotChart(
+      child: charts.ScatterPlotChart(
         List.generate(groupData.length, (index) {
           DChartScatterGroup group = groupData[index];
           Color colorPerGroup = group.color ??
-              Color((_math.Random().nextDouble() * 0xFFFFFF).toInt())
+              Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
                   .withOpacity(1.0);
-          return _common.Series<DChartScatterData, num>(
+          return common.Series<DChartScatterData, num>(
             id: group.id,
             data: group.data,
             domainFn: (datum, index) => datum.domain,
@@ -2545,37 +2583,37 @@ class DChartScatter extends StatelessWidget {
             displayName: legendTitle == null ? null : legendTitle!(group),
           )
             ..setAttribute(
-              _charts.pointSymbolRendererFnKey,
+              charts.pointSymbolRendererFnKey,
               (int? i) =>
                   i == null ? 'circle' : _getSymbolType(group.data[i].type),
             )
-            ..setAttribute(_charts.pointSymbolRendererIdKey, 'circle');
+            ..setAttribute(charts.pointSymbolRendererIdKey, 'circle');
         }),
-        defaultRenderer: _common.PointRendererConfig<num>(
+        defaultRenderer: common.PointRendererConfig<num>(
           symbolRenderer: legendIcon == null
               ? null
               : _IconRenderer(legendIcon!, size: legendIconSize),
           radiusPx: 20,
           pointRendererDecorators: [
-            _common.ComparisonPointsDecorator(
+            common.ComparisonPointsDecorator(
               symbolRenderer: _getComparisonTrack(trackType),
             ),
           ],
           customSymbolRenderers: {
-            'circle': _common.CircleSymbolRenderer(),
-            'rect': _common.RectSymbolRenderer(),
-            'triangle': _common.TriangleSymbolRenderer(),
+            'circle': common.CircleSymbolRenderer(),
+            'rect': common.RectSymbolRenderer(),
+            'triangle': common.TriangleSymbolRenderer(),
           },
         ),
         animate: animate,
         flipVerticalAxis: flipVerticalAxis ?? false,
-        primaryMeasureAxis: _charts.NumericAxisSpec(
+        primaryMeasureAxis: charts.NumericAxisSpec(
           showAxisLine: showMeasureLine,
-          tickProviderSpec: _charts.BasicNumericTickProviderSpec(
+          tickProviderSpec: charts.BasicNumericTickProviderSpec(
             zeroBound: startFromZero ?? true,
           ),
-          renderSpec: _charts.SmallTickRendererSpec(
-            lineStyle: _charts.LineStyleSpec(
+          renderSpec: charts.SmallTickRendererSpec(
+            lineStyle: charts.LineStyleSpec(
               color: measureLineColor == null
                   ? null
                   : _getColor(measureLineColor!),
@@ -2585,20 +2623,20 @@ class DChartScatter extends StatelessWidget {
             labelStyle: _getTextStyleSpec(measureLabelStyle),
             tickLengthPx: measureTickLength ?? 3,
           ),
-          tickFormatterSpec: _charts.BasicNumericTickFormatterSpec(
+          tickFormatterSpec: charts.BasicNumericTickFormatterSpec(
             (measure) {
               if (measureLabel == null) return '$measure';
               return measureLabel!(measure);
             },
           ),
         ),
-        domainAxis: _charts.NumericAxisSpec(
-          tickProviderSpec: _charts.BasicNumericTickProviderSpec(
+        domainAxis: charts.NumericAxisSpec(
+          tickProviderSpec: charts.BasicNumericTickProviderSpec(
             zeroBound: startFromZero ?? false,
           ),
           showAxisLine: showDomainLine,
-          renderSpec: _charts.SmallTickRendererSpec(
-            lineStyle: _charts.LineStyleSpec(
+          renderSpec: charts.SmallTickRendererSpec(
+            lineStyle: charts.LineStyleSpec(
               color:
                   domainLineColor == null ? null : _getColor(domainLineColor!),
               dashPattern: domainLineDashPattern,
@@ -2609,13 +2647,13 @@ class DChartScatter extends StatelessWidget {
           ),
           tickFormatterSpec: domainLabel == null
               ? null
-              : _charts.BasicNumericTickFormatterSpec(
+              : charts.BasicNumericTickFormatterSpec(
                   (datetime) => domainLabel!(datetime),
                 ),
         ),
         behaviors: [
           if (title != null)
-            _charts.ChartTitle(
+            charts.ChartTitle(
               title!,
               behaviorPosition: _getBehaviorPosition(titlePosition),
               subTitle: subtitle,
@@ -2627,7 +2665,7 @@ class DChartScatter extends StatelessWidget {
               titlePadding: titlePadding ?? 0,
             ),
           if (showLegend ?? false)
-            _charts.SeriesLegend(
+            charts.SeriesLegend(
               outsideJustification: _getOutsideJustify(legendJustify),
               cellPadding: legendPadding,
               position: _getBehaviorPosition(legendPosition),
@@ -2637,21 +2675,21 @@ class DChartScatter extends StatelessWidget {
               desiredMaxColumns: legendMaxColumn,
               measureFormatter: legendMeasure,
               showMeasures: legendMeasure != null,
-              legendDefaultMeasure: _charts.LegendDefaultMeasure.none,
+              legendDefaultMeasure: charts.LegendDefaultMeasure.none,
             ),
-          _charts.LinePointHighlighter(
+          charts.LinePointHighlighter(
             showHorizontalFollowLine:
-                _charts.LinePointHighlighterFollowLineType.nearest,
+                charts.LinePointHighlighterFollowLineType.nearest,
             showVerticalFollowLine:
-                _charts.LinePointHighlighterFollowLineType.nearest,
+                charts.LinePointHighlighterFollowLineType.nearest,
           ),
-          _charts.SelectNearest(
-            eventTrigger: _charts.SelectionTrigger.tapAndDrag,
+          charts.SelectNearest(
+            eventTrigger: charts.SelectionTrigger.tapAndDrag,
           ),
         ],
         selectionModels: [
-          _charts.SelectionModelConfig(
-            type: _charts.SelectionModelType.info,
+          charts.SelectionModelConfig(
+            type: charts.SelectionModelType.info,
             changedListener: (model) {
               if (model.selectedDatum.isNotEmpty) {
                 if (model.selectedDatum.first.datum is DChartScatterData) {
@@ -2674,10 +2712,10 @@ class DChartScatter extends StatelessWidget {
 /// used for comparisons nad progress
 class DChartSingleBar extends StatelessWidget {
   /// set color for back side\
-  /// Default: 10% opacity from [forgroundColor]
+  /// Default: 10% opacity from [foregroundColor]
   final Color? backgroundColor;
 
-  /// label between background and forground\
+  /// label between background and foreground\
   /// usually use widget Text/Icon
   final Widget? backgroundLabel;
 
@@ -2688,17 +2726,17 @@ class DChartSingleBar extends StatelessWidget {
   final EdgeInsetsGeometry? backgroundLabelPadding;
 
   /// set color for front side
-  final Color forgroundColor;
+  final Color foregroundColor;
 
-  /// label in front of forground\
+  /// label in front of foreground\
   /// usually use widget Text/Icon
-  final Widget? forgroundLabel;
+  final Widget? foregroundLabel;
 
   /// default: Alignment.centerRight
-  final AlignmentGeometry? forgroundLabelAlign;
+  final AlignmentGeometry? foregroundLabelAlign;
 
   /// default: const EdgeInsets.all(0)
-  final EdgeInsetsGeometry? forgroundLabelPadding;
+  final EdgeInsetsGeometry? foregroundLabelPadding;
 
   /// radius for corner bar\
   /// set for back and front layer
@@ -2716,7 +2754,7 @@ class DChartSingleBar extends StatelessWidget {
   /// set click on background
   final OnBackgroud? onBackground;
 
-  /// set click on forground
+  /// set click on foreground
   final OnForground? onForground;
 
   /// direction\
@@ -2726,8 +2764,9 @@ class DChartSingleBar extends StatelessWidget {
   final bool? ltr;
 
   const DChartSingleBar({
+    super.key,
     this.backgroundColor,
-    required this.forgroundColor,
+    required this.foregroundColor,
     this.radius,
     required this.value,
     required this.max,
@@ -2737,9 +2776,9 @@ class DChartSingleBar extends StatelessWidget {
     this.backgroundLabel,
     this.backgroundLabelAlign = Alignment.centerRight,
     this.backgroundLabelPadding = const EdgeInsets.all(0),
-    this.forgroundLabel,
-    this.forgroundLabelAlign = Alignment.centerRight,
-    this.forgroundLabelPadding = const EdgeInsets.all(0),
+    this.foregroundLabel,
+    this.foregroundLabelAlign = Alignment.centerRight,
+    this.foregroundLabelPadding = const EdgeInsets.all(0),
   });
 
   @override
@@ -2758,7 +2797,7 @@ class DChartSingleBar extends StatelessWidget {
           return Stack(
             children: [
               Material(
-                color: backgroundColor ?? forgroundColor.withOpacity(0.1),
+                color: backgroundColor ?? foregroundColor.withOpacity(0.1),
                 borderRadius: radius,
                 child: InkWell(
                   onTap:
@@ -2780,7 +2819,7 @@ class DChartSingleBar extends StatelessWidget {
                 ),
               ),
               Material(
-                color: forgroundColor,
+                color: foregroundColor,
                 borderRadius: radius,
                 child: InkWell(
                   onTap:
@@ -2789,13 +2828,13 @@ class DChartSingleBar extends StatelessWidget {
                   child: SizedBox(
                     width: width,
                     height: constraints.maxHeight,
-                    child: forgroundLabel == null
+                    child: foregroundLabel == null
                         ? null
                         : Align(
-                            alignment: forgroundLabelAlign!,
+                            alignment: foregroundLabelAlign!,
                             child: Padding(
-                              padding: forgroundLabelPadding!,
-                              child: forgroundLabel,
+                              padding: foregroundLabelPadding!,
+                              child: foregroundLabel,
                             ),
                           ),
                   ),
@@ -2806,5 +2845,18 @@ class DChartSingleBar extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+String _getStringRenderType(RenderType? renderType) {
+  switch (renderType) {
+    case RenderType.bar:
+      return 'bar';
+    case RenderType.barTargetLine:
+      return 'targetLine';
+    case RenderType.point:
+      return 'point';
+    default:
+      return 'line';
   }
 }

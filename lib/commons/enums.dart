@@ -52,3 +52,17 @@ enum BarLabelPosition {
   /// or above the bar based on the BarLabelVerticalPosition.
   right,
 }
+
+/// Configures where to place the label relative to the arcs.
+enum ArcLabelPosition {
+  /// Automatically try to place the label inside the arc first and place it on
+  /// the outside of the space available outside the arc is greater than space
+  /// available inside the arc.
+  auto,
+
+  /// Always place label on the outside.
+  outside,
+
+  /// Always place label on the inside.
+  inside
+}

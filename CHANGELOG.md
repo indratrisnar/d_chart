@@ -1,3 +1,18 @@
+## 2.6.0
+
+deprecated chart widget:
+
+- DChartBar
+- DChartLine
+- DChartScatter
+- DChartPie
+
+new pie chart where include donut & gauge:
+
+- DChartPieN
+- DChartPieO
+- DChartPieT
+
 ## 2.5.1
 
 - add propert flipVertical to Combo Time

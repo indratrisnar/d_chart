@@ -9,12 +9,16 @@ class OrdinalData {
   final String domain;
   final num measure;
 
+  /// specifically for pie chart
+  final Color? color;
+
   final dynamic other;
 
   /// Ordinal Data
   OrdinalData({
     required this.domain,
     required this.measure,
+    this.color,
     this.other,
   });
 }
@@ -48,12 +52,15 @@ class NumericData {
   final num domain;
   final num measure;
 
+  /// specifically for pie chart
+  final Color? color;
   final dynamic other;
 
   /// Numeric Data
   NumericData({
     required this.domain,
     required this.measure,
+    this.color,
     this.other,
   });
 }
@@ -87,12 +94,15 @@ class TimeData {
   final DateTime domain;
   final num measure;
 
+  /// specifically for pie charts
+  final Color? color;
   final dynamic other;
 
   /// Time Data
   TimeData({
     required this.domain,
     required this.measure,
+    this.color,
     this.other,
   });
 }

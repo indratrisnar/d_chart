@@ -1,9 +1,11 @@
 import 'dart:math';
+
+import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
+
 import '../commons/enums.dart';
-import 'package:community_charts_common/community_charts_common.dart' as common;
 
 class MethodCommon {
   static charts.Color chartColor(Color? color) {
@@ -67,6 +69,17 @@ class MethodCommon {
         return common.BarLabelPosition.right;
       default:
         return common.BarLabelPosition.auto;
+    }
+  }
+
+  static common.ArcLabelPosition arcLabelPosition(ArcLabelPosition? type) {
+    switch (type) {
+      case ArcLabelPosition.inside:
+        return common.ArcLabelPosition.inside;
+      case ArcLabelPosition.outside:
+        return common.ArcLabelPosition.outside;
+      default:
+        return common.ArcLabelPosition.auto;
     }
   }
 }

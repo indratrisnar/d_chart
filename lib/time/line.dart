@@ -4,11 +4,12 @@ import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
+import '../commons/decorator.dart';
+import '../commons/enums.dart';
 
 import '../commons/axis.dart';
 import '../commons/config_render.dart';
 import '../commons/data_model.dart';
-import '../commons/enums.dart';
 import '../commons/method_common.dart';
 import '../commons/method_type.dart';
 

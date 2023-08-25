@@ -1,9 +1,8 @@
 import 'dart:ui';
 
+import 'data_model.dart';
 import 'enums.dart';
 import 'style.dart';
-
-import 'data_model.dart';
 
 typedef DomainFormat<D> = String Function(D domain);
 typedef MeasureFormat = String Function(num? measure);
@@ -56,3 +55,7 @@ typedef OutsideBarLabelStyleO = LabelStyle Function(
     OrdinalGroup group, OrdinalData ordinalData, int? index);
 typedef OutsideBarLabelStyleT = LabelStyle Function(
     TimeGroup group, TimeData timeData, int? index);
+
+typedef CustomLabelO = String Function(OrdinalData ordinalData, int? index);
+typedef CustomLabelN = String Function(NumericData numericData, int? index);
+typedef CustomLabelT = String Function(TimeData timeData, int? index);

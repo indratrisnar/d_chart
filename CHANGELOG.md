@@ -1,3 +1,8 @@
+## 2.6.1
+
+- update readme
+- all documentation move to [https://flutterdlux.netlify.app/d_chart/](https://flutterdlux.netlify.app/d_chart/)
+
 ## 2.6.0
 
 deprecated chart widget:

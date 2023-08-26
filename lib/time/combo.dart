@@ -184,6 +184,11 @@ class DChartComboT extends StatelessWidget {
                 tickLengthPx: domainAxis?.thickLength,
               ),
               showAxisLine: domainAxis?.showLine,
+              tickFormatterSpec: domainAxis?.labelFormatterT == null
+                  ? null
+                  : common.BasicDateTimeTickFormatterSpec(
+                      domainAxis!.labelFormatterT!,
+                    ),
             ),
       primaryMeasureAxis: measureAxis == null
           ? null

@@ -34,6 +34,8 @@ class DomainAxis {
   /// set limit view for domain axis
   final TimeViewport? timeViewport;
 
+  final LabelFormatterT? labelFormatterT;
+
   const DomainAxis({
     this.showLine = true,
     this.lineStyle = const LineStyle(),
@@ -44,6 +46,7 @@ class DomainAxis {
     this.ordinalViewport,
     this.numericViewport,
     this.timeViewport,
+    this.labelFormatterT,
   });
 }
 

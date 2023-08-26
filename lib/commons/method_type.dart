@@ -59,3 +59,5 @@ typedef OutsideBarLabelStyleT = LabelStyle Function(
 typedef CustomLabelO = String Function(OrdinalData ordinalData, int? index);
 typedef CustomLabelN = String Function(NumericData numericData, int? index);
 typedef CustomLabelT = String Function(TimeData timeData, int? index);
+
+typedef LabelFormatterT = String Function(DateTime dateTime);

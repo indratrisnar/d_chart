@@ -161,8 +161,12 @@ class DChartLineT extends StatelessWidget {
                 tickLengthPx: domainAxis?.thickLength,
               ),
               showAxisLine: domainAxis?.showLine,
+              tickFormatterSpec: domainAxis?.labelFormatterT == null
+                  ? null
+                  : common.BasicDateTimeTickFormatterSpec(
+                      domainAxis!.labelFormatterT!,
+                    ),
               // scaleSpec: const common.SimpleTimeScaleSpec(),
-              // tickFormatterSpec: const common.BasicTimeTickFormatterSpec(),
               // tickProviderSpec: const common.BasicTimeTickProviderSpec(),
             ),
       primaryMeasureAxis: measureAxis == null

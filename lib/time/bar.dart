@@ -165,7 +165,11 @@ class DChartBarT extends StatelessWidget {
               ),
               showAxisLine: domainAxis?.showLine,
               // scaleSpec: const common.SimpleTimeScaleSpec(),
-              // tickFormatterSpec: const common.BasicTimeTickFormatterSpec(),
+              tickFormatterSpec: domainAxis?.labelFormatterT == null
+                  ? null
+                  : common.BasicDateTimeTickFormatterSpec(
+                      domainAxis!.labelFormatterT!,
+                    ),
               // tickProviderSpec: const common.BasicTimeTickProviderSpec(),
             ),
       primaryMeasureAxis: measureAxis == null

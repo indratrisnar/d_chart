@@ -1,3 +1,12 @@
+## 2.6.2
+
+add new property `labelFormatterT` to set custom view label domain for Chart Time:
+
+- DChartBarT
+- DChartComboT
+- DChartLineT
+- DChartScatterT
+
 ## 2.6.1
 
 - update readme

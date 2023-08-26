@@ -6,6 +6,7 @@ deprecated chart widget:
 - DChartLine
 - DChartScatter
 - DChartPie
+- DChartTime
 
 new pie chart where include donut & gauge:
 

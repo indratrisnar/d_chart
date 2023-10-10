@@ -172,6 +172,12 @@ class DChartScatterT extends StatelessWidget {
       primaryMeasureAxis: measureAxis == null
           ? null
           : common.NumericAxisSpec(
+              viewport: measureAxis!.numericViewport == null ?
+                  null :
+                  charts.NumericExtents(
+                    measureAxis!.numericViewport!.min,
+                    measureAxis!.numericViewport!.max,
+                  ),
               renderSpec: common.SmallTickRendererSpec(
                 axisLineStyle: measureAxis?.lineStyle.getRender(),
                 labelStyle: measureAxis?.labelStyle.getRender(),

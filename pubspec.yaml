@@ -1,6 +1,6 @@
 name: d_chart
 description: D'Chart is the development of an existing package chart and simple way to use it.
-version: 2.6.2
+version: 2.6.3
 homepage: https://github.com/indratrisnar/d_chart
 
 environment:

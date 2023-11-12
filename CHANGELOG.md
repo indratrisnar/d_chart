@@ -1,3 +1,13 @@
+## 2.6.3
+
+- resimple import with single import, but can still import separate
+- Chart widget was removed:
+  - DChartBar
+  - DChartLine
+  - DChartScatter
+  - DChartPie
+  - DChartTime
+
 ## 2.6.2
 
 add new property `labelFormatterT` to set custom view label domain for Chart Time:

@@ -15,10 +15,10 @@
 
 import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:flutter/material.dart';
-import 'style.dart';
 
 import 'enums.dart';
 import 'method_common.dart';
+import 'style.dart';
 
 class BarLabelDecorator {
   /// position label bar chart item

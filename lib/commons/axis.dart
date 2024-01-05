@@ -34,7 +34,27 @@ class DomainAxis {
   /// set limit view for domain axis
   final TimeViewport? timeViewport;
 
+  /// label format for time series
+  ///
+  /// for Combo Time, need more width to show more label even there is minus padding.
+  /// except for format like only number date.
+  ///
   final LabelFormatterT? labelFormatterT;
+
+  /// can be use as space beetween label.
+  ///
+  /// more smaller padding, then label will be getting closer,
+  /// they can even collide with each other, take each other's place
+  ///
+  /// default: 0
+  final int minimumPaddingBetweenLabels;
+
+  /// starting point at center right.
+  ///
+  /// center right = 0 degree. starting 30 - 90, will be affect to height of chart widget
+  ///
+  /// default: 0
+  final int labelRotation;
 
   const DomainAxis({
     this.showLine = true,
@@ -47,6 +67,8 @@ class DomainAxis {
     this.numericViewport,
     this.timeViewport,
     this.labelFormatterT,
+    this.minimumPaddingBetweenLabels = 0,
+    this.labelRotation = 0,
   });
 }
 

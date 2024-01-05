@@ -1,3 +1,13 @@
+## 2.6.4
+
+- new property in domain axis:
+  - labelRotation
+  - minimumPaddingBetweenLabels
+  - 2 property above can use to show more label in time series widget
+- update base package
+  - community_charts_flutter: 1.0.1 to 1.0.2
+  - community_charts_common: 1.0.1 to 1.0.2
+
 ## 2.6.3
 
 - resimple import with single import, but can still import separate

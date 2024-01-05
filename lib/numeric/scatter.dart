@@ -168,6 +168,9 @@ class DChartScatterN extends StatelessWidget {
           ? null
           : common.NumericAxisSpec(
               renderSpec: common.SmallTickRendererSpec(
+                labelRotation: domainAxis?.labelRotation ?? 0,
+                minimumPaddingBetweenLabelsPx:
+                    domainAxis?.minimumPaddingBetweenLabels ?? 0,
                 axisLineStyle: measureAxis?.lineStyle.getRender(),
                 labelStyle: measureAxis?.labelStyle.getRender(),
                 labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,

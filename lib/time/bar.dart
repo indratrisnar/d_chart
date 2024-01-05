@@ -156,6 +156,9 @@ class DChartBarT extends StatelessWidget {
           : common.DateTimeAxisSpec(
               viewport: domainAxis?.timeViewport?.getRender(),
               renderSpec: common.SmallTickRendererSpec(
+                labelRotation: domainAxis?.labelRotation ?? 0,
+                minimumPaddingBetweenLabelsPx:
+                    domainAxis?.minimumPaddingBetweenLabels ?? 0,
                 axisLineStyle: domainAxis?.lineStyle.getRender(),
                 labelStyle: domainAxis?.labelStyle.getRender(),
                 labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,

@@ -9,6 +9,7 @@ import '../commons/axis.dart';
 import '../commons/config_render.dart';
 import '../commons/data_model.dart';
 import '../commons/decorator.dart';
+import '../commons/layout_margin.dart';
 import '../commons/method_common.dart';
 import '../commons/method_type.dart';
 
@@ -77,6 +78,18 @@ class DChartBarO extends StatelessWidget {
   /// top down or bottom up
   final bool? flipVertical;
 
+  /// margin from outer chart to wrapper box\
+  /// default: 20px for each side
+  final LayoutMargin? layoutMargin;
+
+  /// give user access to slide chart viewport\
+  /// set initial viewport in domainAxis\
+  /// if set true, this will affect to 'measure viewport'.
+  /// measure viewport will auto adjust depend on min/max from item chart value\
+  /// To fix this, set viewport in [measueAxis]\
+  /// default: false
+  final bool allowSliding;
+
   /// Ordinal Bar Chart
   const DChartBarO({
     super.key,
@@ -96,6 +109,8 @@ class DChartBarO extends StatelessWidget {
     this.barLabelDecorator,
     this.vertical = true,
     this.flipVertical,
+    this.layoutMargin,
+    this.allowSliding = false,
   });
 
   @override
@@ -176,6 +191,7 @@ class DChartBarO extends StatelessWidget {
       primaryMeasureAxis: measureAxis == null
           ? null
           : common.NumericAxisSpec(
+              viewport: measureAxis?.numericViewport?.getRender(),
               renderSpec: common.SmallTickRendererSpec(
                 labelRotation: domainAxis?.labelRotation ?? 0,
                 minimumPaddingBetweenLabelsPx:
@@ -197,6 +213,12 @@ class DChartBarO extends StatelessWidget {
                 desiredTickCount: measureAxis?.desiredTickCount,
               ),
             ),
+      layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
+      behaviors: [
+        if (allowSliding) charts.SlidingViewport(),
+        if (allowSliding) charts.PanAndZoomBehavior(),
+        // charts.PanBehavior(),
+      ],
     );
   }
 }

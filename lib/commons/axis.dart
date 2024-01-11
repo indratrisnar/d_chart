@@ -104,6 +104,9 @@ class MeasureAxis {
   /// format text label to show
   final MeasureFormat? labelFormat;
 
+  /// set limit view for measure axis
+  final NumericViewport? numericViewport;
+
   const MeasureAxis({
     this.showLine = false,
     this.lineStyle = const LineStyle(),
@@ -115,5 +118,6 @@ class MeasureAxis {
     this.desiredMaxTickCount,
     this.desiredMinTickCount,
     this.desiredTickCount,
+    this.numericViewport,
   });
 }

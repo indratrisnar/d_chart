@@ -10,6 +10,7 @@ import '../commons/config_render.dart';
 import '../commons/data_model.dart';
 import '../commons/decorator.dart';
 import '../commons/enums.dart';
+import '../commons/layout_margin.dart';
 import '../commons/method_common.dart';
 import '../commons/method_type.dart';
 
@@ -76,6 +77,18 @@ class DChartComboN extends StatelessWidget {
   /// styling label item chart bar
   final OutsideBarLabelStyleN? outsideBarLabelStyle;
 
+  /// margin from outer chart to wrapper box\
+  /// default: 20px for each side
+  final LayoutMargin? layoutMargin;
+
+  /// give user access to slide chart viewport\
+  /// set initial viewport in domainAxis\
+  /// if set true, this will affect to 'measure viewport'.
+  /// measure viewport will auto adjust depend on min/max from item chart value\
+  /// To fix this, set viewport in [measueAxis]\
+  /// default: false
+  final bool allowSliding;
+
   /// Numeric Combo Chart\
   /// also can use for single other type but cannot be set horizontal measure
   /// - only bar
@@ -99,6 +112,8 @@ class DChartComboN extends StatelessWidget {
     this.outsideBarLabelStyle,
     this.barLabelValue,
     this.barLabelDecorator,
+    this.layoutMargin,
+    this.allowSliding = false,
   });
 
   @override
@@ -184,6 +199,7 @@ class DChartComboN extends StatelessWidget {
       primaryMeasureAxis: measureAxis == null
           ? null
           : common.NumericAxisSpec(
+              viewport: measureAxis?.numericViewport?.getRender(),
               renderSpec: common.SmallTickRendererSpec(
                 labelRotation: domainAxis?.labelRotation ?? 0,
                 minimumPaddingBetweenLabelsPx:
@@ -205,7 +221,12 @@ class DChartComboN extends StatelessWidget {
                 desiredTickCount: measureAxis?.desiredTickCount,
               ),
             ),
-
+      layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
+      behaviors: [
+        if (allowSliding) charts.SlidingViewport(),
+        if (allowSliding) charts.PanAndZoomBehavior(),
+        // charts.PanBehavior(),
+      ],
       // behaviors: [
       //   charts.RangeAnnotation([
       //     for (var group in groupList)

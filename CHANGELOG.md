@@ -1,3 +1,10 @@
+## 2.6.5
+
+- new property:
+  - layoutMargin
+  - allowSliding
+  - viewport for measureAxis -> only numeric
+
 ## 2.6.4
 
 - new property in domain axis:

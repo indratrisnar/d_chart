@@ -5,7 +5,7 @@ The purpose of this pakage is simple way to use chart from [community_charts_flu
 
 # Usage
 
-- [Full Documentation](https://flutterdlux.netlify.app/d_chart/)
+- [Full Documentation](https://dchart.netlify.app/)
 - [Tutorial](https://www.youtube.com/watch?v=mdMayNHY7so&list=PLMeCG4xYek-OiZKkbBC7ZFvvsbKhr1HJD&pp=gAQBiAQB)
 - Wrap Chart with Widget Size like SizedBox, Container, Aspecration etc to set root size for chart
 - Example

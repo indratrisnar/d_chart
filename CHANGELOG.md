@@ -1,3 +1,7 @@
+## 2.6.7
+
+- new web documentation
+
 ## 2.6.6
 
 - fix position property of:

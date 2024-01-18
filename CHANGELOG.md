@@ -1,3 +1,9 @@
+## 2.6.6
+
+- fix position property of:
+  - labelRotation
+  - minimumPaddingBetweenLabels
+
 ## 2.6.5
 
 - new property:

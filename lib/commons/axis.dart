@@ -51,7 +51,7 @@ class DomainAxis {
 
   /// starting point at center right.
   ///
-  /// center right = 0 degree. starting 30 - 90, will be affect to height of chart widget
+  /// center right = 0 degree.
   ///
   /// default: 0
   final int labelRotation;

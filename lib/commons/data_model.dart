@@ -4,9 +4,29 @@ import 'package:flutter/material.dart';
 
 import 'enums.dart';
 
-/// Ordinal Data
-class OrdinalData {
-  final String domain;
+abstract class ChartGroup {
+  /// as key chart
+  final String id;
+
+  /// for grouping stack
+  final String? seriesCategory;
+
+  /// work when use in DChartCombo\
+  /// default: `ChartType.line`
+  final ChartType chartType;
+
+  /// all data in same group has same color
+  final Color? color;
+
+  ChartGroup({
+    required this.id,
+    this.seriesCategory,
+    this.chartType = ChartType.line,
+    this.color,
+  });
+}
+
+abstract class ChartData {
   final num measure;
 
   /// specifically for pie chart
@@ -14,119 +34,90 @@ class OrdinalData {
 
   final dynamic other;
 
-  /// Ordinal Data
-  OrdinalData({
-    required this.domain,
+  /// Chart Data
+  ChartData({
     required this.measure,
     this.color,
     this.other,
+  });
+}
+
+/// Ordinal Data
+class OrdinalData extends ChartData {
+  final String domain;
+
+  OrdinalData({
+    required this.domain,
+    required super.measure,
+    super.color,
+    super.other,
   });
 }
 
 /// Ordinal group
-class OrdinalGroup {
-  /// as key chart
-  final String id;
-
-  /// work when use in DChartCombo\
-  /// default: `ChartType.line`
-  final ChartType chartType;
-
-  /// all data in same group has same color
-  final Color? color;
-
+class OrdinalGroup extends ChartGroup {
   /// list of data
   final List<OrdinalData> data;
 
-  /// Ordinal group
   OrdinalGroup({
-    required this.id,
-    this.chartType = ChartType.line,
-    this.color,
+    required super.id,
     required this.data,
+    super.chartType,
+    super.color,
+    super.seriesCategory,
   });
 }
 
 /// Numeric Data
-class NumericData {
+class NumericData extends ChartData {
   final num domain;
-  final num measure;
 
-  /// specifically for pie chart
-  final Color? color;
-  final dynamic other;
-
-  /// Numeric Data
   NumericData({
     required this.domain,
-    required this.measure,
-    this.color,
-    this.other,
+    required super.measure,
+    super.color,
+    super.other,
   });
 }
 
 /// Numeric group
-class NumericGroup {
-  /// as key chart
-  final String id;
-
-  /// work when use in DChartCombo\
-  /// default: `ChartType.line`
-  final ChartType chartType;
-
-  /// all data in same group has same color
-  final Color? color;
-
+class NumericGroup extends ChartGroup {
   /// list of data
   final List<NumericData> data;
 
   /// Numeric group
   NumericGroup({
-    required this.id,
-    this.chartType = ChartType.line,
-    this.color,
+    required super.id,
     required this.data,
+    super.chartType,
+    super.color,
+    super.seriesCategory,
   });
 }
 
 /// Time Data
-class TimeData {
+class TimeData extends ChartData {
   final DateTime domain;
-  final num measure;
 
-  /// specifically for pie charts
-  final Color? color;
-  final dynamic other;
-
-  /// Time Data
   TimeData({
     required this.domain,
-    required this.measure,
-    this.color,
-    this.other,
+    required super.measure,
+    super.color,
+    super.other,
   });
 }
 
 /// Time group
-class TimeGroup {
-  /// as key chart
-  final String id;
-
-  /// work when use in DChartCombo\
-  /// default: `ChartType.line`
-  final ChartType chartType;
-
-  /// all data in same group has same color
-  final Color? color;
-
+class TimeGroup extends ChartGroup {
   /// list of data
   final List<TimeData> data;
 
   /// Time group
   TimeGroup({
-    required this.id,
-    this.chartType = ChartType.line,
-    this.color,
+    required super.id,
     required this.data,
+    super.chartType,
+    super.color,
+    super.seriesCategory,
   });
 }

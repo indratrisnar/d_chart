@@ -4,12 +4,12 @@ import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
-import '../commons/decorator.dart';
-import '../commons/enums.dart';
 
 import '../commons/axis.dart';
 import '../commons/config_render.dart';
 import '../commons/data_model.dart';
+import '../commons/decorator.dart';
+import '../commons/enums.dart';
 import '../commons/layout_margin.dart';
 import '../commons/method_common.dart';
 import '../commons/method_type.dart';
@@ -117,6 +117,7 @@ class DChartLineT extends StatelessWidget {
         return charts.Series<TimeData, DateTime>(
           id: group.id,
           data: group.data,
+          seriesCategory: group.seriesCategory,
           domainFn: (datum, index) => datum.domain,
           measureFn: (datum, index) => datum.measure,
           colorFn: (datum, index) => MethodCommon.chartColor(groupColor),

@@ -116,6 +116,7 @@ class DChartLineN extends StatelessWidget {
         return charts.Series<NumericData, num>(
           id: group.id,
           data: group.data,
+          seriesCategory: group.seriesCategory,
           domainFn: (datum, index) => datum.domain,
           measureFn: (datum, index) => datum.measure,
           colorFn: (datum, index) => MethodCommon.chartColor(groupColor),

@@ -1,3 +1,8 @@
+## 2.6.8
+
+- reorganize data models
+- add series category to Group Model, used for Grouped Stacked
+
 ## 2.6.7
 
 - new web documentation

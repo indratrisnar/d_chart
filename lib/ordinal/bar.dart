@@ -176,17 +176,21 @@ class DChartBarO extends StatelessWidget {
           ? null
           : common.OrdinalAxisSpec(
               viewport: domainAxis?.ordinalViewport?.getRender(),
-              renderSpec: common.SmallTickRendererSpec(
-                labelRotation: domainAxis?.labelRotation ?? 0,
-                minimumPaddingBetweenLabelsPx:
-                    domainAxis?.minimumPaddingBetweenLabels ?? 0,
-                axisLineStyle: domainAxis?.lineStyle.getRender(),
-                labelStyle: domainAxis?.labelStyle.getRender(),
-                labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
-                labelAnchor:
-                    MethodCommon.tickLabelAnchor(domainAxis?.labelAnchor),
-                tickLengthPx: domainAxis?.thickLength,
-              ),
+              renderSpec: domainAxis?.noRenderSpec ?? false
+                  ? common.NoneRenderSpec(
+                      axisLineStyle: domainAxis?.lineStyle.getRender(),
+                    )
+                  : common.SmallTickRendererSpec(
+                      labelRotation: domainAxis?.labelRotation ?? 0,
+                      minimumPaddingBetweenLabelsPx:
+                          domainAxis?.minimumPaddingBetweenLabels ?? 0,
+                      axisLineStyle: domainAxis?.lineStyle.getRender(),
+                      labelStyle: domainAxis?.labelStyle.getRender(),
+                      labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
+                      labelAnchor:
+                          MethodCommon.tickLabelAnchor(domainAxis?.labelAnchor),
+                      tickLengthPx: domainAxis?.thickLength,
+                    ),
               showAxisLine: domainAxis?.showLine,
               // scaleSpec: const common.SimpleOrdinalScaleSpec(),
               // tickFormatterSpec: const common.BasicOrdinalTickFormatterSpec(),
@@ -196,14 +200,18 @@ class DChartBarO extends StatelessWidget {
           ? null
           : common.NumericAxisSpec(
               viewport: measureAxis?.numericViewport?.getRender(),
-              renderSpec: common.SmallTickRendererSpec(
-                axisLineStyle: measureAxis?.lineStyle.getRender(),
-                labelStyle: measureAxis?.labelStyle.getRender(),
-                labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
-                labelAnchor:
-                    MethodCommon.tickLabelAnchor(measureAxis?.labelAnchor),
-                tickLengthPx: measureAxis?.thickLength,
-              ),
+              renderSpec: measureAxis?.noRenderSpec ?? false
+                  ? common.NoneRenderSpec(
+                      axisLineStyle: measureAxis?.lineStyle.getRender(),
+                    )
+                  : common.SmallTickRendererSpec(
+                      axisLineStyle: measureAxis?.lineStyle.getRender(),
+                      labelStyle: measureAxis?.labelStyle.getRender(),
+                      labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
+                      labelAnchor: MethodCommon.tickLabelAnchor(
+                          measureAxis?.labelAnchor),
+                      tickLengthPx: measureAxis?.thickLength,
+                    ),
               showAxisLine: measureAxis?.showLine,
               tickFormatterSpec: common.BasicNumericTickFormatterSpec(
                 measureAxis?.labelFormat,

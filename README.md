@@ -1,6 +1,6 @@
 # d_chart
 
-Simple way to use chart for Flutter with many option.  
+Simple way to show and use chart for Flutter with many option.
 This package is built on top of [community_charts_flutter](https://pub.dev/packages/community_charts_flutter).
 
 # Usage

@@ -1,3 +1,7 @@
+## 2.6.9
+
+- new property in Axis "noRenderSpec" to disable label and tick axis
+
 ## 2.6.8
 
 - reorganize data models

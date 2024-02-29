@@ -1,6 +1,6 @@
 name: d_chart
-description: Simple way to use chart for Flutter with many option.
-version: 2.6.8
+description: Simple way to show and use chart for Flutter with many option.
+version: 2.6.9
 homepage: https://github.com/indratrisnar/d_chart
 
 environment:

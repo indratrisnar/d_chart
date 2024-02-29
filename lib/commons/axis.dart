@@ -3,7 +3,16 @@ import 'method_type.dart';
 import 'style.dart';
 import 'viewport.dart';
 
-class DomainAxis {
+abstract class ChartAxis {
+  /// disable label and tick axis
+  final bool noRenderSpec;
+
+  const ChartAxis({
+    this.noRenderSpec = false,
+  });
+}
+
+class DomainAxis extends ChartAxis {
   /// show domain line\
   /// default: true
   final bool showLine;
@@ -69,10 +78,11 @@ class DomainAxis {
     this.labelFormatterT,
     this.minimumPaddingBetweenLabels = 0,
     this.labelRotation = 0,
+    super.noRenderSpec,
   });
 }
 
-class MeasureAxis {
+class MeasureAxis extends ChartAxis {
   /// show domain line\
   /// default: false
   final bool showLine;
@@ -119,5 +129,6 @@ class MeasureAxis {
     this.desiredMinTickCount,
     this.desiredTickCount,
     this.numericViewport,
+    super.noRenderSpec,
   });
 }

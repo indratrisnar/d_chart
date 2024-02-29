@@ -2,6 +2,7 @@
 
 - reorganize data models
 - add series category to Group Model, used for Grouped Stacked
+- web docs url, changed
 
 ## 2.6.7
 

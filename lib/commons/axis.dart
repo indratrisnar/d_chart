@@ -32,6 +32,10 @@ class DomainAxis extends ChartAxis {
 
   /// thick axis length\
   /// default: 3
+  ///
+  /// If thickLength > 0, the line is displayed on the left
+  ///
+  /// if thickLength < 0, the line will be displayed on the right
   final int thickLength;
 
   /// set limit view for domain axis

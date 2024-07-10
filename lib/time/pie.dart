@@ -28,6 +28,12 @@ class DChartPieT extends StatelessWidget {
   /// customize label view data
   final CustomLabelT? customLabel;
 
+  /// listen which data is selected
+  final void Function(TimeData data)? onUpdatedListener;
+
+  /// listen which data is changed selected
+  final void Function(TimeData data)? onChangedListener;
+
   /// Time Pie Chart
   const DChartPieT({
     super.key,
@@ -36,6 +42,8 @@ class DChartPieT extends StatelessWidget {
     this.configRenderPie = const ConfigRenderPie(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.customLabel,
+    this.onUpdatedListener,
+    this.onChangedListener,
   });
 
   @override
@@ -57,6 +65,24 @@ class DChartPieT extends StatelessWidget {
       animate: animate,
       animationDuration: animationDuration,
       defaultRenderer: configRenderPie?.getRenderTime(),
+      selectionModels: [
+        charts.SelectionModelConfig(
+          updatedListener: onUpdatedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onUpdatedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+          changedListener: onChangedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onChangedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+        ),
+      ],
     );
   }
 }

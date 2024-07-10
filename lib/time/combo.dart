@@ -94,6 +94,12 @@ class DChartComboT extends StatelessWidget {
   /// default: false
   final bool allowSliding;
 
+  /// listen which data is selected
+  final void Function(TimeData data)? onUpdatedListener;
+
+  /// listen which data is changed selected
+  final void Function(TimeData data)? onChangedListener;
+
   /// Numeric Combo Chart\
   /// also can use for single other type but cannot be set horizontal measure
   /// - only bar
@@ -120,6 +126,8 @@ class DChartComboT extends StatelessWidget {
     this.flipVertical = false,
     this.layoutMargin,
     this.allowSliding = false,
+    this.onUpdatedListener,
+    this.onChangedListener,
   });
 
   @override
@@ -243,20 +251,25 @@ class DChartComboT extends StatelessWidget {
       behaviors: [
         if (allowSliding) charts.SlidingViewport(),
         if (allowSliding) charts.PanAndZoomBehavior(),
-        // charts.PanBehavior(),
       ],
-      // behaviors: [
-      //   charts.RangeAnnotation([
-      //     for (var group in groupList)
-      //       for (var data in group.data)
-      //         common.LineAnnotationSegment(
-      //           data.domain,
-      //           charts.RangeAnnotationAxisType.domain,
-      //           middleLabel: data.measure.toString(),
-      //           color: MethodCommon.chartColor(Colors.red),
-      //         ),
-      //   ]),
-      // ],
+      selectionModels: [
+        charts.SelectionModelConfig(
+          updatedListener: onUpdatedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onUpdatedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+          changedListener: onChangedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onChangedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+        ),
+      ],
     );
   }
 }

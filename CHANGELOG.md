@@ -1,3 +1,11 @@
+## 2.7.1
+
+- new property:
+  - onUpdatedListener
+  - onChangedListener
+- upgrade dart sdk to 3.4.3 or flutter 3.22.2
+- upgrade community_chart to 1.0.4
+
 ## 2.6.9
 
 - new property in Axis "noRenderSpec" to disable label and tick axis

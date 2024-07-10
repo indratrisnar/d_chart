@@ -84,6 +84,12 @@ class DChartBarT extends StatelessWidget {
   /// default: false
   final bool allowSliding;
 
+  /// listen which data is selected
+  final void Function(TimeData data)? onUpdatedListener;
+
+  /// listen which data is changed selected
+  final void Function(TimeData data)? onChangedListener;
+
   /// Time Bar Chart
   const DChartBarT({
     super.key,
@@ -104,6 +110,8 @@ class DChartBarT extends StatelessWidget {
     this.flipVertical = false,
     this.layoutMargin,
     this.allowSliding = false,
+    this.onUpdatedListener,
+    this.onChangedListener,
   });
 
   @override
@@ -225,7 +233,24 @@ class DChartBarT extends StatelessWidget {
       behaviors: [
         if (allowSliding) charts.SlidingViewport(),
         if (allowSliding) charts.PanAndZoomBehavior(),
-        // charts.PanBehavior(),
+      ],
+      selectionModels: [
+        charts.SelectionModelConfig(
+          updatedListener: onUpdatedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onUpdatedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+          changedListener: onChangedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onChangedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+        ),
       ],
     );
   }

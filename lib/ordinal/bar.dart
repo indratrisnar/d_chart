@@ -90,6 +90,12 @@ class DChartBarO extends StatelessWidget {
   /// default: false
   final bool allowSliding;
 
+  /// listen which data is selected
+  final void Function(OrdinalData data)? onUpdatedListener;
+
+  /// listen which data is changed selected
+  final void Function(OrdinalData data)? onChangedListener;
+
   /// Ordinal Bar Chart
   const DChartBarO({
     super.key,
@@ -111,6 +117,8 @@ class DChartBarO extends StatelessWidget {
     this.flipVertical,
     this.layoutMargin,
     this.allowSliding = false,
+    this.onUpdatedListener,
+    this.onChangedListener,
   });
 
   @override
@@ -225,8 +233,25 @@ class DChartBarO extends StatelessWidget {
       layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
       behaviors: [
         if (allowSliding) charts.SlidingViewport(),
-        if (allowSliding) charts.PanAndZoomBehavior(),
-        // charts.PanBehavior(),
+        if (allowSliding) charts.PanAndZoomBehavior()
+      ],
+      selectionModels: [
+        charts.SelectionModelConfig(
+          updatedListener: onUpdatedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onUpdatedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+          changedListener: onChangedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onChangedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+        ),
       ],
     );
   }

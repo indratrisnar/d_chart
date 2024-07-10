@@ -28,6 +28,12 @@ class DChartPieN extends StatelessWidget {
   /// customize label view data
   final CustomLabelN? customLabel;
 
+  /// listen which data is selected
+  final void Function(NumericData data)? onUpdatedListener;
+
+  /// listen which data is changed selected
+  final void Function(NumericData data)? onChangedListener;
+
   /// Numeric Pie Chart
   const DChartPieN({
     super.key,
@@ -36,6 +42,8 @@ class DChartPieN extends StatelessWidget {
     this.configRenderPie = const ConfigRenderPie(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.customLabel,
+    this.onUpdatedListener,
+    this.onChangedListener,
   });
 
   @override
@@ -57,6 +65,24 @@ class DChartPieN extends StatelessWidget {
       animate: animate,
       animationDuration: animationDuration,
       defaultRenderer: configRenderPie?.getRenderNumeric(),
+      selectionModels: [
+        charts.SelectionModelConfig(
+          updatedListener: onUpdatedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onUpdatedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+          changedListener: onChangedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onChangedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+        ),
+      ],
     );
   }
 }

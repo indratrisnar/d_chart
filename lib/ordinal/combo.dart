@@ -89,6 +89,12 @@ class DChartComboO extends StatelessWidget {
   /// default: false
   final bool allowSliding;
 
+  /// listen which data is selected
+  final void Function(OrdinalData data)? onUpdatedListener;
+
+  /// listen which data is changed selected
+  final void Function(OrdinalData data)? onChangedListener;
+
   /// Ordinal Combo Chart\
   /// also can use for single other type but cannot be set horizontal measure
   /// - only bar
@@ -114,6 +120,8 @@ class DChartComboO extends StatelessWidget {
     this.barLabelDecorator,
     this.layoutMargin,
     this.allowSliding = false,
+    this.onUpdatedListener,
+    this.onChangedListener,
   });
 
   @override
@@ -234,7 +242,24 @@ class DChartComboO extends StatelessWidget {
       behaviors: [
         if (allowSliding) charts.SlidingViewport(),
         if (allowSliding) charts.PanAndZoomBehavior(),
-        // charts.PanBehavior(),
+      ],
+      selectionModels: [
+        charts.SelectionModelConfig(
+          updatedListener: onUpdatedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onUpdatedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+          changedListener: onChangedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onChangedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+        ),
       ],
     );
   }

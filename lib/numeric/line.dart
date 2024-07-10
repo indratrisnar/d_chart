@@ -83,6 +83,12 @@ class DChartLineN extends StatelessWidget {
   /// default: false
   final bool allowSliding;
 
+  /// listen which data is selected
+  final void Function(NumericData data)? onUpdatedListener;
+
+  /// listen which data is changed selected
+  final void Function(NumericData data)? onChangedListener;
+
   /// Numeric Line Chart
   const DChartLineN({
     super.key,
@@ -103,6 +109,8 @@ class DChartLineN extends StatelessWidget {
     this.flipVertical = false,
     this.layoutMargin,
     this.allowSliding = false,
+    this.onUpdatedListener,
+    this.onChangedListener,
   });
 
   @override
@@ -217,7 +225,24 @@ class DChartLineN extends StatelessWidget {
       behaviors: [
         if (allowSliding) charts.SlidingViewport(),
         if (allowSliding) charts.PanAndZoomBehavior(),
-        // charts.PanBehavior(),
+      ],
+      selectionModels: [
+        charts.SelectionModelConfig(
+          updatedListener: onUpdatedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onUpdatedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+          changedListener: onChangedListener == null
+              ? null
+              : (model) {
+                  if (model.hasDatumSelection) {
+                    onChangedListener!(model.selectedDatum.first.datum);
+                  }
+                },
+        ),
       ],
     );
   }

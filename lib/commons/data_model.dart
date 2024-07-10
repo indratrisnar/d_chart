@@ -52,6 +52,13 @@ class OrdinalData extends ChartData {
     super.color,
     super.other,
   });
+
+  Map<String, dynamic> toMap() => {
+        'domain': domain,
+        'measure': measure,
+        'color': color,
+        'other': other,
+      };
 }
 
 /// Ordinal group
@@ -78,6 +85,13 @@ class NumericData extends ChartData {
     super.color,
     super.other,
   });
+
+  Map<String, dynamic> toMap() => {
+        'domain': domain,
+        'measure': measure,
+        'color': color,
+        'other': other,
+      };
 }
 
 /// Numeric group
@@ -105,6 +119,13 @@ class TimeData extends ChartData {
     super.color,
     super.other,
   });
+
+  Map<String, dynamic> toMap() => {
+        'domain': domain,
+        'measure': measure,
+        'color': color,
+        'other': other,
+      };
 }
 
 /// Time group

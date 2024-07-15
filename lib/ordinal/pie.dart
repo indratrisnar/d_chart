@@ -4,8 +4,8 @@ import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
 
-import '../commons/config_render.dart';
-import '../commons/data_model.dart';
+import '../commons/config_render/config_render.dart';
+import '../commons/data_model/data_model.dart';
 import '../commons/method_common.dart';
 import '../commons/method_type.dart';
 

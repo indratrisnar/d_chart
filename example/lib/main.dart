@@ -1,5 +1,5 @@
-import 'package:d_chart/commons/data_model.dart';
-import 'package:d_chart/ordinal/bar.dart';
+import 'package:d_chart/d_chart.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,11 +1,10 @@
 import 'dart:ui';
 
-import 'data_model.dart';
+import 'data_model/data_model.dart';
 import 'enums.dart';
-import 'style.dart';
+import 'style/style.dart';
 
 typedef DomainFormat<D> = String Function(D domain);
-typedef MeasureFormat = String Function(num? measure);
 
 typedef AreaColorN = Color? Function(
     NumericGroup group, NumericData numericData, int? index);
@@ -26,13 +25,6 @@ typedef FillPatternN = FillPattern Function(
 typedef FillPatternO = FillPattern Function(
     OrdinalGroup group, OrdinalData ordinalData, int? index);
 typedef FillPatternT = FillPattern Function(
-    TimeGroup group, TimeData timeData, int? index);
-
-typedef BarLabelValueN = String Function(
-    NumericGroup group, NumericData numericData, int? index);
-typedef BarLabelValueO = String Function(
-    OrdinalGroup group, OrdinalData ordinalData, int? index);
-typedef BarLabelValueT = String Function(
     TimeGroup group, TimeData timeData, int? index);
 
 typedef DashPatternN = List<int> Function(
@@ -59,5 +51,3 @@ typedef OutsideBarLabelStyleT = LabelStyle Function(
 typedef CustomLabelO = String Function(OrdinalData ordinalData, int? index);
 typedef CustomLabelN = String Function(NumericData numericData, int? index);
 typedef CustomLabelT = String Function(TimeData timeData, int? index);
-
-typedef LabelFormatterT = String Function(DateTime dateTime);

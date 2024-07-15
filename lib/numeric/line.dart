@@ -5,10 +5,9 @@ import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
 
-import '../commons/axis.dart';
-import '../commons/config_render.dart';
-import '../commons/data_model.dart';
-import '../commons/decorator.dart';
+import '../commons/axis/axis.dart';
+import '../commons/config_render/config_render.dart';
+import '../commons/data_model/data_model.dart';
 import '../commons/layout_margin.dart';
 import '../commons/method_common.dart';
 import '../commons/method_type.dart';
@@ -26,8 +25,11 @@ class DChartLineN extends StatelessWidget {
   /// default: `Duration(milliseconds: 300)`
   final Duration animationDuration;
 
-  /// style bar
+  /// style line
   final ConfigRenderLine? configRenderLine;
+
+  /// style point
+  final ConfigRenderPoint? configRenderPoint;
 
   /// customize domain axis
   final DomainAxis? domainAxis;
@@ -53,18 +55,9 @@ class DChartLineN extends StatelessWidget {
   /// specify for line pattern
   final DashPatternN? dashPattern;
 
-  /// set custom format value for label bar\
-  /// to show this value, set `barLabelDecorator` not null
-  final BarLabelValueN? barLabelValue;
-
-  /// for decoration label, like positioning
-  final BarLabelDecorator? barLabelDecorator;
-
-  /// styling label item chart bar
-  final InsideBarLabelStyleN? insideBarLabelStyle;
-
-  /// styling label item chart bar
-  final OutsideBarLabelStyleN? outsideBarLabelStyle;
+  /// set custom format value for label bar
+  final String Function(NumericGroup group, NumericData data, int? index)?
+      barLabelValue;
 
   /// when `vertical` is true, line chart will be flip\
   /// sort reversed measure axis/
@@ -95,6 +88,7 @@ class DChartLineN extends StatelessWidget {
     required this.groupList,
     this.animate = false,
     this.configRenderLine,
+    this.configRenderPoint,
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
@@ -102,10 +96,7 @@ class DChartLineN extends StatelessWidget {
     this.fillPattern,
     this.fillColor,
     this.dashPattern,
-    this.insideBarLabelStyle,
-    this.outsideBarLabelStyle,
     this.barLabelValue,
-    this.barLabelDecorator,
     this.flipVertical = false,
     this.layoutMargin,
     this.allowSliding = false,
@@ -157,14 +148,6 @@ class DChartLineN extends StatelessWidget {
           labelAccessorFn: barLabelValue == null
               ? null
               : (datum, index) => barLabelValue!(group, datum, index),
-          insideLabelStyleAccessorFn: insideBarLabelStyle == null
-              ? null
-              : (datum, index) =>
-                  insideBarLabelStyle!(group, datum, index).getRender(),
-          outsideLabelStyleAccessorFn: outsideBarLabelStyle == null
-              ? null
-              : (datum, index) =>
-                  outsideBarLabelStyle!(group, datum, index).getRender(),
         );
       }),
       flipVerticalAxis: flipVertical,
@@ -188,12 +171,15 @@ class DChartLineN extends StatelessWidget {
                       labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
                       labelAnchor:
                           MethodCommon.tickLabelAnchor(domainAxis?.labelAnchor),
-                      tickLengthPx: domainAxis?.thickLength,
+                      tickLengthPx: domainAxis?.tickLength,
                     ),
               showAxisLine: domainAxis?.showLine,
-              // scaleSpec: const common.SimpleNumericScaleSpec(),
-              // tickFormatterSpec: const common.BasicNumericTickFormatterSpec(),
-              // tickProviderSpec: const common.BasicNumericTickProviderSpec(),
+              tickFormatterSpec: domainAxis!.tickLabelFormatterN == null
+                  ? null
+                  : common.BasicNumericTickFormatterSpec(
+                      domainAxis!.tickLabelFormatterN,
+                    ),
+              tickProviderSpec: domainAxis?.numericTickProvider?.getRender(),
             ),
       primaryMeasureAxis: measureAxis == null
           ? null
@@ -209,17 +195,13 @@ class DChartLineN extends StatelessWidget {
                       labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
                       labelAnchor: MethodCommon.tickLabelAnchor(
                           measureAxis?.labelAnchor),
-                      tickLengthPx: measureAxis?.thickLength,
+                      tickLengthPx: measureAxis?.tickLength,
                     ),
               showAxisLine: measureAxis?.showLine,
               tickFormatterSpec: common.BasicNumericTickFormatterSpec(
-                measureAxis?.labelFormat,
+                measureAxis?.tickLabelFormatter,
               ),
-              tickProviderSpec: common.BasicNumericTickProviderSpec(
-                desiredMaxTickCount: measureAxis?.desiredMaxTickCount,
-                desiredMinTickCount: measureAxis?.desiredMinTickCount,
-                desiredTickCount: measureAxis?.desiredTickCount,
-              ),
+              tickProviderSpec: measureAxis?.numericTickProvider?.getRender(),
             ),
       layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
       behaviors: [

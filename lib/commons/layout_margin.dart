@@ -1,6 +1,6 @@
+import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
-import 'package:community_charts_common/community_charts_common.dart' as common;
 
 class LayoutMargin {
   final int left;

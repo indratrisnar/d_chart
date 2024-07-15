@@ -5,10 +5,9 @@ import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
 
-import '../commons/axis.dart';
-import '../commons/config_render.dart';
-import '../commons/data_model.dart';
-import '../commons/decorator.dart';
+import '../commons/axis/axis.dart';
+import '../commons/config_render/config_render.dart';
+import '../commons/data_model/data_model.dart';
 import '../commons/enums.dart';
 import '../commons/layout_margin.dart';
 import '../commons/method_common.dart';
@@ -64,18 +63,9 @@ class DChartComboO extends StatelessWidget {
   /// specify for line pattern
   final DashPatternO? dashPattern;
 
-  /// set custom format value for label bar\
-  /// to show this value, set `barLabelDecorator` not null
-  final BarLabelValueO? barLabelValue;
-
-  /// for decoration label, like positioning
-  final BarLabelDecorator? barLabelDecorator;
-
-  /// styling label item chart bar
-  final InsideBarLabelStyleO? insideBarLabelStyle;
-
-  /// styling label item chart bar
-  final OutsideBarLabelStyleO? outsideBarLabelStyle;
+  /// set custom format value for label bar
+  final String Function(OrdinalGroup group, OrdinalData data, int? index)?
+      barLabelValue;
 
   /// margin from outer chart to wrapper box\
   /// default: 20px for each side
@@ -114,10 +104,7 @@ class DChartComboO extends StatelessWidget {
     this.fillPattern,
     this.fillColor,
     this.dashPattern,
-    this.insideBarLabelStyle,
-    this.outsideBarLabelStyle,
     this.barLabelValue,
-    this.barLabelDecorator,
     this.layoutMargin,
     this.allowSliding = false,
     this.onUpdatedListener,
@@ -170,21 +157,13 @@ class DChartComboO extends StatelessWidget {
           labelAccessorFn: barLabelValue == null
               ? null
               : (datum, index) => barLabelValue!(group, datum, index),
-          insideLabelStyleAccessorFn: insideBarLabelStyle == null
-              ? null
-              : (datum, index) =>
-                  insideBarLabelStyle!(group, datum, index).getRender(),
-          outsideLabelStyleAccessorFn: outsideBarLabelStyle == null
-              ? null
-              : (datum, index) =>
-                  outsideBarLabelStyle!(group, datum, index).getRender(),
         )..setAttribute(charts.rendererIdKey, group.chartType.name);
       }),
       animate: animate,
       animationDuration: animationDuration,
       defaultRenderer: common.LineRendererConfig(),
       customSeriesRenderers: [
-        cRenderBar.getRenderOrdinal(ChartType.bar.name, barLabelDecorator),
+        cRenderBar.getRenderOrdinal(ChartType.bar.name),
         cRenderLine.getRenderOrdinal(ChartType.line.name),
         cRenderPoint.getRenderOrdinal(ChartType.scatterPlot.name),
       ],
@@ -205,12 +184,9 @@ class DChartComboO extends StatelessWidget {
                       labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
                       labelAnchor:
                           MethodCommon.tickLabelAnchor(domainAxis?.labelAnchor),
-                      tickLengthPx: domainAxis?.thickLength,
+                      tickLengthPx: domainAxis?.tickLength,
                     ),
               showAxisLine: domainAxis?.showLine,
-              // scaleSpec: const common.SimpleOrdinalScaleSpec(),
-              // tickFormatterSpec: const common.BasicOrdinalTickFormatterSpec(),
-              // tickProviderSpec: const common.BasicOrdinalTickProviderSpec(),
             ),
       primaryMeasureAxis: measureAxis == null
           ? null
@@ -226,17 +202,13 @@ class DChartComboO extends StatelessWidget {
                       labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
                       labelAnchor: MethodCommon.tickLabelAnchor(
                           measureAxis?.labelAnchor),
-                      tickLengthPx: measureAxis?.thickLength,
+                      tickLengthPx: measureAxis?.tickLength,
                     ),
               showAxisLine: measureAxis?.showLine,
               tickFormatterSpec: common.BasicNumericTickFormatterSpec(
-                measureAxis?.labelFormat,
+                measureAxis?.tickLabelFormatter,
               ),
-              tickProviderSpec: common.BasicNumericTickProviderSpec(
-                desiredMaxTickCount: measureAxis?.desiredMaxTickCount,
-                desiredMinTickCount: measureAxis?.desiredMinTickCount,
-                desiredTickCount: measureAxis?.desiredTickCount,
-              ),
+              tickProviderSpec: measureAxis?.numericTickProvider?.getRender(),
             ),
       layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
       behaviors: [

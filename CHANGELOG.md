@@ -1,3 +1,13 @@
+## 2.8.0
+
+- bar label styling / decoration move to Config Render Bar
+- restructure/segmentation styling, formatter and decorator for each chart
+- new point decorator
+- remove unused property in some chart type
+- fontweight and lineheight on Label Style
+- tickLabelFormatter for domain type Numeric and Time
+- numeric tick provider to manage tick on axis
+
 ## 2.7.1
 
 - new property:

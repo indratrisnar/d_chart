@@ -1,30 +1,26 @@
 library d_chart;
 
 export 'bar_custom/view.dart';
-
-export 'commons/axis.dart';
-export 'commons/config_render.dart';
-export 'commons/data_model.dart';
-export 'commons/decorator.dart';
+export 'commons/axis/axis.dart';
+export 'commons/config_render/config_render.dart';
+export 'commons/data_model/data_model.dart';
+export 'commons/decorator/decorator.dart';
 export 'commons/enums.dart';
 export 'commons/layout_margin.dart';
 export 'commons/method_common.dart';
 export 'commons/method_type.dart';
-export 'commons/style.dart';
-export 'commons/symbol_render.dart';
+export 'commons/style/style.dart';
+export 'commons/symbol_render/symbol_render.dart';
+export 'commons/tick/numeric_tick_provider.dart';
 export 'commons/viewport.dart';
-
 export 'numeric/combo.dart';
 export 'numeric/line.dart';
 export 'numeric/pie.dart';
 export 'numeric/scatter.dart';
-
 export 'ordinal/bar.dart';
 export 'ordinal/combo.dart';
 export 'ordinal/pie.dart';
-
 export 'single_bar/view.dart';
-
 export 'time/bar.dart';
 export 'time/combo.dart';
 export 'time/line.dart';

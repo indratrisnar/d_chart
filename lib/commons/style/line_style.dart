@@ -13,7 +13,7 @@ class LineStyle {
   final int? thickness;
 
   const LineStyle({
-    this.color = Colors.grey,
+    this.color = Colors.black12,
     this.dashPattern,
     this.thickness,
   });

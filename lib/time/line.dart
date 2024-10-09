@@ -159,17 +159,31 @@ class DChartLineT extends StatelessWidget {
                   ? common.NoneRenderSpec(
                       axisLineStyle: domainAxis?.lineStyle.getRender(),
                     )
-                  : common.SmallTickRendererSpec(
-                      labelRotation: domainAxis?.labelRotation ?? 0,
-                      minimumPaddingBetweenLabelsPx:
-                          domainAxis?.minimumPaddingBetweenLabels ?? 0,
-                      axisLineStyle: domainAxis?.lineStyle.getRender(),
-                      labelStyle: domainAxis?.labelStyle.getRender(),
-                      labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
-                      labelAnchor:
-                          MethodCommon.tickLabelAnchor(domainAxis?.labelAnchor),
-                      tickLengthPx: domainAxis?.tickLength,
-                    ),
+                  : domainAxis!.useGridLine
+                      ? common.GridlineRendererSpec(
+                          axisLineStyle: domainAxis?.lineStyle.getRender(),
+                          lineStyle: domainAxis?.gridLineStyle.getRender(),
+                          labelRotation: domainAxis?.labelRotation ?? 0,
+                          labelStyle: domainAxis?.labelStyle.getRender(),
+                          labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
+                          labelAnchor: MethodCommon.tickLabelAnchor(
+                              domainAxis?.labelAnchor),
+                          tickLengthPx: domainAxis?.tickLength,
+                          minimumPaddingBetweenLabelsPx:
+                              domainAxis?.minimumPaddingBetweenLabels ?? 0,
+                        )
+                      : common.SmallTickRendererSpec(
+                          axisLineStyle: domainAxis?.lineStyle.getRender(),
+                          lineStyle: domainAxis?.tickLineStyle.getRender(),
+                          labelRotation: domainAxis?.labelRotation ?? 0,
+                          labelStyle: domainAxis?.labelStyle.getRender(),
+                          labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
+                          labelAnchor: MethodCommon.tickLabelAnchor(
+                              domainAxis?.labelAnchor),
+                          tickLengthPx: domainAxis?.tickLength,
+                          minimumPaddingBetweenLabelsPx:
+                              domainAxis?.minimumPaddingBetweenLabels ?? 0,
+                        ),
               showAxisLine: domainAxis?.showLine,
               tickFormatterSpec: domainAxis?.tickLabelFormatterT == null
                   ? null
@@ -185,14 +199,25 @@ class DChartLineT extends StatelessWidget {
                   ? common.NoneRenderSpec(
                       axisLineStyle: measureAxis?.lineStyle.getRender(),
                     )
-                  : common.SmallTickRendererSpec(
-                      axisLineStyle: measureAxis?.lineStyle.getRender(),
-                      labelStyle: measureAxis?.labelStyle.getRender(),
-                      labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
-                      labelAnchor: MethodCommon.tickLabelAnchor(
-                          measureAxis?.labelAnchor),
-                      tickLengthPx: measureAxis?.tickLength,
-                    ),
+                  : measureAxis!.useGridLine
+                      ? common.GridlineRendererSpec(
+                          axisLineStyle: measureAxis?.lineStyle.getRender(),
+                          lineStyle: measureAxis?.gridLineStyle.getRender(),
+                          labelStyle: measureAxis?.labelStyle.getRender(),
+                          labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
+                          labelAnchor: MethodCommon.tickLabelAnchor(
+                              measureAxis?.labelAnchor),
+                          tickLengthPx: measureAxis?.tickLength,
+                        )
+                      : common.SmallTickRendererSpec(
+                          axisLineStyle: measureAxis?.lineStyle.getRender(),
+                          lineStyle: measureAxis?.tickLineStyle.getRender(),
+                          labelStyle: measureAxis?.labelStyle.getRender(),
+                          labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
+                          labelAnchor: MethodCommon.tickLabelAnchor(
+                              measureAxis?.labelAnchor),
+                          tickLengthPx: measureAxis?.tickLength,
+                        ),
               showAxisLine: measureAxis?.showLine,
               tickFormatterSpec: common.BasicNumericTickFormatterSpec(
                 measureAxis?.tickLabelFormatter,

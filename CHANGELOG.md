@@ -1,3 +1,29 @@
+## 2.9.0
+
+- LineStyle:  
+  default color from `Colors.grey` to `Colors.black12`
+
+- Axis (Domain & Measure)
+  - new property for feature Grid Line:
+    - `useGridLine` default to `false`
+    - `gridLineStyle` default to `LineStyle()`
+  - new property for styling tick axis
+    - `tickLineStyle` default to `LineStyle()`
+
+- Grid Line Render
+  - Combo Numeric
+  - Line Numeric
+  - Scatter Numeric
+  - Bar Ordinal
+  - Combo Ordinal
+  - Bar Time
+  - Combo Time
+  - Line Time
+  - Scatter Time
+
+- project sdk version  
+  change from `">=3.4.3 <4.0.0"` to `^3.5.1`
+
 ## 2.8.0
 
 - bar label styling / decoration move to Config Render Bar

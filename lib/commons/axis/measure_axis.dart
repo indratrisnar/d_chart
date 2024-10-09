@@ -42,5 +42,8 @@ class MeasureAxis extends ChartAxis {
     this.numericTickProvider,
     this.numericViewport,
     super.noRenderSpec,
+    super.useGridLine,
+    super.gridLineStyle,
+    super.tickLineStyle,
   });
 }

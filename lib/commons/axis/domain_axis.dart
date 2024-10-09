@@ -73,7 +73,10 @@ class DomainAxis extends ChartAxis {
     this.tickLabelFormatterT,
     this.minimumPaddingBetweenLabels = 0,
     this.labelRotation = 0,
-    super.noRenderSpec,
     this.numericTickProvider,
+    super.noRenderSpec,
+    super.useGridLine,
+    super.gridLineStyle,
+    super.tickLineStyle,
   });
 }

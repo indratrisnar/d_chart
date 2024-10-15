@@ -1,9 +1,14 @@
+## 2.9.1
+
+- solution for issue [#36](https://github.com/indratrisnar/d_chart/issues/36)
+
 ## 2.9.0
 
 - LineStyle:  
   default color from `Colors.grey` to `Colors.black12`
 
 - Axis (Domain & Measure)
+
   - new property for feature Grid Line:
     - `useGridLine` default to `false`
     - `gridLineStyle` default to `LineStyle()`
@@ -11,6 +16,7 @@
     - `tickLineStyle` default to `LineStyle()`
 
 - Grid Line Render
+
   - Combo Numeric
   - Line Numeric
   - Scatter Numeric

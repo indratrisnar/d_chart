@@ -44,7 +44,7 @@ class ConfigRenderLine extends ConfigRender {
   /// to decor label on plot point
   final PointLabelDecorator? pointLabelDecorator;
 
-  ConfigRenderLine({
+  const ConfigRenderLine({
     this.radiusPx = 3.5,
     this.strokeWidthPx = 2.0,
     this.dashPattern,

@@ -28,7 +28,7 @@ class DChartScatterT extends StatelessWidget {
   final Duration animationDuration;
 
   /// style bar
-  final ConfigRenderPoint? configRenderPoint;
+  final ConfigRenderPoint configRenderPoint;
 
   /// customize domain axis
   final DomainAxis? domainAxis;
@@ -89,7 +89,7 @@ class DChartScatterT extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderPoint,
+    this.configRenderPoint = const ConfigRenderPoint(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
@@ -108,7 +108,6 @@ class DChartScatterT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfigRenderPoint cRenderPoint = configRenderPoint ?? ConfigRenderPoint();
     return charts.TimeSeriesChart(
       List.generate(groupList.length, (indexGroup) {
         TimeGroup group = groupList[indexGroup];
@@ -165,7 +164,8 @@ class DChartScatterT extends StatelessWidget {
       flipVerticalAxis: flipVertical,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: cRenderPoint.getRenderTime(ChartType.scatterPlot.name),
+      defaultRenderer:
+          configRenderPoint.getRenderTime(ChartType.scatterPlot.name),
       domainAxis: domainAxis == null
           ? null
           : common.DateTimeAxisSpec(

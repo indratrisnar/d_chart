@@ -1,3 +1,7 @@
+## 2.10.1
+
+- fix const and optionally import
+
 ## 2.10.0
 
 - Secondary Measure Axis

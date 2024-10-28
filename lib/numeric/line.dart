@@ -27,7 +27,7 @@ class DChartLineN extends StatelessWidget {
   final Duration animationDuration;
 
   /// style line
-  final ConfigRenderLine? configRenderLine;
+  final ConfigRenderLine configRenderLine;
 
   /// style point
   final ConfigRenderPoint? configRenderPoint;
@@ -91,7 +91,7 @@ class DChartLineN extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderLine,
+    this.configRenderLine = const ConfigRenderLine(),
     this.configRenderPoint,
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
@@ -111,7 +111,6 @@ class DChartLineN extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfigRenderLine cRenderLine = configRenderLine ?? ConfigRenderLine();
     return charts.LineChart(
       List.generate(groupList.length, (indexGroup) {
         NumericGroup group = groupList[indexGroup];
@@ -168,7 +167,7 @@ class DChartLineN extends StatelessWidget {
       flipVerticalAxis: flipVertical,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: cRenderLine.getRenderLineN(),
+      defaultRenderer: configRenderLine.getRenderLineN(),
       domainAxis: domainAxis == null
           ? null
           : common.NumericAxisSpec(

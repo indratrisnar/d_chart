@@ -31,7 +31,7 @@ class DChartBarO extends StatelessWidget {
   final Duration animationDuration;
 
   /// style bar
-  final ConfigRenderBar? configRenderBar;
+  final ConfigRenderBar configRenderBar;
 
   /// customize domain axis
   final DomainAxis? domainAxis;
@@ -95,7 +95,7 @@ class DChartBarO extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderBar,
+    this.configRenderBar = const ConfigRenderBar(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
@@ -115,7 +115,6 @@ class DChartBarO extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfigRenderBar cRenderBar = configRenderBar ?? ConfigRenderBar();
     return charts.BarChart(
       List.generate(groupList.length, (indexGroup) {
         OrdinalGroup group = groupList[indexGroup];
@@ -173,7 +172,7 @@ class DChartBarO extends StatelessWidget {
       flipVerticalAxis: flipVertical,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: cRenderBar.getRenderBarO(),
+      defaultRenderer: configRenderBar.getRenderBarO(),
       domainAxis: domainAxis == null
           ? null
           : common.OrdinalAxisSpec(

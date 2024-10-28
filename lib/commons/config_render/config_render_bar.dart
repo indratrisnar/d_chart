@@ -45,7 +45,7 @@ class ConfigRenderBar extends ConfigRender {
   /// to decor label on bar item
   final BarLabelDecorator? barLabelDecorator;
 
-  ConfigRenderBar({
+  const ConfigRenderBar({
     this.barGroupInnerPaddingPx = 2,
     this.fillPattern = FillPattern.solid,
     this.radius = 2,

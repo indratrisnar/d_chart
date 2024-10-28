@@ -26,8 +26,8 @@ class DChartScatterN extends StatelessWidget {
   /// default: `Duration(milliseconds: 300)`
   final Duration animationDuration;
 
-  /// style bar
-  final ConfigRenderPoint? configRenderPoint;
+  /// style point
+  final ConfigRenderPoint configRenderPoint;
 
   /// customize domain axis
   final DomainAxis? domainAxis;
@@ -88,7 +88,7 @@ class DChartScatterN extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderPoint,
+    this.configRenderPoint = const ConfigRenderPoint(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
@@ -107,7 +107,6 @@ class DChartScatterN extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfigRenderPoint cRenderPoint = configRenderPoint ?? ConfigRenderPoint();
     return charts.ScatterPlotChart(
       List.generate(groupList.length, (indexGroup) {
         NumericGroup group = groupList[indexGroup];
@@ -164,7 +163,7 @@ class DChartScatterN extends StatelessWidget {
       flipVerticalAxis: flipVertical,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: cRenderPoint.getRenderPointN(),
+      defaultRenderer: configRenderPoint.getRenderPointN(),
       domainAxis: domainAxis == null
           ? null
           : common.NumericAxisSpec(

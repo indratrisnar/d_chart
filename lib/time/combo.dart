@@ -32,13 +32,13 @@ class DChartComboT extends StatelessWidget {
   final Duration animationDuration;
 
   /// style line
-  final ConfigRenderLine? configRenderLine;
+  final ConfigRenderLine configRenderLine;
 
   /// style bar
-  final ConfigRenderBar? configRenderBar;
+  final ConfigRenderBar configRenderBar;
 
   /// style plot point
-  final ConfigRenderPoint? configRenderPoint;
+  final ConfigRenderPoint configRenderPoint;
 
   /// customize domain axis
   final DomainAxis? domainAxis;
@@ -103,9 +103,9 @@ class DChartComboT extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderLine,
-    this.configRenderBar,
-    this.configRenderPoint,
+    this.configRenderLine = const ConfigRenderLine(),
+    this.configRenderBar = const ConfigRenderBar(),
+    this.configRenderPoint = const ConfigRenderPoint(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
@@ -124,9 +124,6 @@ class DChartComboT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfigRenderLine cRenderLine = configRenderLine ?? ConfigRenderLine();
-    ConfigRenderBar cRenderBar = configRenderBar ?? ConfigRenderBar();
-    ConfigRenderPoint cRenderPoint = configRenderPoint ?? ConfigRenderPoint();
     return charts.TimeSeriesChart(
       List.generate(groupList.length, (indexGroup) {
         TimeGroup group = groupList[indexGroup];
@@ -186,9 +183,9 @@ class DChartComboT extends StatelessWidget {
       animationDuration: animationDuration,
       defaultRenderer: common.LineRendererConfig(),
       customSeriesRenderers: [
-        cRenderBar.getRenderTime(ChartType.bar.name),
-        cRenderLine.getRenderTime(ChartType.line.name),
-        cRenderPoint.getRenderTime(ChartType.scatterPlot.name),
+        configRenderBar.getRenderTime(ChartType.bar.name),
+        configRenderLine.getRenderTime(ChartType.line.name),
+        configRenderPoint.getRenderTime(ChartType.scatterPlot.name),
       ],
       domainAxis: domainAxis == null
           ? null

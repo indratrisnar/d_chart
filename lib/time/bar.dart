@@ -28,7 +28,7 @@ class DChartBarT extends StatelessWidget {
   final Duration animationDuration;
 
   /// style bar
-  final ConfigRenderBar? configRenderBar;
+  final ConfigRenderBar configRenderBar;
 
   /// customize domain axis
   final DomainAxis? domainAxis;
@@ -89,7 +89,7 @@ class DChartBarT extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderBar,
+    this.configRenderBar = const ConfigRenderBar(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
@@ -108,7 +108,6 @@ class DChartBarT extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfigRenderBar cRenderBar = configRenderBar ?? ConfigRenderBar();
     return charts.TimeSeriesChart(
       List.generate(groupList.length, (indexGroup) {
         TimeGroup group = groupList[indexGroup];
@@ -165,7 +164,7 @@ class DChartBarT extends StatelessWidget {
       flipVerticalAxis: flipVertical,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: cRenderBar.getRenderTime(ChartType.bar.name),
+      defaultRenderer: configRenderBar.getRenderTime(ChartType.bar.name),
       domainAxis: domainAxis == null
           ? null
           : common.DateTimeAxisSpec(

@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:community_charts_common/community_charts_common.dart' as common;
-import '../comparison_symbol_render/symbol_render.dart';
 
+import '../comparison_symbol_render/symbol_render.dart';
 import '../decorator/decorator.dart';
 import '../enums.dart';
 import '../method_common.dart';

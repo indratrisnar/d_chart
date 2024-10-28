@@ -1,3 +1,23 @@
+## 2.10.0
+
+- Secondary Measure Axis
+
+  - ChartGroup:  
+    `useSecondaryMeasureAxis` : `false`
+  - to activate this axis, set `useSecondaryMeasureAxis` to true and add `secondaryMeasureAxis` property
+  - Reference:
+    - [Only Secondary](https://juliansteenbakker.github.io/community_charts/flutter/example/axes/bar_secondary_axis_only)
+    - [Both](https://juliansteenbakker.github.io/community_charts/flutter/example/axes/bar_secondary_axis)
+  - This update specially for Bar Chart and useful for comparing Series that have different units (if both)
+
+- Track chart
+  - ConfigRenderPoint
+    - `showComparisonPoint` : `false`
+    - `comparisonSymbolRender` : `ComparisonSymbolRenderRectangleRange()`
+  - Data Model  
+    LowerBound & UpperBound for each Data Item  
+    This value affect to Area such as in Line Chart
+
 ## 2.9.1
 
 - solution for issue [#36](https://github.com/indratrisnar/d_chart/issues/36)

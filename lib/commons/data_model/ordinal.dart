@@ -4,9 +4,17 @@ part of 'data_model.dart';
 class OrdinalData extends ChartData {
   final String domain;
 
+  final String? domainLowerBound;
+
+  final String? domainUpperBound;
+
   OrdinalData({
     required this.domain,
+    this.domainLowerBound,
+    this.domainUpperBound,
     required super.measure,
+    super.measureLowerBound,
+    super.measureUpperBound,
     super.color,
     super.other,
   });
@@ -30,5 +38,6 @@ class OrdinalGroup extends ChartGroup {
     super.chartType,
     super.color,
     super.seriesCategory,
+    super.useSecondaryMeasureAxis,
   });
 }

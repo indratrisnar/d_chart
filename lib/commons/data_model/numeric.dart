@@ -4,9 +4,17 @@ part of 'data_model.dart';
 class NumericData extends ChartData {
   final num domain;
 
+  final num? domainLowerBound;
+
+  final num? domainUpperBound;
+
   NumericData({
     required this.domain,
+    this.domainLowerBound,
+    this.domainUpperBound,
     required super.measure,
+    super.measureLowerBound,
+    super.measureUpperBound,
     super.color,
     super.other,
   });
@@ -31,5 +39,6 @@ class NumericGroup extends ChartGroup {
     super.chartType,
     super.color,
     super.seriesCategory,
+    super.useSecondaryMeasureAxis,
   });
 }

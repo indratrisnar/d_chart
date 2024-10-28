@@ -24,12 +24,24 @@ class ConfigRenderPoint extends ConfigRender {
   /// to decor label on plot point
   final PointLabelDecorator? pointLabelDecorator;
 
-  ConfigRenderPoint({
+  /// will draw track chart for each point
+  ///
+  /// default: false
+  final bool showComparisonPoint;
+
+  /// - ComparisonSymbolRenderRectangleRange
+  /// - ComparisonSymbolRenderCylinder
+  /// default: ComparisonSymbolRenderRectangleRange
+  final ComparisonSymbolRender comparisonSymbolRender;
+
+  const ConfigRenderPoint({
     this.radiusPx = 3.5,
     this.symbolRender,
     this.strokeWidthPx = 0.0,
     this.showPointLabel = false,
     this.pointLabelDecorator,
+    this.showComparisonPoint = false,
+    this.comparisonSymbolRender = const ComparisonSymbolRenderRectangleRange(),
   });
   common.SeriesRendererConfig<num> getRenderNumeric(String? renderId) {
     return common.PointRendererConfig(
@@ -41,6 +53,10 @@ class ConfigRenderPoint extends ConfigRender {
         if (showPointLabel)
           pointLabelDecorator?.getRenderNumeric() ??
               PointLabelDecorator().getRenderNumeric(),
+        if (showComparisonPoint)
+          common.ComparisonPointsDecorator(
+            symbolRenderer: comparisonSymbolRender.getRenderer(),
+          ),
       ],
     );
   }
@@ -55,6 +71,10 @@ class ConfigRenderPoint extends ConfigRender {
         if (showPointLabel)
           pointLabelDecorator?.getRenderOrdinal() ??
               PointLabelDecorator().getRenderOrdinal(),
+        if (showComparisonPoint)
+          common.ComparisonPointsDecorator(
+            symbolRenderer: comparisonSymbolRender.getRenderer(),
+          ),
       ],
     );
   }
@@ -69,6 +89,10 @@ class ConfigRenderPoint extends ConfigRender {
         if (showPointLabel)
           pointLabelDecorator?.getRenderTime() ??
               PointLabelDecorator().getRenderTime(),
+        if (showComparisonPoint)
+          common.ComparisonPointsDecorator(
+            symbolRenderer: comparisonSymbolRender.getRenderer(),
+          ),
       ],
     );
   }
@@ -82,6 +106,10 @@ class ConfigRenderPoint extends ConfigRender {
         if (showPointLabel)
           pointLabelDecorator?.getRenderNumeric() ??
               PointLabelDecorator().getRenderNumeric(),
+        if (showComparisonPoint)
+          common.ComparisonPointsDecorator(
+            symbolRenderer: comparisonSymbolRender.getRenderer(),
+          ),
       ],
     );
   }

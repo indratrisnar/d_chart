@@ -4,9 +4,17 @@ part of 'data_model.dart';
 class TimeData extends ChartData {
   final DateTime domain;
 
+  final DateTime? domainLowerBound;
+
+  final DateTime? domainUpperBound;
+
   TimeData({
     required this.domain,
+    this.domainLowerBound,
+    this.domainUpperBound,
     required super.measure,
+    super.measureLowerBound,
+    super.measureUpperBound,
     super.color,
     super.other,
   });
@@ -31,5 +39,6 @@ class TimeGroup extends ChartGroup {
     super.chartType,
     super.color,
     super.seriesCategory,
+    super.useSecondaryMeasureAxis,
   });
 }

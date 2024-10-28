@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../commons/axis/axis.dart';
 import '../commons/config_render/config_render.dart';
+import '../commons/constants.dart';
 import '../commons/data_model/data_model.dart';
 import '../commons/enums.dart';
 import '../commons/layout_margin.dart';
@@ -44,6 +45,9 @@ class DChartComboN extends StatelessWidget {
 
   /// customize measure axis
   final MeasureAxis? measureAxis;
+
+  /// customize secondary measure axis
+  final MeasureAxis? secondaryMeasureAxis;
 
   /// `areaColor` returns the area color for a given data value.\
   /// If not provided, then group color will be used 10% opacity by default.\
@@ -100,6 +104,7 @@ class DChartComboN extends StatelessWidget {
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
+    this.secondaryMeasureAxis,
     this.areaColor,
     this.fillPattern,
     this.fillColor,
@@ -121,12 +126,16 @@ class DChartComboN extends StatelessWidget {
         NumericGroup group = groupList[indexGroup];
         Color groupColor = group.color ??
             Colors.primaries[Random().nextInt(Colors.primaries.length)];
-        return charts.Series<NumericData, num>(
+        final chartSeries = charts.Series<NumericData, num>(
           id: group.id,
           data: group.data,
           seriesCategory: group.seriesCategory,
           domainFn: (datum, index) => datum.domain,
+          domainLowerBoundFn: (datum, index) => datum.domainLowerBound,
+          domainUpperBoundFn: (datum, index) => datum.domainUpperBound,
           measureFn: (datum, index) => datum.measure,
+          measureLowerBoundFn: (datum, index) => datum.measureLowerBound,
+          measureUpperBoundFn: (datum, index) => datum.measureUpperBound,
           colorFn: (datum, index) => MethodCommon.chartColor(groupColor),
           areaColorFn: areaColor == null
               ? null
@@ -158,6 +167,12 @@ class DChartComboN extends StatelessWidget {
               ? null
               : (datum, index) => barLabelValue!(group, datum, index),
         )..setAttribute(charts.rendererIdKey, group.chartType.name);
+        if (group.useSecondaryMeasureAxis) {
+          return chartSeries
+            ..setAttribute(
+                common.measureAxisIdKey, Constants.secondaryMeasureAxisId);
+        }
+        return chartSeries;
       }),
       animate: animate,
       animationDuration: animationDuration,
@@ -240,6 +255,49 @@ class DChartComboN extends StatelessWidget {
                 measureAxis?.tickLabelFormatter,
               ),
               tickProviderSpec: measureAxis?.numericTickProvider?.getRender(),
+            ),
+      secondaryMeasureAxis: secondaryMeasureAxis == null
+          ? null
+          : common.NumericAxisSpec(
+              viewport: secondaryMeasureAxis?.numericViewport?.getRender(),
+              renderSpec: secondaryMeasureAxis?.noRenderSpec ?? false
+                  ? common.NoneRenderSpec(
+                      axisLineStyle:
+                          secondaryMeasureAxis?.lineStyle.getRender(),
+                    )
+                  : secondaryMeasureAxis!.useGridLine
+                      ? common.GridlineRendererSpec(
+                          axisLineStyle:
+                              secondaryMeasureAxis?.lineStyle.getRender(),
+                          lineStyle:
+                              secondaryMeasureAxis?.gridLineStyle.getRender(),
+                          labelStyle:
+                              secondaryMeasureAxis?.labelStyle.getRender(),
+                          labelOffsetFromAxisPx:
+                              secondaryMeasureAxis?.gapAxisToLabel,
+                          labelAnchor: MethodCommon.tickLabelAnchor(
+                              secondaryMeasureAxis?.labelAnchor),
+                          tickLengthPx: secondaryMeasureAxis?.tickLength,
+                        )
+                      : common.SmallTickRendererSpec(
+                          axisLineStyle:
+                              secondaryMeasureAxis?.lineStyle.getRender(),
+                          lineStyle:
+                              secondaryMeasureAxis?.tickLineStyle.getRender(),
+                          labelStyle:
+                              secondaryMeasureAxis?.labelStyle.getRender(),
+                          labelOffsetFromAxisPx:
+                              secondaryMeasureAxis?.gapAxisToLabel,
+                          labelAnchor: MethodCommon.tickLabelAnchor(
+                              secondaryMeasureAxis?.labelAnchor),
+                          tickLengthPx: secondaryMeasureAxis?.tickLength,
+                        ),
+              showAxisLine: secondaryMeasureAxis?.showLine,
+              tickFormatterSpec: common.BasicNumericTickFormatterSpec(
+                secondaryMeasureAxis?.tickLabelFormatter,
+              ),
+              tickProviderSpec:
+                  secondaryMeasureAxis?.numericTickProvider?.getRender(),
             ),
       layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
       behaviors: [

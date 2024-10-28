@@ -22,16 +22,24 @@ abstract class ChartGroup {
   /// all data in same group has same color
   final Color? color;
 
+  /// default: false
+  final bool useSecondaryMeasureAxis;
+
   ChartGroup({
     required this.id,
     this.seriesCategory,
     this.chartType = ChartType.line,
     this.color,
+    this.useSecondaryMeasureAxis = false,
   });
 }
 
 abstract class ChartData {
   final num measure;
+
+  final num? measureLowerBound;
+
+  final num? measureUpperBound;
 
   /// specifically for pie chart
   final Color? color;
@@ -41,6 +49,8 @@ abstract class ChartData {
   /// Chart Data
   ChartData({
     required this.measure,
+    this.measureLowerBound,
+    this.measureUpperBound,
     this.color,
     this.other,
   });

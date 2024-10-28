@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../commons/axis/axis.dart';
 import '../commons/config_render/config_render.dart';
+import '../commons/constants.dart';
 import '../commons/data_model/data_model.dart';
 import '../commons/layout_margin.dart';
 import '../commons/method_common.dart';
@@ -36,6 +37,9 @@ class DChartLineN extends StatelessWidget {
 
   /// customize measure axis
   final MeasureAxis? measureAxis;
+
+  /// customize secondary measure axis
+  final MeasureAxis? secondaryMeasureAxis;
 
   /// `areaColor` returns the area color for a given data value.\
   /// If not provided, then group color will be used 10% opacity by default.\
@@ -92,6 +96,7 @@ class DChartLineN extends StatelessWidget {
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
+    this.secondaryMeasureAxis,
     this.areaColor,
     this.fillPattern,
     this.fillColor,
@@ -112,12 +117,16 @@ class DChartLineN extends StatelessWidget {
         NumericGroup group = groupList[indexGroup];
         Color groupColor = group.color ??
             Colors.primaries[Random().nextInt(Colors.primaries.length)];
-        return charts.Series<NumericData, num>(
+        final chartSeries = charts.Series<NumericData, num>(
           id: group.id,
           data: group.data,
           seriesCategory: group.seriesCategory,
           domainFn: (datum, index) => datum.domain,
+          domainLowerBoundFn: (datum, index) => datum.domainLowerBound,
+          domainUpperBoundFn: (datum, index) => datum.domainUpperBound,
           measureFn: (datum, index) => datum.measure,
+          measureLowerBoundFn: (datum, index) => datum.measureLowerBound,
+          measureUpperBoundFn: (datum, index) => datum.measureUpperBound,
           colorFn: (datum, index) => MethodCommon.chartColor(groupColor),
           areaColorFn: areaColor == null
               ? null
@@ -149,6 +158,12 @@ class DChartLineN extends StatelessWidget {
               ? null
               : (datum, index) => barLabelValue!(group, datum, index),
         );
+        if (group.useSecondaryMeasureAxis) {
+          return chartSeries
+            ..setAttribute(
+                common.measureAxisIdKey, Constants.secondaryMeasureAxisId);
+        }
+        return chartSeries;
       }),
       flipVerticalAxis: flipVertical,
       animate: animate,

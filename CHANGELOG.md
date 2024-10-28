@@ -1,3 +1,7 @@
+## 2.10.2
+
+- update optionally import
+
 ## 2.10.1
 
 - fix const and optionally import

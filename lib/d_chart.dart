@@ -11,6 +11,7 @@ export 'commons/method_common.dart';
 export 'commons/method_type.dart';
 export 'commons/style/style.dart';
 export 'commons/symbol_render/symbol_render.dart';
+export 'commons/comparison_symbol_render/symbol_render.dart';
 export 'commons/tick/numeric_tick_provider.dart';
 export 'commons/viewport.dart';
 export 'numeric/combo.dart';

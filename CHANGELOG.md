@@ -2,6 +2,7 @@
 
 - DChartBarCustom:
   - fix no space label when domainLabel is hide (verticalDirection)
+- flutter minimum: 3.27
 
 ## 2.10.3
 

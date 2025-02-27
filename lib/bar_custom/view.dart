@@ -261,7 +261,8 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
               },
             ),
           ),
-        SizedBox(width: widget.spaceDomainLabeltoChart ?? 5),
+        if (widget.showDomainLabel ?? false)
+          SizedBox(width: widget.spaceDomainLabeltoChart ?? 5),
         Expanded(
           child: Stack(
             children: [

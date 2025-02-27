@@ -1,3 +1,8 @@
+## 2.10.3
+
+- DChartBarCustom:
+  - fix issue hide measure label when verticalDirection is true
+
 ## 2.10.2
 
 - update optionally import

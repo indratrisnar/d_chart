@@ -1,3 +1,8 @@
+## 2.10.4
+
+- DChartBarCustom:
+  - fix no space label when domainLabel is hide (verticalDirection)
+
 ## 2.10.3
 
 - DChartBarCustom:

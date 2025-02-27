@@ -2,30 +2,30 @@ import 'package:flutter/material.dart';
 
 /// Custom Bar Chart extends to default flutter framework
 class DChartBarCustom extends StatefulWidget {
-  const DChartBarCustom(
-      {Key? key,
-      this.max,
-      required this.listData,
-      this.verticalDirection,
-      this.domainLineStyle,
-      this.measureLineStyle,
-      this.showDomainLine,
-      this.showMeasureLine,
-      this.spaceBetweenItem,
-      this.valueAlign,
-      this.domainLabelStyle,
-      this.measureLabelStyle,
-      this.showDomainLabel,
-      this.showMeasureLabel,
-      this.spaceDomainLabeltoChart,
-      this.spaceMeasureLabeltoChart,
-      this.showLoading,
-      this.loadingDuration,
-      this.valuePadding,
-      this.radiusBar,
-      this.spaceDomainLinetoChart,
-      this.spaceMeasureLinetoChart})
-      : super(key: key);
+  const DChartBarCustom({
+    Key? key,
+    this.max,
+    required this.listData,
+    this.verticalDirection,
+    this.domainLineStyle,
+    this.measureLineStyle,
+    this.showDomainLine,
+    this.showMeasureLine,
+    this.spaceBetweenItem,
+    this.valueAlign,
+    this.domainLabelStyle,
+    this.measureLabelStyle,
+    this.showDomainLabel,
+    this.showMeasureLabel,
+    this.spaceDomainLabeltoChart,
+    this.spaceMeasureLabeltoChart,
+    this.showLoading,
+    this.loadingDuration,
+    this.valuePadding,
+    this.radiusBar,
+    this.spaceDomainLinetoChart,
+    this.spaceMeasureLinetoChart,
+  }) : super(key: key);
 
   /// Limit top value for value chart, beside top domainAxis Line
   ///
@@ -193,12 +193,14 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
 
   EdgeInsetsGeometry paddingChart() {
     return EdgeInsets.only(
-      bottom: (widget.verticalDirection ?? false)
-          ? (widget.spaceMeasureLinetoChart ?? 0)
-          : (widget.spaceDomainLinetoChart ?? 0),
-      left: (widget.verticalDirection ?? false)
-          ? (widget.spaceDomainLinetoChart ?? 0)
-          : (widget.spaceMeasureLinetoChart ?? 0),
+      bottom:
+          (widget.verticalDirection ?? false)
+              ? (widget.spaceMeasureLinetoChart ?? 0)
+              : (widget.spaceDomainLinetoChart ?? 0),
+      left:
+          (widget.verticalDirection ?? false)
+              ? (widget.spaceDomainLinetoChart ?? 0)
+              : (widget.spaceMeasureLinetoChart ?? 0),
     );
   }
 
@@ -207,15 +209,17 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
     if (loading) {
       return const Center(child: CircularProgressIndicator());
     }
-    return LayoutBuilder(builder: (context, constraintsOut) {
-      if (widget.verticalDirection ?? false) {
-        // vertical
-        return verticalDirection();
-      }
+    return LayoutBuilder(
+      builder: (context, constraintsOut) {
+        if (widget.verticalDirection ?? false) {
+          // vertical
+          return verticalDirection();
+        }
 
-      // horizontal
-      return horizontalDirection(constraintsOut);
-    });
+        // horizontal
+        return horizontalDirection(constraintsOut);
+      },
+    );
   }
 
   Row verticalDirection() {
@@ -226,32 +230,36 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
             padding: EdgeInsets.only(
               bottom: widget.spaceMeasureLinetoChart ?? 0,
             ),
-            child: LayoutBuilder(builder: (context, constrainsDomainLabelHorz) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(widget.listData.length, (index) {
-                  DChartBarDataCustom item = widget.listData[index];
-                  final height = (constrainsDomainLabelHorz.maxHeight /
-                          widget.listData.length) -
-                      (widget.spaceBetweenItem ??
-                          ((constrainsDomainLabelHorz.maxHeight /
-                                  widget.listData.length) *
-                              0.1));
-                  return Container(
-                    alignment: Alignment.center,
-                    height: height.isNaN ? 0 : height,
-                    child: item.labelCustom ??
-                        Text(
-                          item.label,
-                          style: widget.domainLabelStyle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                  );
-                }),
-              );
-            }),
+            child: LayoutBuilder(
+              builder: (context, constrainsDomainLabelHorz) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(widget.listData.length, (index) {
+                    DChartBarDataCustom item = widget.listData[index];
+                    final height =
+                        (constrainsDomainLabelHorz.maxHeight /
+                            widget.listData.length) -
+                        (widget.spaceBetweenItem ??
+                            ((constrainsDomainLabelHorz.maxHeight /
+                                    widget.listData.length) *
+                                0.1));
+                    return Container(
+                      alignment: Alignment.center,
+                      height: height.isNaN ? 0 : height,
+                      child:
+                          item.labelCustom ??
+                          Text(
+                            item.label,
+                            style: widget.domainLabelStyle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                    );
+                  }),
+                );
+              },
+            ),
           ),
         SizedBox(width: widget.spaceDomainLabeltoChart ?? 5),
         Expanded(
@@ -260,70 +268,72 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
               Container(
                 // height: constraintsOut.maxHeight,
                 decoration: BoxDecoration(
-                  border: Border(
-                    bottom: measureLine(),
-                    left: domainLine(),
-                  ),
+                  border: Border(bottom: measureLine(), left: domainLine()),
                 ),
                 child: Padding(
                   padding: paddingChart(),
-                  child: LayoutBuilder(builder: (context, constraintsChart) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ...List.generate(widget.listData.length, (index) {
-                          DChartBarDataCustom item = widget.listData[index];
-                          final width =
-                              (item.value / max) * constraintsChart.maxWidth;
-                          final height = (constraintsChart.maxHeight /
-                                  widget.listData.length) -
-                              (widget.spaceBetweenItem ??
-                                  ((constraintsChart.maxHeight /
-                                          widget.listData.length) *
-                                      0.1));
-                          return SizedBox(
-                            width: width.isNaN ? 0 : width,
-                            height: height.isNaN ? 0 : height,
-                            child: _DChartBarItemValueView(
-                              barDataCustom: item,
-                              valuePadding: widget.valuePadding,
-                              valueAlign: widget.valueAlign,
-                              radiusBar: widget.radiusBar,
-                              verticalOffsetTooltip: 0,
-                            ),
-                          );
-                        }),
-                      ],
-                    );
-                  }),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Transform.translate(
-                  offset: Offset(
-                    0 +
-                        (widget.spaceDomainLinetoChart ?? 0) +
-                        ((widget.showMeasureLine ?? false)
-                            ? (widget.measureLineStyle == null
-                                ? 0
-                                : widget.measureLineStyle!.width)
-                            : 0),
-                    12 +
-                        ((widget.showMeasureLine ?? false)
-                            ? (widget.measureLineStyle == null
-                                ? 0
-                                : widget.measureLineStyle!.width)
-                            : 0) +
-                        (widget.spaceMeasureLabeltoChart ?? 5),
+                  child: LayoutBuilder(
+                    builder: (context, constraintsChart) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ...List.generate(widget.listData.length, (index) {
+                            DChartBarDataCustom item = widget.listData[index];
+                            final width =
+                                (item.value / max) * constraintsChart.maxWidth;
+                            final height =
+                                (constraintsChart.maxHeight /
+                                    widget.listData.length) -
+                                (widget.spaceBetweenItem ??
+                                    ((constraintsChart.maxHeight /
+                                            widget.listData.length) *
+                                        0.1));
+                            return SizedBox(
+                              width: width.isNaN ? 0 : width,
+                              height: height.isNaN ? 0 : height,
+                              child: _DChartBarItemValueView(
+                                barDataCustom: item,
+                                valuePadding: widget.valuePadding,
+                                valueAlign: widget.valueAlign,
+                                radiusBar: widget.radiusBar,
+                                verticalOffsetTooltip: 0,
+                              ),
+                            );
+                          }),
+                        ],
+                      );
+                    },
                   ),
-                  child: minLabel(),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Transform.translate(
+              if (widget.showMeasureLabel ?? false)
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Transform.translate(
+                    offset: Offset(
+                      0 +
+                          (widget.spaceDomainLinetoChart ?? 0) +
+                          ((widget.showMeasureLine ?? false)
+                              ? (widget.measureLineStyle == null
+                                  ? 0
+                                  : widget.measureLineStyle!.width)
+                              : 0),
+                      12 +
+                          ((widget.showMeasureLine ?? false)
+                              ? (widget.measureLineStyle == null
+                                  ? 0
+                                  : widget.measureLineStyle!.width)
+                              : 0) +
+                          (widget.spaceMeasureLabeltoChart ?? 5),
+                    ),
+                    child: minLabel(),
+                  ),
+                ),
+              if (widget.showMeasureLabel ?? false)
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Transform.translate(
                     offset: Offset(
                       0,
                       12 +
@@ -334,8 +344,9 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                               : 0) +
                           (widget.spaceMeasureLabeltoChart ?? 5),
                     ),
-                    child: maxLabel()),
-              ),
+                    child: maxLabel(),
+                  ),
+                ),
             ],
           ),
         ),
@@ -375,86 +386,89 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
           child: Container(
             height: constraintsOut.maxHeight,
             decoration: BoxDecoration(
-              border: Border(
-                bottom: domainLine(),
-                left: measureLine(),
-              ),
+              border: Border(bottom: domainLine(), left: measureLine()),
             ),
             child: Padding(
               padding: paddingChart(),
-              child: LayoutBuilder(builder: (context, constraintsChart) {
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ...List.generate(widget.listData.length, (index) {
-                      DChartBarDataCustom item = widget.listData[index];
-                      final height =
-                          (item.value / max) * constraintsChart.maxHeight;
-                      final width =
-                          (constraintsChart.maxWidth / widget.listData.length) -
-                              (widget.spaceBetweenItem ??
-                                  ((constraintsChart.maxWidth /
-                                          widget.listData.length) *
-                                      0.1));
-                      return SizedBox(
-                        width: width.isNaN ? 0 : width,
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: SizedBox(
-                                height: height.isNaN ? 0 : height,
-                                child: _DChartBarItemValueView(
-                                  barDataCustom: item,
-                                  valuePadding: widget.valuePadding,
-                                  valueAlign: widget.valueAlign,
-                                  radiusBar: widget.radiusBar,
-                                  verticalOffsetTooltip: (((item.value / max) *
-                                              constraintsChart.maxHeight) *
-                                          0.5) +
-                                      4,
-                                ),
-                              ),
-                            ),
-                            if (widget.showDomainLabel ?? false)
+              child: LayoutBuilder(
+                builder: (context, constraintsChart) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ...List.generate(widget.listData.length, (index) {
+                        DChartBarDataCustom item = widget.listData[index];
+                        final height =
+                            (item.value / max) * constraintsChart.maxHeight;
+                        final width =
+                            (constraintsChart.maxWidth /
+                                widget.listData.length) -
+                            (widget.spaceBetweenItem ??
+                                ((constraintsChart.maxWidth /
+                                        widget.listData.length) *
+                                    0.1));
+                        return SizedBox(
+                          width: width.isNaN ? 0 : width,
+                          child: Stack(
+                            children: [
                               Align(
                                 alignment: Alignment.bottomCenter,
-                                child: Transform.translate(
-                                  offset: Offset(
-                                    0,
-                                    height == 0
-                                        ? 20
-                                        : 0 +
-                                            15 +
-                                            (widget.spaceDomainLabeltoChart ??
-                                                5) +
-                                            ((widget.showDomainLine ?? false)
-                                                ? (widget.domainLineStyle ==
-                                                        null
-                                                    ? 0
-                                                    : widget
-                                                        .domainLineStyle!.width)
-                                                : 0) +
-                                            (widget.spaceDomainLinetoChart ??
-                                                0),
+                                child: SizedBox(
+                                  height: height.isNaN ? 0 : height,
+                                  child: _DChartBarItemValueView(
+                                    barDataCustom: item,
+                                    valuePadding: widget.valuePadding,
+                                    valueAlign: widget.valueAlign,
+                                    radiusBar: widget.radiusBar,
+                                    verticalOffsetTooltip:
+                                        (((item.value / max) *
+                                                constraintsChart.maxHeight) *
+                                            0.5) +
+                                        4,
                                   ),
-                                  child: item.labelCustom ??
-                                      Text(
-                                        item.label,
-                                        style: widget.domainLabelStyle,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
                                 ),
                               ),
-                          ],
-                        ),
-                      );
-                    }),
-                  ],
-                );
-              }),
+                              if (widget.showDomainLabel ?? false)
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Transform.translate(
+                                    offset: Offset(
+                                      0,
+                                      height == 0
+                                          ? 20
+                                          : 0 +
+                                              15 +
+                                              (widget.spaceDomainLabeltoChart ??
+                                                  5) +
+                                              ((widget.showDomainLine ?? false)
+                                                  ? (widget.domainLineStyle ==
+                                                          null
+                                                      ? 0
+                                                      : widget
+                                                          .domainLineStyle!
+                                                          .width)
+                                                  : 0) +
+                                              (widget.spaceDomainLinetoChart ??
+                                                  0),
+                                    ),
+                                    child:
+                                        item.labelCustom ??
+                                        Text(
+                                          item.label,
+                                          style: widget.domainLabelStyle,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),
@@ -548,7 +562,8 @@ class _DChartBarItemValueView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: barDataCustom.valueTooltip ??
+      message:
+          barDataCustom.valueTooltip ??
           '${barDataCustom.label}: ${_numberAutoDigit(barDataCustom.value)}',
       preferBelow: false,
       verticalOffset: verticalOffsetTooltip,
@@ -566,9 +581,10 @@ class _DChartBarItemValueView extends StatelessWidget {
               child: InkWell(
                 borderRadius: radiusBar,
                 splashColor: barDataCustom.splashColor,
-                onTap: barDataCustom.onTap == null
-                    ? null
-                    : () => barDataCustom.onTap!(),
+                onTap:
+                    barDataCustom.onTap == null
+                        ? null
+                        : () => barDataCustom.onTap!(),
                 child: const SizedBox(),
               ),
             ),

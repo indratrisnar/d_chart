@@ -1,3 +1,7 @@
+## 2.10.5
+
+- update deprecated code on DChartSingleBar
+
 ## 2.10.4
 
 - DChartBarCustom:

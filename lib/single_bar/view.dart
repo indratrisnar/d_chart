@@ -88,7 +88,8 @@ class DChartSingleBar extends StatelessWidget {
           return Stack(
             children: [
               Material(
-                color: backgroundColor ?? foregroundColor.withOpacity(0.1),
+                color:
+                    backgroundColor ?? foregroundColor.withValues(alpha: 0.1),
                 borderRadius: radius,
                 child: InkWell(
                   onTap:

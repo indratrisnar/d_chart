@@ -1,6 +1,14 @@
 part of 'decorator.dart';
 
-class BarLabelDecorator {
+abstract class BarLabelDecorator<T> {
+  const BarLabelDecorator({
+    this.labelAnchor,
+    this.labelPadding = 5,
+    this.barLabelPosition = BarLabelPosition.auto,
+    this.insideLabelStyle,
+    this.outsideLabelStyle,
+  });
+
   /// position label bar chart item
   final BarLabelAnchor? labelAnchor;
 
@@ -18,36 +26,8 @@ class BarLabelDecorator {
   /// style for label when the position is outside
   final LabelStyle? outsideLabelStyle;
 
-  BarLabelDecorator({
-    this.labelAnchor,
-    this.labelPadding = 5,
-    this.barLabelPosition = BarLabelPosition.auto,
-    this.insideLabelStyle,
-    this.outsideLabelStyle,
-  });
-
-  common.BarLabelDecorator<num> getRenderNumeric() {
-    return common.BarLabelDecorator(
-      insideLabelStyleSpec: insideLabelStyle?.getRender(),
-      outsideLabelStyleSpec: outsideLabelStyle?.getRender(),
-      labelAnchor: _getBarLabelAnchor(labelAnchor),
-      labelPadding: labelPadding,
-      labelPosition: _getBarLabelPosition(barLabelPosition),
-    );
-  }
-
-  common.BarLabelDecorator<String> getRenderOrdinal() {
-    return common.BarLabelDecorator(
-      insideLabelStyleSpec: insideLabelStyle?.getRender(),
-      outsideLabelStyleSpec: outsideLabelStyle?.getRender(),
-      labelAnchor: _getBarLabelAnchor(labelAnchor),
-      labelPadding: labelPadding,
-      labelPosition: _getBarLabelPosition(barLabelPosition),
-    );
-  }
-
-  common.BarLabelDecorator<DateTime> getRenderTime() {
-    return common.BarLabelDecorator(
+  common.BarLabelDecorator<T> render() {
+    return common.BarLabelDecorator<T>(
       insideLabelStyleSpec: insideLabelStyle?.getRender(),
       outsideLabelStyleSpec: outsideLabelStyle?.getRender(),
       labelAnchor: _getBarLabelAnchor(labelAnchor),
@@ -72,4 +52,34 @@ class BarLabelDecorator {
       _ => common.BarLabelPosition.auto,
     };
   }
+}
+
+class BarLabelDecoratorN extends BarLabelDecorator<num> {
+  const BarLabelDecoratorN({
+    super.barLabelPosition,
+    super.insideLabelStyle,
+    super.labelAnchor,
+    super.labelPadding,
+    super.outsideLabelStyle,
+  });
+}
+
+class BarLabelDecoratorO extends BarLabelDecorator<String> {
+  const BarLabelDecoratorO({
+    super.barLabelPosition,
+    super.insideLabelStyle,
+    super.labelAnchor,
+    super.labelPadding,
+    super.outsideLabelStyle,
+  });
+}
+
+class BarLabelDecoratorT extends BarLabelDecorator<DateTime> {
+  const BarLabelDecoratorT({
+    super.barLabelPosition,
+    super.insideLabelStyle,
+    super.labelAnchor,
+    super.labelPadding,
+    super.outsideLabelStyle,
+  });
 }

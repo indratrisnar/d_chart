@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
@@ -7,11 +5,10 @@ import 'package:flutter/material.dart';
 
 import '../commons/axis/axis.dart';
 import '../commons/config_render/config_render.dart';
+import '../commons/config_series/config_series.dart';
 import '../commons/constants.dart';
-import '../commons/data_model/data_model.dart';
+import '../commons/data_model/model.dart';
 import '../commons/layout_margin.dart';
-import '../commons/method_common.dart';
-import '../commons/method_type.dart';
 
 /// Numeric Scatter Chart\
 class DChartScatterN extends StatelessWidget {
@@ -26,39 +23,22 @@ class DChartScatterN extends StatelessWidget {
   /// default: `Duration(milliseconds: 300)`
   final Duration animationDuration;
 
+  /// setup config for entire series in chart widget,
+  ///
+  /// but also can be set dynamically according data point
+  final ConfigSeriesN configSeries;
+
   /// style point
-  final ConfigRenderPoint configRenderPoint;
+  final ConfigRenderPointN configRenderPoint;
 
   /// customize domain axis
-  final DomainAxis? domainAxis;
+  final DomainAxisN? domainAxis;
 
   /// customize measure axis
   final MeasureAxis? measureAxis;
 
   /// customize secondary measure axis
   final MeasureAxis? secondaryMeasureAxis;
-
-  /// `areaColor` returns the area color for a given data value.\
-  /// If not provided, then group color will be used 10% opacity by default.\
-  /// Specify for Line type\
-  /// to activate custom areaColor, `ConfigRenderLine -> includeArea` must be `true`
-  final AreaColorN? areaColor;
-
-  /// set fill chart where has fill box like bar\
-  /// default: based on Group color
-  final FillColorN? fillColor;
-
-  /// custom fill pattern\
-  /// default: solid
-  final FillPatternN? fillPattern;
-
-  /// set pattern\
-  /// specify for line pattern
-  final DashPatternN? dashPattern;
-
-  /// set custom format value for label bar
-  final String Function(NumericGroup group, NumericData data, int? index)?
-      barLabelValue;
 
   /// when `vertical` is true, chart will be flip\
   /// sort reversed measure axis/
@@ -88,16 +68,12 @@ class DChartScatterN extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderPoint = const ConfigRenderPoint(),
+    this.configSeries = const ConfigSeriesN(),
+    this.configRenderPoint = const ConfigRenderPointN(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
     this.secondaryMeasureAxis,
-    this.areaColor,
-    this.fillPattern,
-    this.fillColor,
-    this.dashPattern,
-    this.barLabelValue,
     this.flipVertical = false,
     this.layoutMargin,
     this.allowSliding = false,
@@ -110,49 +86,7 @@ class DChartScatterN extends StatelessWidget {
     return charts.ScatterPlotChart(
       List.generate(groupList.length, (indexGroup) {
         NumericGroup group = groupList[indexGroup];
-        Color groupColor = group.color ??
-            Colors.primaries[Random().nextInt(Colors.primaries.length)];
-        final chartSeries = charts.Series<NumericData, num>(
-          id: group.id,
-          data: group.data,
-          seriesCategory: group.seriesCategory,
-          domainFn: (datum, index) => datum.domain,
-          domainLowerBoundFn: (datum, index) => datum.domainLowerBound,
-          domainUpperBoundFn: (datum, index) => datum.domainUpperBound,
-          measureFn: (datum, index) => datum.measure,
-          measureLowerBoundFn: (datum, index) => datum.measureLowerBound,
-          measureUpperBoundFn: (datum, index) => datum.measureUpperBound,
-          colorFn: (datum, index) => MethodCommon.chartColor(groupColor),
-          areaColorFn: areaColor == null
-              ? null
-              : (datum, index) {
-                  return MethodCommon.chartColor(
-                    areaColor!(group, datum, index) ?? groupColor,
-                  );
-                },
-          fillColorFn: fillColor == null
-              ? null
-              : (datum, index) {
-                  return MethodCommon.chartColor(
-                    fillColor!(group, datum, index) ?? groupColor,
-                  );
-                },
-          fillPatternFn: fillPattern == null
-              ? null
-              : (datum, index) {
-                  return MethodCommon.fillPattern(
-                    fillPattern!(group, datum, index),
-                  );
-                },
-          dashPatternFn: dashPattern == null
-              ? null
-              : (datum, index) {
-                  return dashPattern!(group, datum, index);
-                },
-          labelAccessorFn: barLabelValue == null
-              ? null
-              : (datum, index) => barLabelValue!(group, datum, index),
-        );
+        final chartSeries = configSeries.getRender(group, configSeries);
         if (group.useSecondaryMeasureAxis) {
           return chartSeries
             ..setAttribute(
@@ -161,83 +95,13 @@ class DChartScatterN extends StatelessWidget {
         return chartSeries;
       }),
       flipVerticalAxis: flipVertical,
+      defaultInteractions: false,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: configRenderPoint.getRenderPointN(),
-      domainAxis: domainAxis == null
-          ? null
-          : common.NumericAxisSpec(
-              viewport: domainAxis?.numericViewport?.getRender(),
-              renderSpec: domainAxis?.noRenderSpec ?? false
-                  ? common.NoneRenderSpec(
-                      axisLineStyle: domainAxis?.lineStyle.getRender(),
-                    )
-                  : domainAxis!.useGridLine
-                      ? common.GridlineRendererSpec(
-                          axisLineStyle: domainAxis?.lineStyle.getRender(),
-                          lineStyle: domainAxis?.gridLineStyle.getRender(),
-                          labelRotation: domainAxis?.labelRotation ?? 0,
-                          labelStyle: domainAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              domainAxis?.labelAnchor),
-                          tickLengthPx: domainAxis?.tickLength,
-                          minimumPaddingBetweenLabelsPx:
-                              domainAxis?.minimumPaddingBetweenLabels ?? 0,
-                        )
-                      : common.SmallTickRendererSpec(
-                          axisLineStyle: domainAxis?.lineStyle.getRender(),
-                          lineStyle: domainAxis?.tickLineStyle.getRender(),
-                          labelRotation: domainAxis?.labelRotation ?? 0,
-                          labelStyle: domainAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              domainAxis?.labelAnchor),
-                          tickLengthPx: domainAxis?.tickLength,
-                          minimumPaddingBetweenLabelsPx:
-                              domainAxis?.minimumPaddingBetweenLabels ?? 0,
-                        ),
-              showAxisLine: domainAxis?.showLine,
-              tickFormatterSpec: domainAxis!.tickLabelFormatterN == null
-                  ? null
-                  : common.BasicNumericTickFormatterSpec(
-                      domainAxis!.tickLabelFormatterN,
-                    ),
-              tickProviderSpec: domainAxis?.numericTickProvider?.getRender(),
-            ),
-      primaryMeasureAxis: measureAxis == null
-          ? null
-          : common.NumericAxisSpec(
-              viewport: measureAxis?.numericViewport?.getRender(),
-              renderSpec: measureAxis?.noRenderSpec ?? false
-                  ? common.NoneRenderSpec(
-                      axisLineStyle: measureAxis?.lineStyle.getRender(),
-                    )
-                  : measureAxis!.useGridLine
-                      ? common.GridlineRendererSpec(
-                          axisLineStyle: measureAxis?.lineStyle.getRender(),
-                          lineStyle: measureAxis?.gridLineStyle.getRender(),
-                          labelStyle: measureAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              measureAxis?.labelAnchor),
-                          tickLengthPx: measureAxis?.tickLength,
-                        )
-                      : common.SmallTickRendererSpec(
-                          axisLineStyle: measureAxis?.lineStyle.getRender(),
-                          lineStyle: measureAxis?.tickLineStyle.getRender(),
-                          labelStyle: measureAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              measureAxis?.labelAnchor),
-                          tickLengthPx: measureAxis?.tickLength,
-                        ),
-              showAxisLine: measureAxis?.showLine,
-              tickFormatterSpec: common.BasicNumericTickFormatterSpec(
-                measureAxis?.tickLabelFormatter,
-              ),
-              tickProviderSpec: measureAxis?.numericTickProvider?.getRender(),
-            ),
+      defaultRenderer: configRenderPoint.getRender(null),
+      domainAxis: domainAxis?.axisSpec(),
+      primaryMeasureAxis: measureAxis?.axisSpec(),
+      secondaryMeasureAxis: secondaryMeasureAxis?.axisSpec(),
       layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
       behaviors: [
         if (allowSliding) charts.SlidingViewport(),

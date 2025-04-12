@@ -1,13 +1,10 @@
-import 'dart:math';
-
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
 
 import '../commons/config_render/config_render.dart';
-import '../commons/data_model/data_model.dart';
-import '../commons/method_common.dart';
-import '../commons/method_type.dart';
+import '../commons/config_series/config_series.dart';
+import '../commons/data_model/model.dart';
 
 /// Time Pie Chart\
 class DChartPieT extends StatelessWidget {
@@ -22,11 +19,13 @@ class DChartPieT extends StatelessWidget {
   /// default: `Duration(milliseconds: 300)`
   final Duration animationDuration;
 
-  /// style pie
-  final ConfigRenderPie? configRenderPie;
+  /// setup config for entire series in chart widget,
+  ///
+  /// but also can be set dynamically according data point
+  final ConfigSeriesT configSeries;
 
-  /// customize label view data
-  final CustomLabelT? customLabel;
+  /// style pie
+  final ConfigRenderPieT configRenderPie;
 
   /// listen which data is selected
   final void Function(TimeData data)? onUpdatedListener;
@@ -39,9 +38,9 @@ class DChartPieT extends StatelessWidget {
     super.key,
     required this.data,
     this.animate = false,
-    this.configRenderPie = const ConfigRenderPie(),
+    this.configSeries = const ConfigSeriesT(),
+    this.configRenderPie = const ConfigRenderPieT(),
     this.animationDuration = const Duration(milliseconds: 300),
-    this.customLabel,
     this.onUpdatedListener,
     this.onChangedListener,
   });
@@ -50,21 +49,15 @@ class DChartPieT extends StatelessWidget {
   Widget build(BuildContext context) {
     return charts.PieChart<DateTime>(
       [
-        charts.Series<TimeData, DateTime>(
-          id: 'DChartPieT',
-          data: data,
-          domainFn: (datum, index) => datum.domain,
-          measureFn: (datum, index) => datum.measure,
-          colorFn: (datum, index) => MethodCommon.chartColor(datum.color ??
-              Colors.primaries[Random().nextInt(Colors.primaries.length)]),
-          labelAccessorFn: customLabel == null
-              ? null
-              : (datum, index) => customLabel!(datum, index),
+        configSeries.getRender(
+          TimeGroup(id: 'DChartPieT', data: data),
+          configSeries,
         ),
       ],
+      defaultInteractions: false,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: configRenderPie?.getRenderTime(),
+      defaultRenderer: configRenderPie.getRender(),
       selectionModels: [
         charts.SelectionModelConfig(
           updatedListener: onUpdatedListener == null

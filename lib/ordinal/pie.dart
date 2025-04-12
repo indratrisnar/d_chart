@@ -1,13 +1,10 @@
-import 'dart:math';
-
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
 import 'package:flutter/material.dart';
 
 import '../commons/config_render/config_render.dart';
-import '../commons/data_model/data_model.dart';
-import '../commons/method_common.dart';
-import '../commons/method_type.dart';
+import '../commons/config_series/config_series.dart';
+import '../commons/data_model/model.dart';
 
 /// Ordinal Pie Chart\
 class DChartPieO extends StatelessWidget {
@@ -22,11 +19,13 @@ class DChartPieO extends StatelessWidget {
   /// default: `Duration(milliseconds: 300)`
   final Duration animationDuration;
 
-  /// style pie
-  final ConfigRenderPie? configRenderPie;
+  /// setup config for entire series in chart widget,
+  ///
+  /// but also can be set dynamically according data point
+  final ConfigSeriesO configSeries;
 
-  /// customize label view data
-  final CustomLabelO? customLabel;
+  /// style pie
+  final ConfigRenderPieO configRenderPie;
 
   /// listen which data is selected
   final void Function(OrdinalData data)? onUpdatedListener;
@@ -39,9 +38,9 @@ class DChartPieO extends StatelessWidget {
     super.key,
     required this.data,
     this.animate = false,
-    this.configRenderPie = const ConfigRenderPie(),
+    this.configSeries = const ConfigSeriesO(),
+    this.configRenderPie = const ConfigRenderPieO(),
     this.animationDuration = const Duration(milliseconds: 300),
-    this.customLabel,
     this.onUpdatedListener,
     this.onChangedListener,
   });
@@ -50,21 +49,15 @@ class DChartPieO extends StatelessWidget {
   Widget build(BuildContext context) {
     return charts.PieChart<String>(
       [
-        charts.Series<OrdinalData, String>(
-          id: 'DChartPieO',
-          data: data,
-          domainFn: (datum, index) => datum.domain,
-          measureFn: (datum, index) => datum.measure,
-          colorFn: (datum, index) => MethodCommon.chartColor(datum.color ??
-              Colors.primaries[Random().nextInt(Colors.primaries.length)]),
-          labelAccessorFn: customLabel == null
-              ? null
-              : (datum, index) => customLabel!(datum, index),
+        configSeries.getRender(
+          OrdinalGroup(id: 'DChartPieO', data: data),
+          configSeries,
         ),
       ],
+      defaultInteractions: false,
       animate: animate,
       animationDuration: animationDuration,
-      defaultRenderer: configRenderPie?.getRenderOrdinal(),
+      defaultRenderer: configRenderPie.getRender(),
       selectionModels: [
         charts.SelectionModelConfig(
           updatedListener: onUpdatedListener == null

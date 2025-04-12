@@ -1,6 +1,20 @@
 part of 'config_render.dart';
 
-class ConfigRenderBar extends ConfigRender {
+abstract class ConfigRenderBar<T> {
+  const ConfigRenderBar({
+    this.barGroupInnerPaddingPx = 2,
+    this.fillPattern = FillPattern.solid,
+    this.radius = 2,
+    this.barGroupingType = BarGroupingType.grouped,
+    this.maxBarWidthPx,
+    this.minBarLengthPx = 0,
+    this.stackedBarPaddingPx = 1,
+    this.strokeWidthPx = 0.0,
+    this.weightPattern,
+    this.showBarLabel = false,
+    required this.barLabelDecorator,
+  });
+
   /// default: 2
   final int barGroupInnerPaddingPx;
 
@@ -43,25 +57,11 @@ class ConfigRenderBar extends ConfigRender {
   final bool showBarLabel;
 
   /// to decor label on bar item
-  final BarLabelDecorator? barLabelDecorator;
+  final BarLabelDecorator<T> barLabelDecorator;
 
-  const ConfigRenderBar({
-    this.barGroupInnerPaddingPx = 2,
-    this.fillPattern = FillPattern.solid,
-    this.radius = 2,
-    this.barGroupingType = BarGroupingType.grouped,
-    this.maxBarWidthPx,
-    this.minBarLengthPx = 0,
-    this.stackedBarPaddingPx = 1,
-    this.strokeWidthPx = 0.0,
-    this.weightPattern,
-    this.showBarLabel = false,
-    this.barLabelDecorator,
-  });
-
-  common.SeriesRendererConfig<num> getRenderNumeric(String? renderId) {
-    return common.BarRendererConfig(
-      customRendererId: renderId,
+  common.BarRendererConfig<T> getRender([String? customRendererId]) {
+    return common.BarRendererConfig<T>(
+      customRendererId: customRendererId,
       barGroupInnerPaddingPx: barGroupInnerPaddingPx,
       fillPattern: MethodCommon.fillPattern(fillPattern),
       groupingType: _getBarGroupingType(barGroupingType),
@@ -71,66 +71,7 @@ class ConfigRenderBar extends ConfigRender {
       stackedBarPaddingPx: stackedBarPaddingPx,
       strokeWidthPx: strokeWidthPx,
       weightPattern: weightPattern,
-      barRendererDecorator: showBarLabel
-          ? barLabelDecorator?.getRenderNumeric() ??
-              BarLabelDecorator().getRenderNumeric()
-          : null,
-    );
-  }
-
-  common.SeriesRendererConfig<String> getRenderOrdinal(String? renderId) {
-    return common.BarRendererConfig(
-      customRendererId: renderId,
-      barGroupInnerPaddingPx: barGroupInnerPaddingPx,
-      fillPattern: MethodCommon.fillPattern(fillPattern),
-      groupingType: _getBarGroupingType(barGroupingType),
-      cornerStrategy: common.ConstCornerStrategy(radius),
-      maxBarWidthPx: maxBarWidthPx,
-      minBarLengthPx: minBarLengthPx,
-      stackedBarPaddingPx: stackedBarPaddingPx,
-      strokeWidthPx: strokeWidthPx,
-      weightPattern: weightPattern,
-      barRendererDecorator: showBarLabel
-          ? barLabelDecorator?.getRenderOrdinal() ??
-              BarLabelDecorator().getRenderOrdinal()
-          : null,
-    );
-  }
-
-  common.SeriesRendererConfig<DateTime> getRenderTime(String? renderId) {
-    return common.BarRendererConfig(
-      customRendererId: renderId,
-      barGroupInnerPaddingPx: barGroupInnerPaddingPx,
-      fillPattern: MethodCommon.fillPattern(fillPattern),
-      groupingType: _getBarGroupingType(barGroupingType),
-      cornerStrategy: common.ConstCornerStrategy(radius),
-      maxBarWidthPx: maxBarWidthPx,
-      minBarLengthPx: minBarLengthPx,
-      stackedBarPaddingPx: stackedBarPaddingPx,
-      strokeWidthPx: strokeWidthPx,
-      weightPattern: weightPattern,
-      barRendererDecorator: showBarLabel
-          ? barLabelDecorator?.getRenderTime() ??
-              BarLabelDecorator().getRenderTime()
-          : null,
-    );
-  }
-
-  common.BarRendererConfig<String> getRenderBarO() {
-    return common.BarRendererConfig(
-      barGroupInnerPaddingPx: barGroupInnerPaddingPx,
-      fillPattern: MethodCommon.fillPattern(fillPattern),
-      groupingType: _getBarGroupingType(barGroupingType),
-      cornerStrategy: common.ConstCornerStrategy(radius),
-      maxBarWidthPx: maxBarWidthPx,
-      minBarLengthPx: minBarLengthPx,
-      stackedBarPaddingPx: stackedBarPaddingPx,
-      strokeWidthPx: strokeWidthPx,
-      weightPattern: weightPattern,
-      barRendererDecorator: showBarLabel
-          ? barLabelDecorator?.getRenderOrdinal() ??
-              BarLabelDecorator().getRenderOrdinal()
-          : null,
+      barRendererDecorator: !showBarLabel ? null : barLabelDecorator.render(),
     );
   }
 
@@ -141,4 +82,52 @@ class ConfigRenderBar extends ConfigRender {
       _ => common.BarGroupingType.grouped,
     };
   }
+}
+
+class ConfigRenderBarN extends ConfigRenderBar<num> {
+  const ConfigRenderBarN({
+    super.barLabelDecorator = const BarLabelDecoratorN(),
+    super.barGroupInnerPaddingPx,
+    super.barGroupingType,
+    super.fillPattern,
+    super.maxBarWidthPx,
+    super.minBarLengthPx,
+    super.radius,
+    super.showBarLabel,
+    super.stackedBarPaddingPx,
+    super.strokeWidthPx,
+    super.weightPattern,
+  });
+}
+
+class ConfigRenderBarO extends ConfigRenderBar<String> {
+  const ConfigRenderBarO({
+    super.barLabelDecorator = const BarLabelDecoratorO(),
+    super.barGroupInnerPaddingPx,
+    super.barGroupingType,
+    super.fillPattern,
+    super.maxBarWidthPx,
+    super.minBarLengthPx,
+    super.radius,
+    super.showBarLabel,
+    super.stackedBarPaddingPx,
+    super.strokeWidthPx,
+    super.weightPattern,
+  });
+}
+
+class ConfigRenderBarT extends ConfigRenderBar<DateTime> {
+  const ConfigRenderBarT({
+    super.barLabelDecorator = const BarLabelDecoratorT(),
+    super.barGroupInnerPaddingPx,
+    super.barGroupingType,
+    super.fillPattern,
+    super.maxBarWidthPx,
+    super.minBarLengthPx,
+    super.radius,
+    super.showBarLabel,
+    super.stackedBarPaddingPx,
+    super.strokeWidthPx,
+    super.weightPattern,
+  });
 }

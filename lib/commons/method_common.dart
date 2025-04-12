@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import '../commons/enums.dart';
 
 class MethodCommon {
-  static charts.Color chartColor(Color? color) {
-    return charts.ColorUtil.fromDartColor(color ?? randomColor());
+  static charts.Color chartColor(Color color) {
+    return charts.ColorUtil.fromDartColor(color);
   }
 
-  static Color randomColor() {
+  static charts.Color randomColor() {
     var generatedColor = Random().nextInt(Colors.primaries.length);
-    return Colors.primaries[generatedColor];
+    return chartColor(Colors.primaries[generatedColor]);
   }
 
   static common.FillPatternType fillPattern(FillPattern pattern) {
@@ -35,5 +35,14 @@ class MethodCommon {
       default:
         return common.TickLabelAnchor.centered;
     }
+  }
+
+  static common.TickLabelJustification tickLabelJustification(
+    TickLabelJustification? type,
+  ) {
+    if (type == TickLabelJustification.inside) {
+      return common.TickLabelJustification.inside;
+    }
+    return common.TickLabelJustification.outside;
   }
 }

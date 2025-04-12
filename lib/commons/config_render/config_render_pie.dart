@@ -1,6 +1,15 @@
 part of 'config_render.dart';
 
-class ConfigRenderPie {
+abstract class ConfigRenderPie<T> {
+  const ConfigRenderPie({
+    this.arcLength = 2 * pi,
+    this.arcWidth,
+    this.arcLabelDecorator,
+    this.arcRatio,
+    this.startAngle = -pi / 2,
+    this.strokeWidthPx = 2.0,
+  });
+
   /// Total arc length, in radians.
   ///
   /// The default arcLength is 2π.
@@ -23,53 +32,51 @@ class ConfigRenderPie {
   /// Stroke width of the border of the arcs.
   final double strokeWidthPx;
 
-  final ArcLabelDecorator? arcLabelDecorator;
+  final ArcLabelDecorator<T>? arcLabelDecorator;
 
-  const ConfigRenderPie({
-    this.arcLength = 2 * pi,
-    this.arcWidth,
-    this.arcLabelDecorator,
-    this.arcRatio,
-    this.startAngle = -pi / 2,
-    this.strokeWidthPx = 2.0,
+  common.ArcRendererConfig<T> getRender() {
+    return common.ArcRendererConfig<T>(
+      arcLength: arcLength,
+      arcWidth: arcWidth,
+      arcRendererDecorators: [
+        if (arcLabelDecorator != null) arcLabelDecorator!.render(),
+      ],
+      startAngle: startAngle,
+      strokeWidthPx: strokeWidthPx,
+      arcRatio: arcRatio,
+    );
+  }
+}
+
+class ConfigRenderPieN extends ConfigRenderPie<num> {
+  const ConfigRenderPieN({
+    super.arcLabelDecorator,
+    super.arcLength,
+    super.arcRatio,
+    super.arcWidth,
+    super.startAngle,
+    super.strokeWidthPx,
   });
+}
 
-  common.ArcRendererConfig<String> getRenderOrdinal() {
-    return common.ArcRendererConfig<String>(
-      arcLength: arcLength,
-      arcWidth: arcWidth,
-      arcRendererDecorators: [
-        if (arcLabelDecorator != null) arcLabelDecorator!.getRenderOrdinal(),
-      ],
-      startAngle: startAngle,
-      strokeWidthPx: strokeWidthPx,
-      arcRatio: arcRatio,
-    );
-  }
+class ConfigRenderPieO extends ConfigRenderPie<String> {
+  const ConfigRenderPieO({
+    super.arcLabelDecorator,
+    super.arcLength,
+    super.arcRatio,
+    super.arcWidth,
+    super.startAngle,
+    super.strokeWidthPx,
+  });
+}
 
-  common.ArcRendererConfig<num> getRenderNumeric() {
-    return common.ArcRendererConfig<num>(
-      arcLength: arcLength,
-      arcWidth: arcWidth,
-      arcRendererDecorators: [
-        if (arcLabelDecorator != null) arcLabelDecorator!.getRenderNumeric(),
-      ],
-      startAngle: startAngle,
-      strokeWidthPx: strokeWidthPx,
-      arcRatio: arcRatio,
-    );
-  }
-
-  common.ArcRendererConfig<DateTime> getRenderTime() {
-    return common.ArcRendererConfig<DateTime>(
-      arcLength: arcLength,
-      arcWidth: arcWidth,
-      arcRendererDecorators: [
-        if (arcLabelDecorator != null) arcLabelDecorator!.getRenderTime(),
-      ],
-      startAngle: startAngle,
-      strokeWidthPx: strokeWidthPx,
-      arcRatio: arcRatio,
-    );
-  }
+class ConfigRenderPieT extends ConfigRenderPie<DateTime> {
+  const ConfigRenderPieT({
+    super.arcLabelDecorator,
+    super.arcLength,
+    super.arcRatio,
+    super.arcWidth,
+    super.startAngle,
+    super.strokeWidthPx,
+  });
 }

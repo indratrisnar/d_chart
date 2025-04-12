@@ -1,3 +1,34 @@
+## 3.0.0
+
+- New enum
+  - AxisRenderType { smallTick, gridline }
+  - TickLabelJustification { inside, outside }
+- Re-Focus for only 1 domain type, no-more multi property for each domain type
+  - before
+    ```dart
+    Label(
+      tickLabelFormatterN:,
+      tickLabelFormatterO:,
+      tickLabelFormatterT:,
+    )
+    ```
+  - after
+    ```dart
+    LabelN(
+      tickLabelFormatter:,
+    )
+    ```
+- Re-Model for Data
+- Axis
+  - `usegridLine` removed, consider using AxisRenderType
+  - New style Domain
+    - DomainAxisN : Numeric
+    - DomainAxisO : Ordinal
+    - DomainAxisT : Time
+- Config Series
+  some global property move to ConfigSeries, to config universal chart
+- remove default interaction
+
 ## 2.10.5
 
 - update deprecated code on DChartSingleBar

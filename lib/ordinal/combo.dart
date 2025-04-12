@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
@@ -7,12 +5,11 @@ import 'package:flutter/material.dart';
 
 import '../commons/axis/axis.dart';
 import '../commons/config_render/config_render.dart';
+import '../commons/config_series/config_series.dart';
 import '../commons/constants.dart';
-import '../commons/data_model/data_model.dart';
+import '../commons/data_model/model.dart';
 import '../commons/enums.dart';
 import '../commons/layout_margin.dart';
-import '../commons/method_common.dart';
-import '../commons/method_type.dart';
 
 /// Ordinal Combo Chart\
 /// also can use for single other type but cannot be set horizontal measure
@@ -31,45 +28,28 @@ class DChartComboO extends StatelessWidget {
   /// default: `Duration(milliseconds: 300)`
   final Duration animationDuration;
 
+  /// setup config for entire series in chart widget,
+  ///
+  /// but also can be set dynamically according data point
+  final ConfigSeriesO configSeries;
+
   /// style line
-  final ConfigRenderLine configRenderLine;
+  final ConfigRenderLineO configRenderLine;
 
   /// style bar
-  final ConfigRenderBar configRenderBar;
+  final ConfigRenderBarO configRenderBar;
 
   /// style plot point
-  final ConfigRenderPoint configRenderPoint;
+  final ConfigRenderPointO configRenderPoint;
 
   /// customize domain axis
-  final DomainAxis? domainAxis;
+  final DomainAxisO? domainAxis;
 
   /// customize measure axis
   final MeasureAxis? measureAxis;
 
   /// customize secondary measure axis
   final MeasureAxis? secondaryMeasureAxis;
-
-  /// `areaColor` returns the area color for a given data value.\
-  /// If not provided, then group color will be used 10% opacity by default.\
-  /// Specify for Line type\
-  /// to activate custom areaColor, `ConfigRenderLine -> includeArea` must be `true`
-  final AreaColorO? areaColor;
-
-  /// set fill chart where has fill box like bar\
-  /// default: based on Group color
-  final FillColorO? fillColor;
-
-  /// custom fill pattern\
-  /// default: solid
-  final FillPatternO? fillPattern;
-
-  /// set pattern\
-  /// specify for line pattern
-  final DashPatternO? dashPattern;
-
-  /// set custom format value for label bar
-  final String Function(OrdinalGroup group, OrdinalData data, int? index)?
-      barLabelValue;
 
   /// margin from outer chart to wrapper box\
   /// default: 20px for each side
@@ -98,18 +78,14 @@ class DChartComboO extends StatelessWidget {
     super.key,
     required this.groupList,
     this.animate = false,
-    this.configRenderLine = const ConfigRenderLine(),
-    this.configRenderBar = const ConfigRenderBar(),
-    this.configRenderPoint = const ConfigRenderPoint(),
+    this.configSeries = const ConfigSeriesO(),
+    this.configRenderLine = const ConfigRenderLineO(),
+    this.configRenderBar = const ConfigRenderBarO(),
+    this.configRenderPoint = const ConfigRenderPointO(),
     this.animationDuration = const Duration(milliseconds: 300),
     this.domainAxis,
     this.measureAxis,
     this.secondaryMeasureAxis,
-    this.areaColor,
-    this.fillPattern,
-    this.fillColor,
-    this.dashPattern,
-    this.barLabelValue,
     this.layoutMargin,
     this.allowSliding = false,
     this.onUpdatedListener,
@@ -121,50 +97,8 @@ class DChartComboO extends StatelessWidget {
     return charts.OrdinalComboChart(
       List.generate(groupList.length, (indexGroup) {
         OrdinalGroup group = groupList[indexGroup];
-        Color groupColor = group.color ??
-            Colors.primaries[Random().nextInt(Colors.primaries.length)];
-        final chartSeries = charts.Series<OrdinalData, String>(
-          id: group.id,
-          data: group.data,
-          seriesCategory: group.seriesCategory,
-          domainFn: (datum, index) => datum.domain,
-          domainLowerBoundFn: (datum, index) => datum.domainLowerBound,
-          domainUpperBoundFn: (datum, index) => datum.domainUpperBound,
-          measureFn: (datum, index) => datum.measure,
-          measureLowerBoundFn: (datum, index) => datum.measureLowerBound,
-          measureUpperBoundFn: (datum, index) => datum.measureUpperBound,
-          colorFn: (datum, index) => MethodCommon.chartColor(groupColor),
-          areaColorFn: areaColor == null
-              ? null
-              : (datum, index) {
-                  return MethodCommon.chartColor(
-                    areaColor!(group, datum, index) ?? groupColor,
-                  );
-                },
-          fillColorFn: fillColor == null
-              ? null
-              : (datum, index) {
-                  return MethodCommon.chartColor(
-                    fillColor!(group, datum, index) ?? groupColor,
-                  );
-                },
-          fillPatternFn: fillPattern == null
-              ? null
-              : (datum, index) {
-                  return MethodCommon.fillPattern(
-                    fillPattern!(group, datum, index),
-                  );
-                },
-          dashPatternFn: dashPattern == null
-              ? null
-              : (datum, index) {
-                  return dashPattern!(group, datum, index);
-                },
-          labelAccessorFn: barLabelValue == null
-              ? null
-              : (datum, index) => barLabelValue!(group, datum, index),
-        )..setAttribute(charts.rendererIdKey, group.chartType.name);
-
+        final chartSeries = configSeries.getRender(group, configSeries)
+          ..setAttribute(charts.rendererIdKey, group.chartType.name);
         if (group.useSecondaryMeasureAxis) {
           return chartSeries
             ..setAttribute(
@@ -172,82 +106,18 @@ class DChartComboO extends StatelessWidget {
         }
         return chartSeries;
       }),
+      defaultInteractions: false,
       animate: animate,
       animationDuration: animationDuration,
       defaultRenderer: common.LineRendererConfig(),
       customSeriesRenderers: [
-        configRenderBar.getRenderOrdinal(ChartType.bar.name),
-        configRenderLine.getRenderOrdinal(ChartType.line.name),
-        configRenderPoint.getRenderOrdinal(ChartType.scatterPlot.name),
+        configRenderBar.getRender(ChartType.bar.name),
+        configRenderLine.getRender(ChartType.line.name),
+        configRenderPoint.getRender(ChartType.scatterPlot.name),
       ],
-      domainAxis: domainAxis == null
-          ? null
-          : common.OrdinalAxisSpec(
-              viewport: domainAxis?.ordinalViewport?.getRender(),
-              renderSpec: domainAxis?.noRenderSpec ?? false
-                  ? common.NoneRenderSpec(
-                      axisLineStyle: domainAxis?.lineStyle.getRender(),
-                    )
-                  : domainAxis!.useGridLine
-                      ? common.GridlineRendererSpec(
-                          axisLineStyle: domainAxis?.lineStyle.getRender(),
-                          lineStyle: domainAxis?.gridLineStyle.getRender(),
-                          labelRotation: domainAxis?.labelRotation ?? 0,
-                          labelStyle: domainAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              domainAxis?.labelAnchor),
-                          tickLengthPx: domainAxis?.tickLength,
-                          minimumPaddingBetweenLabelsPx:
-                              domainAxis?.minimumPaddingBetweenLabels ?? 0,
-                        )
-                      : common.SmallTickRendererSpec(
-                          axisLineStyle: domainAxis?.lineStyle.getRender(),
-                          lineStyle: domainAxis?.tickLineStyle.getRender(),
-                          labelRotation: domainAxis?.labelRotation ?? 0,
-                          labelStyle: domainAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: domainAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              domainAxis?.labelAnchor),
-                          tickLengthPx: domainAxis?.tickLength,
-                          minimumPaddingBetweenLabelsPx:
-                              domainAxis?.minimumPaddingBetweenLabels ?? 0,
-                        ),
-              showAxisLine: domainAxis?.showLine,
-            ),
-      primaryMeasureAxis: measureAxis == null
-          ? null
-          : common.NumericAxisSpec(
-              viewport: measureAxis?.numericViewport?.getRender(),
-              renderSpec: measureAxis?.noRenderSpec ?? false
-                  ? common.NoneRenderSpec(
-                      axisLineStyle: measureAxis?.lineStyle.getRender(),
-                    )
-                  : measureAxis!.useGridLine
-                      ? common.GridlineRendererSpec(
-                          axisLineStyle: measureAxis?.lineStyle.getRender(),
-                          lineStyle: measureAxis?.gridLineStyle.getRender(),
-                          labelStyle: measureAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              measureAxis?.labelAnchor),
-                          tickLengthPx: measureAxis?.tickLength,
-                        )
-                      : common.SmallTickRendererSpec(
-                          axisLineStyle: measureAxis?.lineStyle.getRender(),
-                          lineStyle: measureAxis?.tickLineStyle.getRender(),
-                          labelStyle: measureAxis?.labelStyle.getRender(),
-                          labelOffsetFromAxisPx: measureAxis?.gapAxisToLabel,
-                          labelAnchor: MethodCommon.tickLabelAnchor(
-                              measureAxis?.labelAnchor),
-                          tickLengthPx: measureAxis?.tickLength,
-                        ),
-              showAxisLine: measureAxis?.showLine,
-              tickFormatterSpec: common.BasicNumericTickFormatterSpec(
-                measureAxis?.tickLabelFormatter,
-              ),
-              tickProviderSpec: measureAxis?.numericTickProvider?.getRender(),
-            ),
+      domainAxis: domainAxis?.axisSpec(),
+      primaryMeasureAxis: measureAxis?.axisSpec(),
+      secondaryMeasureAxis: secondaryMeasureAxis?.axisSpec(),
       layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
       behaviors: [
         if (allowSliding) charts.SlidingViewport(),

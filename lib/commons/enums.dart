@@ -66,3 +66,7 @@ enum ArcLabelPosition {
   /// Always place label on the inside.
   inside
 }
+
+enum AxisRenderType { smallTick, gridline }
+
+enum TickLabelJustification { inside, outside }

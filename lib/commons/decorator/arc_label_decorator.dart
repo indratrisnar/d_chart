@@ -1,6 +1,25 @@
 part of 'decorator.dart';
 
-class ArcLabelDecorator {
+abstract class ArcLabelDecorator<T> {
+  const ArcLabelDecorator({
+    this.insideLabelStyle = const LabelStyle(
+      fontSize: 12,
+      color: Colors.white,
+    ),
+    this.outsideLabelStyle = const LabelStyle(
+      fontSize: 12,
+      color: Colors.black,
+    ),
+    this.leaderLineStyle = const ArcLabelLeaderLineStyle(
+      color: Colors.black,
+      length: 20.0,
+      thickness: 1.0,
+    ),
+    this.labelPosition = ArcLabelPosition.auto,
+    this.labelPadding = 5,
+    this.showLeaderLines = true,
+  });
+
   /// Configures [TextStyleSpec] for labels placed inside the arcs.
   final LabelStyle insideLabelStyle;
 
@@ -20,49 +39,8 @@ class ArcLabelDecorator {
   /// Whether or not to draw leader lines for labels placed outside the arcs.
   final bool showLeaderLines;
 
-  ArcLabelDecorator({
-    this.insideLabelStyle = const LabelStyle(
-      fontSize: 12,
-      color: Colors.white,
-    ),
-    this.outsideLabelStyle = const LabelStyle(
-      fontSize: 12,
-      color: Colors.black,
-    ),
-    this.leaderLineStyle = const ArcLabelLeaderLineStyle(
-      color: Colors.black,
-      length: 20.0,
-      thickness: 1.0,
-    ),
-    this.labelPosition = ArcLabelPosition.auto,
-    this.labelPadding = 5,
-    this.showLeaderLines = true,
-  });
-
-  common.ArcLabelDecorator<String> getRenderOrdinal() {
-    return common.ArcLabelDecorator<String>(
-      insideLabelStyleSpec: insideLabelStyle.getRender(),
-      outsideLabelStyleSpec: outsideLabelStyle.getRender(),
-      labelPadding: labelPadding,
-      labelPosition: _getArcLabelPosition(labelPosition),
-      leaderLineStyleSpec: leaderLineStyle.getRender(),
-      showLeaderLines: showLeaderLines,
-    );
-  }
-
-  common.ArcLabelDecorator<num> getRenderNumeric() {
-    return common.ArcLabelDecorator<num>(
-      insideLabelStyleSpec: insideLabelStyle.getRender(),
-      outsideLabelStyleSpec: outsideLabelStyle.getRender(),
-      labelPadding: labelPadding,
-      labelPosition: _getArcLabelPosition(labelPosition),
-      leaderLineStyleSpec: leaderLineStyle.getRender(),
-      showLeaderLines: showLeaderLines,
-    );
-  }
-
-  common.ArcLabelDecorator<DateTime> getRenderTime() {
-    return common.ArcLabelDecorator<DateTime>(
+  common.ArcLabelDecorator<T> render() {
+    return common.ArcLabelDecorator<T>(
       insideLabelStyleSpec: insideLabelStyle.getRender(),
       outsideLabelStyleSpec: outsideLabelStyle.getRender(),
       labelPadding: labelPadding,
@@ -79,4 +57,37 @@ class ArcLabelDecorator {
       _ => common.ArcLabelPosition.auto,
     };
   }
+}
+
+class ArcLabelDecoratorN extends ArcLabelDecorator<num> {
+  const ArcLabelDecoratorN({
+    super.insideLabelStyle,
+    super.labelPadding,
+    super.labelPosition,
+    super.leaderLineStyle,
+    super.outsideLabelStyle,
+    super.showLeaderLines,
+  });
+}
+
+class ArcLabelDecoratorO extends ArcLabelDecorator<String> {
+  const ArcLabelDecoratorO({
+    super.insideLabelStyle,
+    super.labelPadding,
+    super.labelPosition,
+    super.leaderLineStyle,
+    super.outsideLabelStyle,
+    super.showLeaderLines,
+  });
+}
+
+class ArcLabelDecoratorT extends ArcLabelDecorator<DateTime> {
+  const ArcLabelDecoratorT({
+    super.insideLabelStyle,
+    super.labelPadding,
+    super.labelPosition,
+    super.leaderLineStyle,
+    super.outsideLabelStyle,
+    super.showLeaderLines,
+  });
 }

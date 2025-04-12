@@ -15,7 +15,8 @@
 
 import 'package:community_charts_common/community_charts_common.dart' as common;
 import 'package:flutter/material.dart';
-import '../data_model/data_model.dart';
+
+import '../data_model/model.dart';
 import '../style/style.dart';
 
 import '../enums.dart';

@@ -1,82 +1,122 @@
 part of 'axis.dart';
 
-class DomainAxis extends ChartAxis {
-  /// show domain line\
-  /// default: true
-  final bool showLine;
-
-  /// styling for domain line
-  final LineStyle lineStyle;
-
-  /// styling for domain label
-  final LabelStyle labelStyle;
-
-  /// default: 5
-  final int? gapAxisToLabel;
-
-  /// label position based on tick axis\
-  /// default: `LabelAnchor.centered`
-  final LabelAnchor labelAnchor;
-
-  /// tick axis length\
-  /// default: 3
-  final int tickLength;
+class DomainAxisN extends ChartAxis<num> {
+  const DomainAxisN({
+    this.viewport,
+    this.numericTickProvider,
+    super.gridlineStyle,
+    super.labelAnchor,
+    super.labelCollisionOffsetFromAxis,
+    super.labelCollisionOffsetFromTick,
+    super.labelCollisionRotation,
+    super.labelOffsetFromAxis,
+    super.labelOffsetFromTick,
+    super.labelRotation,
+    super.labelStyle,
+    super.lineStyle,
+    super.minimumPaddingBetweenLabels,
+    super.noRenderSpec,
+    super.renderType,
+    super.showLine,
+    super.tickLabelFormatter,
+    super.tickLabelJustification,
+    super.tickLength,
+    super.tickLineStyle,
+  });
 
   /// manage tick
   final NumericTickProvider? numericTickProvider;
 
   /// set limit view for domain axis
-  final OrdinalViewport? ordinalViewport;
+  final NumericViewport? viewport;
 
-  /// set limit view for domain axis
-  final NumericViewport? numericViewport;
+  @override
+  common.NumericAxisSpec axisSpec() {
+    return common.NumericAxisSpec(
+      viewport: viewport?.getRender(),
+      renderSpec: getRenderSpec(),
+      showAxisLine: showLine,
+      tickFormatterSpec: tickLabelFormatter == null
+          ? null
+          : common.BasicNumericTickFormatterSpec(
+              tickLabelFormatter,
+            ),
+      tickProviderSpec: numericTickProvider?.getRender(),
+    );
+  }
+}
 
-  /// set limit view for domain axis
-  final TimeViewport? timeViewport;
-
-  /// tick label format
-  final String Function(num? domain)? tickLabelFormatterN;
-
-  /// tick label format for time series
-  ///
-  /// for Combo Time, need more width to show more label even there is minus padding.
-  /// except for format like only number date.
-  ///
-  final String Function(DateTime domain)? tickLabelFormatterT;
-
-  /// can be use as space beetween label.
-  ///
-  /// more smaller padding, then label will be getting closer,
-  /// they can even collide with each other, take each other's place
-  ///
-  /// default: 0
-  final int minimumPaddingBetweenLabels;
-
-  /// starting point at center right.
-  ///
-  /// center right = 0 degree.
-  ///
-  /// default: 0
-  final int labelRotation;
-
-  const DomainAxis({
-    this.showLine = true,
-    this.lineStyle = const LineStyle(),
-    this.labelStyle = const LabelStyle(),
-    this.gapAxisToLabel = 5,
-    this.labelAnchor = LabelAnchor.centered,
-    this.tickLength = 3,
-    this.ordinalViewport,
-    this.numericViewport,
-    this.timeViewport,
-    this.tickLabelFormatterN,
-    this.tickLabelFormatterT,
-    this.minimumPaddingBetweenLabels = 0,
-    this.labelRotation = 0,
-    this.numericTickProvider,
+class DomainAxisO extends ChartAxis<String> {
+  const DomainAxisO({
+    this.viewport,
+    super.gridlineStyle,
+    super.labelAnchor,
+    super.labelCollisionOffsetFromAxis,
+    super.labelCollisionOffsetFromTick,
+    super.labelCollisionRotation,
+    super.labelOffsetFromAxis,
+    super.labelOffsetFromTick,
+    super.labelRotation,
+    super.labelStyle,
+    super.lineStyle,
+    super.minimumPaddingBetweenLabels,
     super.noRenderSpec,
-    super.useGridLine,
-    super.gridLineStyle,
+    super.renderType,
+    super.showLine,
+    super.tickLabelFormatter,
+    super.tickLabelJustification,
+    super.tickLength,
     super.tickLineStyle,
   });
+
+  /// set limit view for domain axis
+  final OrdinalViewport? viewport;
+
+  @override
+  common.OrdinalAxisSpec axisSpec() {
+    return common.OrdinalAxisSpec(
+      viewport: viewport?.getRender(),
+      renderSpec: getRenderSpec(),
+      showAxisLine: showLine,
+    );
+  }
+}
+
+class DomainAxisT extends ChartAxis<DateTime> {
+  const DomainAxisT({
+    this.viewport,
+    super.gridlineStyle,
+    super.labelAnchor,
+    super.labelCollisionOffsetFromAxis,
+    super.labelCollisionOffsetFromTick,
+    super.labelCollisionRotation,
+    super.labelOffsetFromAxis,
+    super.labelOffsetFromTick,
+    super.labelRotation,
+    super.labelStyle,
+    super.lineStyle,
+    super.minimumPaddingBetweenLabels,
+    super.noRenderSpec,
+    super.renderType,
+    super.showLine,
+    super.tickLabelFormatter,
+    super.tickLabelJustification,
+    super.tickLength,
+    super.tickLineStyle,
+  });
+
+  /// set limit view for domain axis
+  final TimeViewport? viewport;
+
+  @override
+  common.DateTimeAxisSpec axisSpec() {
+    return common.DateTimeAxisSpec(
+      viewport: viewport?.getRender(),
+      renderSpec: getRenderSpec(),
+      showAxisLine: showLine,
+      tickFormatterSpec: tickLabelFormatter == null
+          ? null
+          : common.BasicDateTimeTickFormatterSpec(tickLabelFormatter!),
+    );
+  }
 }

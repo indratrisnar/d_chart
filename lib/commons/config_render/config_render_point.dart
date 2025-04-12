@@ -1,6 +1,6 @@
 part of 'config_render.dart';
 
-class ConfigRenderPoint extends ConfigRender {
+abstract class ConfigRenderPoint<D, T> {
   /// size plot point\
   /// default: 3.5
   final double radiusPx;
@@ -22,7 +22,7 @@ class ConfigRenderPoint extends ConfigRender {
   final bool showPointLabel;
 
   /// to decor label on plot point
-  final PointLabelDecorator? pointLabelDecorator;
+  final PointLabelDecorator<D, T> pointLabelDecorator;
 
   /// will draw track chart for each point
   ///
@@ -39,20 +39,19 @@ class ConfigRenderPoint extends ConfigRender {
     this.symbolRender,
     this.strokeWidthPx = 0.0,
     this.showPointLabel = false,
-    this.pointLabelDecorator,
+    required this.pointLabelDecorator,
     this.showComparisonPoint = false,
     this.comparisonSymbolRender = const ComparisonSymbolRenderRectangleRange(),
   });
-  common.SeriesRendererConfig<num> getRenderNumeric(String? renderId) {
-    return common.PointRendererConfig(
+
+  common.PointRendererConfig<T> getRender(String? renderId) {
+    return common.PointRendererConfig<T>(
       customRendererId: renderId,
       radiusPx: radiusPx,
       strokeWidthPx: strokeWidthPx,
       symbolRenderer: symbolRender?.getRenderer(),
       pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderNumeric() ??
-              PointLabelDecorator().getRenderNumeric(),
+        if (showPointLabel) pointLabelDecorator.render(),
         if (showComparisonPoint)
           common.ComparisonPointsDecorator(
             symbolRenderer: comparisonSymbolRender.getRenderer(),
@@ -60,57 +59,40 @@ class ConfigRenderPoint extends ConfigRender {
       ],
     );
   }
+}
 
-  common.SeriesRendererConfig<String> getRenderOrdinal(String? renderId) {
-    return common.PointRendererConfig(
-      customRendererId: renderId,
-      radiusPx: radiusPx,
-      strokeWidthPx: strokeWidthPx,
-      symbolRenderer: symbolRender?.getRenderer(),
-      pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderOrdinal() ??
-              PointLabelDecorator().getRenderOrdinal(),
-        if (showComparisonPoint)
-          common.ComparisonPointsDecorator(
-            symbolRenderer: comparisonSymbolRender.getRenderer(),
-          ),
-      ],
-    );
-  }
+class ConfigRenderPointN extends ConfigRenderPoint<NumericData, num> {
+  const ConfigRenderPointN({
+    super.pointLabelDecorator = const PointLabelDecoratorN(),
+    super.comparisonSymbolRender,
+    super.radiusPx,
+    super.showComparisonPoint,
+    super.showPointLabel,
+    super.strokeWidthPx,
+    super.symbolRender,
+  });
+}
 
-  common.SeriesRendererConfig<DateTime> getRenderTime(String? renderId) {
-    return common.PointRendererConfig(
-      customRendererId: renderId,
-      radiusPx: radiusPx,
-      strokeWidthPx: strokeWidthPx,
-      symbolRenderer: symbolRender?.getRenderer(),
-      pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderTime() ??
-              PointLabelDecorator().getRenderTime(),
-        if (showComparisonPoint)
-          common.ComparisonPointsDecorator(
-            symbolRenderer: comparisonSymbolRender.getRenderer(),
-          ),
-      ],
-    );
-  }
+class ConfigRenderPointO extends ConfigRenderPoint<OrdinalData, String> {
+  const ConfigRenderPointO({
+    super.pointLabelDecorator = const PointLabelDecoratorO(),
+    super.comparisonSymbolRender,
+    super.radiusPx,
+    super.showComparisonPoint,
+    super.showPointLabel,
+    super.strokeWidthPx,
+    super.symbolRender,
+  });
+}
 
-  common.PointRendererConfig<num> getRenderPointN() {
-    return common.PointRendererConfig(
-      radiusPx: radiusPx,
-      strokeWidthPx: strokeWidthPx,
-      symbolRenderer: symbolRender?.getRenderer(),
-      pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderNumeric() ??
-              PointLabelDecorator().getRenderNumeric(),
-        if (showComparisonPoint)
-          common.ComparisonPointsDecorator(
-            symbolRenderer: comparisonSymbolRender.getRenderer(),
-          ),
-      ],
-    );
-  }
+class ConfigRenderPointT extends ConfigRenderPoint<TimeData, DateTime> {
+  const ConfigRenderPointT({
+    super.pointLabelDecorator = const PointLabelDecoratorT(),
+    super.comparisonSymbolRender,
+    super.radiusPx,
+    super.showComparisonPoint,
+    super.showPointLabel,
+    super.strokeWidthPx,
+    super.symbolRender,
+  });
 }

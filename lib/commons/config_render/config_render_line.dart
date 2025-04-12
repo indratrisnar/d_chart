@@ -1,6 +1,19 @@
 part of 'config_render.dart';
 
-class ConfigRenderLine extends ConfigRender {
+abstract class ConfigRenderLine<D, T> {
+  const ConfigRenderLine({
+    this.radiusPx = 3.5,
+    this.strokeWidthPx = 2.0,
+    this.dashPattern,
+    this.includeLine = true,
+    this.includePoints = false,
+    this.includeArea = false,
+    this.areaOpacity = 0.1,
+    this.roundEndCaps = false,
+    this.showPointLabel = false,
+    required this.pointLabelDecorator,
+  });
+
   /// Radius of points on the line, if [includePoints] is enabled.
   final double radiusPx;
 
@@ -42,93 +55,67 @@ class ConfigRenderLine extends ConfigRender {
   final bool showPointLabel;
 
   /// to decor label on plot point
-  final PointLabelDecorator? pointLabelDecorator;
+  final PointLabelDecorator<D, T> pointLabelDecorator;
 
-  const ConfigRenderLine({
-    this.radiusPx = 3.5,
-    this.strokeWidthPx = 2.0,
-    this.dashPattern,
-    this.includeLine = true,
-    this.includePoints = false,
-    this.includeArea = false,
-    this.areaOpacity = 0.1,
-    this.roundEndCaps = false,
-    this.showPointLabel = false,
-    this.pointLabelDecorator,
+  common.LineRendererConfig<T> getRender([String? customRendererId]) {
+    return common.LineRendererConfig<T>(
+      customRendererId: customRendererId,
+      areaOpacity: areaOpacity,
+      dashPattern: dashPattern,
+      includeArea: includeArea,
+      includeLine: includeLine,
+      includePoints: includePoints,
+      radiusPx: radiusPx,
+      roundEndCaps: roundEndCaps,
+      strokeWidthPx: strokeWidthPx,
+      pointRendererDecorators: [
+        if (showPointLabel) pointLabelDecorator.render(),
+      ],
+    );
+  }
+}
+
+class ConfigRenderLineN extends ConfigRenderLine<NumericData, num> {
+  const ConfigRenderLineN({
+    super.pointLabelDecorator = const PointLabelDecoratorN(),
+    super.areaOpacity,
+    super.dashPattern,
+    super.includeArea,
+    super.includeLine,
+    super.includePoints,
+    super.radiusPx,
+    super.roundEndCaps,
+    super.showPointLabel,
+    super.strokeWidthPx,
   });
+}
 
-  common.SeriesRendererConfig<num> getRenderNumeric(String? renderId) {
-    return common.LineRendererConfig(
-      customRendererId: renderId,
-      areaOpacity: areaOpacity,
-      dashPattern: dashPattern,
-      includeArea: includeArea,
-      includeLine: includeLine,
-      includePoints: includePoints,
-      radiusPx: radiusPx,
-      roundEndCaps: roundEndCaps,
-      strokeWidthPx: strokeWidthPx,
-      pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderNumeric() ??
-              PointLabelDecorator().getRenderNumeric(),
-      ],
-    );
-  }
+class ConfigRenderLineO extends ConfigRenderLine<OrdinalData, String> {
+  const ConfigRenderLineO({
+    super.pointLabelDecorator = const PointLabelDecoratorO(),
+    super.areaOpacity,
+    super.dashPattern,
+    super.includeArea,
+    super.includeLine,
+    super.includePoints,
+    super.radiusPx,
+    super.roundEndCaps,
+    super.showPointLabel,
+    super.strokeWidthPx,
+  });
+}
 
-  common.SeriesRendererConfig<String> getRenderOrdinal(String? renderId) {
-    return common.LineRendererConfig(
-      customRendererId: renderId,
-      areaOpacity: areaOpacity,
-      dashPattern: dashPattern,
-      includeArea: includeArea,
-      includeLine: includeLine,
-      includePoints: includePoints,
-      radiusPx: radiusPx,
-      roundEndCaps: roundEndCaps,
-      strokeWidthPx: strokeWidthPx,
-      pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderOrdinal() ??
-              PointLabelDecorator().getRenderOrdinal(),
-      ],
-    );
-  }
-
-  common.SeriesRendererConfig<DateTime> getRenderTime(String? renderId) {
-    return common.LineRendererConfig(
-      customRendererId: renderId,
-      areaOpacity: areaOpacity,
-      dashPattern: dashPattern,
-      includeArea: includeArea,
-      includeLine: includeLine,
-      includePoints: includePoints,
-      radiusPx: radiusPx,
-      roundEndCaps: roundEndCaps,
-      strokeWidthPx: strokeWidthPx,
-      pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderTime() ??
-              PointLabelDecorator().getRenderTime(),
-      ],
-    );
-  }
-
-  common.LineRendererConfig<num> getRenderLineN() {
-    return common.LineRendererConfig(
-      areaOpacity: areaOpacity,
-      dashPattern: dashPattern,
-      includeArea: includeArea,
-      includeLine: includeLine,
-      includePoints: includePoints,
-      radiusPx: radiusPx,
-      roundEndCaps: roundEndCaps,
-      strokeWidthPx: strokeWidthPx,
-      pointRendererDecorators: [
-        if (showPointLabel)
-          pointLabelDecorator?.getRenderNumeric() ??
-              PointLabelDecorator().getRenderNumeric(),
-      ],
-    );
-  }
+class ConfigRenderLineT extends ConfigRenderLine<TimeData, DateTime> {
+  const ConfigRenderLineT({
+    super.pointLabelDecorator = const PointLabelDecoratorT(),
+    super.areaOpacity,
+    super.dashPattern,
+    super.includeArea,
+    super.includeLine,
+    super.includePoints,
+    super.radiusPx,
+    super.roundEndCaps,
+    super.showPointLabel,
+    super.strokeWidthPx,
+  });
 }

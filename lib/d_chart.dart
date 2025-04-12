@@ -2,18 +2,19 @@ library d_chart;
 
 export 'bar_custom/view.dart';
 export 'commons/axis/axis.dart';
+export 'commons/comparison_symbol_render/symbol_render.dart';
 export 'commons/config_render/config_render.dart';
-export 'commons/data_model/data_model.dart';
+export 'commons/config_series/config_series.dart';
+export 'commons/data_model/model.dart';
 export 'commons/decorator/decorator.dart';
+export 'commons/style/style.dart';
+export 'commons/symbol_render/symbol_render.dart';
+export 'commons/tick/numeric_tick_provider.dart';
 export 'commons/enums.dart';
 export 'commons/layout_margin.dart';
 export 'commons/method_common.dart';
-export 'commons/method_type.dart';
-export 'commons/style/style.dart';
-export 'commons/symbol_render/symbol_render.dart';
-export 'commons/comparison_symbol_render/symbol_render.dart';
-export 'commons/tick/numeric_tick_provider.dart';
 export 'commons/viewport.dart';
+
 export 'numeric/combo.dart';
 export 'numeric/line.dart';
 export 'numeric/pie.dart';

@@ -1,4 +1,4 @@
-part of 'axis.dart';
+part of '../../d_chart.dart';
 
 class MeasureAxis extends ChartAxis<num> {
   const MeasureAxis({

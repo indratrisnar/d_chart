@@ -1,4 +1,4 @@
-part of 'style.dart';
+part of '../../d_chart.dart';
 
 class ArcLabelLeaderLineStyle {
   final Color color;

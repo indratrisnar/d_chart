@@ -1,4 +1,4 @@
-import 'package:community_charts_common/community_charts_common.dart' as common;
+part of '../../d_chart.dart';
 
 class NumericTickProvider {
   /// automatically include zero in the data range.

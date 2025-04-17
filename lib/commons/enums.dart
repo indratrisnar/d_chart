@@ -1,5 +1,7 @@
+part of '../d_chart.dart';
+
 /// for type custom render
-enum ChartType { line, bar, scatterPlot }
+enum RenderType { bar, barLane, barTargetLine, line, scatterPlot }
 
 /// Defines the pattern for a color fill.
 ///

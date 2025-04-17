@@ -1,20 +1,8 @@
-import 'dart:math';
-
-import 'package:community_charts_common/community_charts_common.dart' as common;
-import 'package:community_charts_flutter/community_charts_flutter.dart'
-    as charts;
-import 'package:flutter/material.dart';
-
-import '../commons/enums.dart';
+part of '../d_chart.dart';
 
 class MethodCommon {
   static charts.Color chartColor(Color color) {
     return charts.ColorUtil.fromDartColor(color);
-  }
-
-  static charts.Color randomColor() {
-    var generatedColor = Random().nextInt(Colors.primaries.length);
-    return chartColor(Colors.primaries[generatedColor]);
   }
 
   static common.FillPatternType fillPattern(FillPattern pattern) {
@@ -44,5 +32,15 @@ class MethodCommon {
       return common.TickLabelJustification.inside;
     }
     return common.TickLabelJustification.outside;
+  }
+
+  static TextDirection isLTR(bool ltr) {
+    return ltr ? TextDirection.ltr : TextDirection.rtl;
+  }
+
+  static common.DateTimeFactory dateTimeFactory(bool useUTC) {
+    return useUTC
+        ? const common.UTCDateTimeFactory()
+        : const common.LocalDateTimeFactory();
   }
 }

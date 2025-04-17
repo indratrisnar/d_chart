@@ -1,40 +1,37 @@
-part of 'model.dart';
+part of '../../d_chart.dart';
 
 class NumericData extends ChartData<num> {
-  NumericData({
+  const NumericData({
     required super.domain,
     required super.measure,
     super.domainLowerBound,
     super.measureLowerBound,
     super.domainUpperBound,
     super.measureUpperBound,
-    super.color,
-    super.other,
+    super.others,
   });
 }
 
 class OrdinalData extends ChartData<String> {
-  OrdinalData({
+  const OrdinalData({
     required super.domain,
     required super.measure,
     super.domainLowerBound,
     super.measureLowerBound,
     super.domainUpperBound,
     super.measureUpperBound,
-    super.color,
-    super.other,
+    super.others,
   });
 }
 
 class TimeData extends ChartData<DateTime> {
-  TimeData({
+  const TimeData({
     required super.domain,
     required super.measure,
     super.domainLowerBound,
     super.measureLowerBound,
     super.domainUpperBound,
     super.measureUpperBound,
-    super.color,
-    super.other,
+    super.others,
   });
 }

@@ -1,4 +1,4 @@
-part of 'axis.dart';
+part of '../../d_chart.dart';
 
 class DomainAxisN extends ChartAxis<num> {
   const DomainAxisN({

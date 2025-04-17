@@ -1,11 +1,4 @@
-import '../enums.dart';
-import '../method_common.dart';
-import '../style/style.dart';
-import '../tick/numeric_tick_provider.dart';
-import '../viewport.dart';
-import 'package:community_charts_common/community_charts_common.dart' as common;
-part 'domain_axis.dart';
-part 'measure_axis.dart';
+part of '../../d_chart.dart';
 
 /// T -> Domain Data Type
 abstract class ChartAxis<T> {
@@ -97,6 +90,8 @@ abstract class ChartAxis<T> {
 
   final TickLabelJustification? tickLabelJustification;
 
+  axisSpec();
+
   common.RenderSpec<T> getRenderSpec() {
     if (noRenderSpec) {
       return common.NoneRenderSpec<T>(
@@ -146,6 +141,4 @@ abstract class ChartAxis<T> {
       tickLengthPx: tickLength,
     );
   }
-
-  common.AxisSpec<T> axisSpec();
 }

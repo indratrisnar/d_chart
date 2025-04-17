@@ -1,4 +1,4 @@
-part of 'decorator.dart';
+part of '../../d_chart.dart';
 
 abstract class ArcLabelDecorator<T> {
   const ArcLabelDecorator({

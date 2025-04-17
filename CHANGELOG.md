@@ -57,6 +57,9 @@
     - DomainAxisN : Numeric
     - DomainAxisO : Ordinal
     - DomainAxisT : Time
+- Deprecated
+  - DChartBarCustom
+  - DChartSingleBar
 
 ## 2.10.5
 

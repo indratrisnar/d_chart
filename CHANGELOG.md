@@ -4,6 +4,7 @@
 - Data Model
   - remove color
   - add dynamic property for group
+  - measure can set to null
 - Config Series
   some global property move to ConfigSeries, to config universal chart
 - config render

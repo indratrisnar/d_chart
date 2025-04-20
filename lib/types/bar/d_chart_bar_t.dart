@@ -7,9 +7,9 @@ class DChartBarT extends BaseDChartT {
     super.renderType,
     super.animate,
     super.animationDuration,
-    DomainAxisT? super.domainAxis,
-    MeasureAxis? super.measureAxis,
-    MeasureAxis? super.secondaryMeasureAxis,
+    DomainAxisT super.domainAxis = const DomainAxisT(),
+    MeasureAxis super.measureAxis = const MeasureAxis(),
+    MeasureAxis super.secondaryMeasureAxis = const MeasureAxis(),
     super.useSecondaryMeasureAxis,
     super.layoutMargin,
     super.allowSliding,
@@ -20,19 +20,10 @@ class DChartBarT extends BaseDChartT {
     super.defaultInteractions,
     this.configSeriesBar = const ConfigSeriesBarT(),
     this.configSeriesBarTargetLine = const ConfigSeriesBarTargetLineT(),
-    this.arrangeVertically = false,
-    this.useUTC = false,
   });
 
   final ConfigSeriesBarT configSeriesBar;
   final ConfigSeriesBarTargetLineT configSeriesBarTargetLine;
-
-  final bool arrangeVertically;
-
-  /// DateTime Factory
-  ///
-  /// Local or UTC
-  final bool useUTC;
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +53,6 @@ class DChartBarT extends BaseDChartT {
 
           return chartSeries;
         }),
-
-        // barGroupingType: common.BarGroupingType.grouped, // already stup inside ConfigSeriesBar
-        dateTimeFactory: MethodCommon.dateTimeFactory(useUTC),
         flipVerticalAxis: flipVerticalAxis,
         defaultInteractions: defaultInteractions,
         animate: animate,

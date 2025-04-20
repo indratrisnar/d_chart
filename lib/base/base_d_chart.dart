@@ -38,17 +38,6 @@ abstract class BaseDChart<G, D, T> extends StatelessWidget {
   /// default: `const Duration(milliseconds: 300)`
   final Duration animationDuration;
 
-  /// setup config for entire series in chart widget,
-  ///
-  /// but also can be set dynamically according data point
-  // final ConfigSeriesN configSeries;
-
-  /// style line
-  // final ConfigRenderLineN configRenderLine;
-
-  /// style point
-  // final ConfigRenderPointN configRenderPoint;
-
   /// customize domain axis
   final ChartAxis<T>? domainAxis;
 
@@ -58,7 +47,7 @@ abstract class BaseDChart<G, D, T> extends StatelessWidget {
   /// customize secondary measure axis
   final ChartAxis<num>? secondaryMeasureAxis;
 
-  /// Render Type to draw chart
+  /// Which measure to use for group
   final bool Function(G group)? useSecondaryMeasureAxis;
 
   /// margin from outer chart to wrapper box\
@@ -72,6 +61,8 @@ abstract class BaseDChart<G, D, T> extends StatelessWidget {
   /// To fix this, set viewport in [measueAxis]\
   /// default: false
   final bool allowSliding;
+
+  final bool defaultInteractions;
 
   /// listen which data is selected
   final void Function(D data)? onUpdatedListener;
@@ -91,6 +82,4 @@ abstract class BaseDChart<G, D, T> extends StatelessWidget {
   /// sort reversed measure axis/
   /// default: false
   final bool flipVerticalAxis;
-
-  final bool defaultInteractions;
 }

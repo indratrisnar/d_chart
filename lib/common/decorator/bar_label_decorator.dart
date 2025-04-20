@@ -2,19 +2,23 @@ part of '../../d_chart.dart';
 
 abstract class BarLabelDecorator<T> {
   const BarLabelDecorator({
-    this.insideLabelAnchor,
+    this.labelAnchor,
     this.labelPadding = 5,
     this.barLabelPosition = BarLabelPosition.auto,
+    this.barLabelVerticalPosition = BarLabelVerticalPosition.middle,
     this.insideLabelStyle,
     this.outsideLabelStyle,
   });
 
   /// position label bar chart item
-  final BarLabelAnchor? insideLabelAnchor;
+  final BarLabelAnchor? labelAnchor;
 
   /// Configures where to place the label relative to the bars.\
   /// default: `BarLabelPosition.auto`
   final BarLabelPosition barLabelPosition;
+
+  /// label position when arrange vertically
+  final BarLabelVerticalPosition barLabelVerticalPosition;
 
   /// Space before and after the label text.\
   /// default: 5
@@ -30,11 +34,11 @@ abstract class BarLabelDecorator<T> {
     return common.BarLabelDecorator<T>(
       insideLabelStyleSpec: insideLabelStyle?.getRender(),
       outsideLabelStyleSpec: outsideLabelStyle?.getRender(),
-      labelAnchor: _getBarLabelAnchor(insideLabelAnchor),
+      labelAnchor: _getBarLabelAnchor(labelAnchor),
       labelPadding: labelPadding,
       labelPosition: _getBarLabelPosition(barLabelPosition),
-      labelPlacement: common.BarLabelPlacement.opposeAxisBaseline,
-      labelVerticalPosition: common.BarLabelVerticalPosition.middle,
+      labelVerticalPosition:
+          MethodCommon.barLabelVerticalPosition(barLabelVerticalPosition),
     );
   }
 
@@ -59,8 +63,9 @@ abstract class BarLabelDecorator<T> {
 class BarLabelDecoratorN extends BarLabelDecorator<num> {
   const BarLabelDecoratorN({
     super.barLabelPosition,
+    super.barLabelVerticalPosition,
     super.insideLabelStyle,
-    super.insideLabelAnchor,
+    super.labelAnchor,
     super.labelPadding,
     super.outsideLabelStyle,
   });
@@ -69,8 +74,9 @@ class BarLabelDecoratorN extends BarLabelDecorator<num> {
 class BarLabelDecoratorO extends BarLabelDecorator<String> {
   const BarLabelDecoratorO({
     super.barLabelPosition,
+    super.barLabelVerticalPosition,
     super.insideLabelStyle,
-    super.insideLabelAnchor,
+    super.labelAnchor,
     super.labelPadding,
     super.outsideLabelStyle,
   });
@@ -79,8 +85,9 @@ class BarLabelDecoratorO extends BarLabelDecorator<String> {
 class BarLabelDecoratorT extends BarLabelDecorator<DateTime> {
   const BarLabelDecoratorT({
     super.barLabelPosition,
+    super.barLabelVerticalPosition,
     super.insideLabelStyle,
-    super.insideLabelAnchor,
+    super.labelAnchor,
     super.labelPadding,
     super.outsideLabelStyle,
   });

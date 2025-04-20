@@ -24,10 +24,6 @@ abstract class ConfigSeries<G, D, T> {
   });
 
   /// set single color for entire series
-  ///
-  /// If null ? group.color
-  ///
-  /// If group.color null? random color
   final Color? seriesColor;
 
   /// unlike seriesColor, this property allows for dynamic color assignments based on data points
@@ -36,16 +32,11 @@ abstract class ConfigSeries<G, D, T> {
   /// `areaColor` returns the area color for a given data value.\
   /// If not provided, then group color will be used 10% opacity by default.\
   /// Specify for Line type
-  ///
-  /// to activate custom areaColor,\
-  /// `ConfigRenderLine -> includeArea` must be `true`
   final Color Function(G group, D data, int? index)? areaColor;
 
-  /// set fill chart where has fill box like bar\
-  /// default: random color
+  /// set fill chart where has fill box like bar
   final Color? Function(G group, D data, int? index)? fillColor;
 
-  /// custom fill pattern\
   /// default: solid
   final FillPattern Function(G group, D data, int? index)? fillPattern;
 

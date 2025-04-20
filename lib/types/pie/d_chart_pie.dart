@@ -64,10 +64,10 @@ class DChartPieN extends DChartPie<NumericGroup, NumericData, num> {
     super.animate,
     super.animationDuration,
     super.layoutMargin,
+    super.defaultInteractions,
     super.onUpdatedListener,
     super.onChangedListener,
     super.ltr,
-    super.defaultInteractions,
     ConfigSeriesPieN super.configSeriesPie = const ConfigSeriesPieN(),
   }) : super(group: NumericGroup(id: 'DChartPieN', data: data));
 }

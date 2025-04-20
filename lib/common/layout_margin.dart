@@ -1,12 +1,17 @@
 part of '../d_chart.dart';
 
 class LayoutMargin {
+  const LayoutMargin(
+    this.left,
+    this.top,
+    this.right,
+    this.bottom,
+  );
+
   final int left;
   final int top;
   final int right;
   final int bottom;
-
-  LayoutMargin(this.left, this.top, this.right, this.bottom);
 
   charts.LayoutConfig getRender() {
     return charts.LayoutConfig(

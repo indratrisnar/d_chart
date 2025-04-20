@@ -4,13 +4,15 @@ abstract class ConfigSeriesScatter<G, D, T> extends ConfigSeries<G, D, T> {
   const ConfigSeriesScatter({
     super.seriesColor,
     super.customColor,
-    super.areaColor,
-    super.fillColor,
-    super.fillPattern,
+    // super.areaColor,
+    // super.fillColor, below instead
+    Color? Function(G group, D data, int? index)? pointColor,
+    // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
     super.strokeWidthPx,
-    super.radiusPx,
+    // super.radiusPx,
+    num Function(G group, D data, int? index)? pointRadius,
     super.measureOffset,
     super.domain,
     super.domainLowerBound,
@@ -18,37 +20,28 @@ abstract class ConfigSeriesScatter<G, D, T> extends ConfigSeries<G, D, T> {
     super.measure,
     super.measureLowerBound,
     super.measureUpperBound,
-    this.radiusPxBase = 5,
+    this.pointRadiusBase = 5,
+    this.strokeWidthBase = 0,
     this.symbolRender,
-    // this.strokeWidthPx = 0.0,
-    this.showPointLabel = false,
-    required this.pointLabelDecorator,
     this.showComparisonPoint = false,
     this.comparisonSymbolRender = const ComparisonSymbolRenderRectangleRange(),
-  });
+    this.showPointLabel = false,
+    required this.pointLabelDecorator,
+  }) : super(fillColor: pointColor, radiusPx: pointRadius);
 
-  /// size plot point\
-  /// default: 5
-  final double radiusPxBase;
-
-  /// render for symbol plot point
+  /// render symbol for plot point
   /// - SymbolRenderCircle
   /// - SymbolRenderLine
   /// - SymbolRenderRect
   /// - SymbolRenderTriangle
   final SymbolRender? symbolRender;
 
-  /// Stroke width of the target line.\
-  /// as border in `SymbolRenderCircle`
-  // final double strokeWidthPx;
+  /// size plot point\
+  /// default: 5
+  final double pointRadiusBase;
 
-  /// show label on plot point
-  ///
-  /// default: false
-  final bool showPointLabel;
-
-  /// to decor label on plot point
-  final PointLabelDecorator<D, T> pointLabelDecorator;
+  /// Stroke width of the symbol.
+  final double strokeWidthBase;
 
   /// will draw track chart for each point
   ///
@@ -60,12 +53,20 @@ abstract class ConfigSeriesScatter<G, D, T> extends ConfigSeries<G, D, T> {
   /// default: ComparisonSymbolRenderRectangleRange
   final ComparisonSymbolRender comparisonSymbolRender;
 
+  /// show label on plot point
+  ///
+  /// default: false
+  final bool showPointLabel;
+
+  /// to decor label on plot point
+  final PointLabelDecorator<D, T> pointLabelDecorator;
+
   @override
   common.PointRendererConfig<T> getRenderConfig() {
     return common.PointRendererConfig<T>(
       customRendererId: RenderType.scatterPlot.name,
-      radiusPx: radiusPxBase,
-      // strokeWidthPx: strokeWidthPx,
+      radiusPx: pointRadiusBase,
+      strokeWidthPx: strokeWidthBase,
       symbolRenderer: symbolRender?.getRenderer(),
       pointRendererDecorators: [
         if (showPointLabel) pointLabelDecorator.render(),
@@ -83,13 +84,15 @@ class ConfigSeriesScatterN
   const ConfigSeriesScatterN({
     super.seriesColor,
     super.customColor,
-    super.areaColor,
-    super.fillColor,
-    super.fillPattern,
+    // super.areaColor,
+    // super.fillColor,
+    super.pointColor,
+    // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
     super.strokeWidthPx,
-    super.radiusPx,
+    // super.radiusPx,
+    super.pointRadius,
     super.measureOffset,
     super.domain,
     super.domainLowerBound,
@@ -97,9 +100,9 @@ class ConfigSeriesScatterN
     super.measure,
     super.measureLowerBound,
     super.measureUpperBound,
-    // super.radiusPx = 3.5,
     super.symbolRender,
-    // super.strokeWidthPx = 0.0,
+    super.pointRadiusBase,
+    super.strokeWidthBase,
     super.showPointLabel,
     super.pointLabelDecorator = const PointLabelDecoratorN(),
     super.showComparisonPoint,
@@ -112,13 +115,15 @@ class ConfigSeriesScatterO
   const ConfigSeriesScatterO({
     super.seriesColor,
     super.customColor,
-    super.areaColor,
-    super.fillColor,
-    super.fillPattern,
+    // super.areaColor,
+    // super.fillColor,
+    super.pointColor,
+    // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
     super.strokeWidthPx,
-    super.radiusPx,
+    // super.radiusPx,
+    super.pointRadius,
     super.measureOffset,
     super.domain,
     super.domainLowerBound,
@@ -126,9 +131,9 @@ class ConfigSeriesScatterO
     super.measure,
     super.measureLowerBound,
     super.measureUpperBound,
-    // super.radiusPx = 3.5,
     super.symbolRender,
-    // super.strokeWidthPx = 0.0,
+    super.pointRadiusBase,
+    super.strokeWidthBase,
     super.showPointLabel,
     super.pointLabelDecorator = const PointLabelDecoratorO(),
     super.showComparisonPoint,
@@ -141,13 +146,15 @@ class ConfigSeriesScatterT
   const ConfigSeriesScatterT({
     super.seriesColor,
     super.customColor,
-    super.areaColor,
-    super.fillColor,
-    super.fillPattern,
+    // super.areaColor,
+    // super.fillColor,
+    super.pointColor,
+    // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
     super.strokeWidthPx,
-    super.radiusPx,
+    // super.radiusPx,
+    super.pointRadius,
     super.measureOffset,
     super.domain,
     super.domainLowerBound,
@@ -155,9 +162,9 @@ class ConfigSeriesScatterT
     super.measure,
     super.measureLowerBound,
     super.measureUpperBound,
-    // super.radiusPx = 3.5,
     super.symbolRender,
-    // super.strokeWidthPx = 0.0,
+    super.pointRadiusBase,
+    super.strokeWidthBase,
     super.showPointLabel,
     super.pointLabelDecorator = const PointLabelDecoratorT(),
     super.showComparisonPoint,

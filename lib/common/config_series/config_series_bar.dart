@@ -8,52 +8,33 @@ abstract class ConfigSeriesBar<G, D, T> extends ConfigSeries<G, D, T> {
     super.fillColor,
     super.fillPattern,
     // super.dashPattern,
-    // super.labelAccessor, // below instead
-    String Function(G?, D, int?)? barLabel,
+    super.labelAccessor,
     super.strokeWidthPx,
     // super.radiusPx,
     super.measureOffset,
     super.domain,
-    super.domainLowerBound,
-    super.domainUpperBound,
+    // super.domainLowerBound,
+    // super.domainUpperBound,
     super.measure,
-    super.measureLowerBound,
-    super.measureUpperBound,
+    // super.measureLowerBound,
+    // super.measureUpperBound,
     this.barGroupInnerPaddingPx = 2,
     this.fillPatternBase = FillPattern.solid,
     this.cornerRadius = 2,
     this.barGroupingType = BarGroupingType.grouped,
     this.maxBarWidthPx,
-    // this.minBarLengthPx = 0,
     this.stackedBarPaddingPx = 1,
-    // this.strokeWidthPxBase = 0,
     this.weightPattern,
     this.showBarLabel = false,
     required this.barLabelDecorator,
-  }) : super(labelAccessor: barLabel);
-
-  /// default: 2
-  final int barGroupInnerPaddingPx;
-
-  /// fill type\
-  /// default: FillPattern.solid
-  final FillPattern fillPatternBase;
-
-  /// bar corner radius\
-  /// default: 2
-  final int cornerRadius;
+  });
 
   /// type group\
   /// default: BarGroupingType.grouped
   final BarGroupingType barGroupingType;
 
-  /// The maximum bar group width in pixels, or null if bars can be arbitrarily
-  /// wide.
-  final int? maxBarWidthPx;
-
-  /// minimum bar length\
-  /// default: 0
-  // final int minBarLengthPx; // in chart.js this is for scale, but in this framework, i don't know what is it for
+  /// default: 2
+  final int barGroupInnerPaddingPx;
 
   /// The padding between bar stacks.
   /// default: 1\
@@ -62,9 +43,9 @@ abstract class ConfigSeriesBar<G, D, T> extends ConfigSeries<G, D, T> {
   /// && `barGroupingType` is `BarGroupingType.stacked` or `BarGroupingType.groupedStacked`
   final int stackedBarPaddingPx;
 
-  /// Stroke width of the target line.
-  /// default: 0.0\
-  // final double strokeWidthPxBase;
+  /// The maximum bar group width in pixels, or null if bars can be arbitrarily
+  /// wide.
+  final int? maxBarWidthPx;
 
   /// Sets the series weight pattern. This is a pattern of weights used to
   /// calculate the width of bars within a bar group. If not specified, each bar
@@ -84,6 +65,14 @@ abstract class ConfigSeriesBar<G, D, T> extends ConfigSeries<G, D, T> {
   /// Not used for stacked bars.
   final List<int>? weightPattern;
 
+  /// bar corner radius\
+  /// default: 2
+  final int cornerRadius;
+
+  /// fill type\
+  /// default: FillPattern.solid
+  final FillPattern fillPatternBase;
+
   /// show label on bar item
   ///
   /// default: false
@@ -101,9 +90,7 @@ abstract class ConfigSeriesBar<G, D, T> extends ConfigSeries<G, D, T> {
       groupingType: _getBarGroupingType(barGroupingType),
       cornerStrategy: common.ConstCornerStrategy(cornerRadius),
       maxBarWidthPx: maxBarWidthPx,
-      // minBarLengthPx: minBarLengthPx,
       stackedBarPaddingPx: stackedBarPaddingPx,
-      // strokeWidthPx: strokeWidthPxBase,
       weightPattern: weightPattern,
       barRendererDecorator: !showBarLabel
           ? null
@@ -120,17 +107,16 @@ class ConfigSeriesBarN extends ConfigSeriesBar<NumericGroup, NumericData, num> {
     super.fillColor,
     super.fillPattern,
     // super.dashPattern,
-    // super.labelAccessor, // below instead
-    super.barLabel,
+    super.labelAccessor,
     super.strokeWidthPx,
     // super.radiusPx,
     super.measureOffset,
     super.domain,
-    super.domainLowerBound,
-    super.domainUpperBound,
+    // super.domainLowerBound,
+    // super.domainUpperBound,
     super.measure,
-    super.measureLowerBound,
-    super.measureUpperBound,
+    // super.measureLowerBound,
+    // super.measureUpperBound,
     super.barGroupInnerPaddingPx,
     super.fillPatternBase,
     super.cornerRadius,
@@ -154,19 +140,18 @@ class ConfigSeriesBarO
     super.fillColor,
     super.fillPattern,
     // super.dashPattern,
-    // super.labelAccessor, below instead
-    super.barLabel,
+    super.labelAccessor,
     super.strokeWidthPx,
     // super.radiusPx,
     super.measureOffset,
     super.domain,
-    super.domainLowerBound,
-    super.domainUpperBound,
+    // super.domainLowerBound,
+    // super.domainUpperBound,
     super.measure,
-    super.measureLowerBound,
-    super.measureUpperBound,
+    // super.measureLowerBound,
+    // super.measureUpperBound,
     super.barGroupInnerPaddingPx,
-    // super.fillPattern = FillPattern.solid,
+    super.fillPatternBase,
     super.cornerRadius,
     super.barGroupingType,
     super.maxBarWidthPx,
@@ -187,19 +172,18 @@ class ConfigSeriesBarT extends ConfigSeriesBar<TimeGroup, TimeData, DateTime> {
     super.fillColor,
     super.fillPattern,
     // super.dashPattern,
-    // super.labelAccessor, below instead
-    super.barLabel,
+    super.labelAccessor,
     super.strokeWidthPx,
     // super.radiusPx,
     super.measureOffset,
     super.domain,
-    super.domainLowerBound,
-    super.domainUpperBound,
+    // super.domainLowerBound,
+    // super.domainUpperBound,
     super.measure,
-    super.measureLowerBound,
-    super.measureUpperBound,
+    // super.measureLowerBound,
+    // super.measureUpperBound,
     super.barGroupInnerPaddingPx,
-    // super.fillPattern = FillPattern.solid,
+    super.fillPatternBase,
     super.cornerRadius,
     super.barGroupingType,
     super.maxBarWidthPx,

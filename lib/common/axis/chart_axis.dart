@@ -4,9 +4,9 @@ part of '../../d_chart.dart';
 abstract class ChartAxis<T> {
   const ChartAxis({
     this.noRenderSpec = false,
-    this.renderType = AxisRenderType.smallTick,
-    this.showLine = true,
-    this.lineStyle = const LineStyle(),
+    this.axisRenderType = AxisRenderType.smallTick,
+    this.showAxisLine = true,
+    this.axisLineStyle = const LineStyle(),
     this.gridlineStyle = const LineStyle(),
     this.tickLineStyle = const LineStyle(),
     this.tickLength = 3,
@@ -14,27 +14,27 @@ abstract class ChartAxis<T> {
     this.labelStyle = const LabelStyle(),
     this.labelAnchor = LabelAnchor.centered,
     this.labelRotation = 0,
-    this.minimumPaddingBetweenLabels = 0,
+    this.minimumPaddingBetweenLabels,
     this.labelOffsetFromAxis,
-    this.labelOffsetFromTick,
-    this.labelCollisionOffsetFromAxis,
-    this.labelCollisionOffsetFromTick,
-    this.labelCollisionRotation,
-    this.tickLabelJustification,
+    // this.labelOffsetFromTick,
+    // this.labelCollisionOffsetFromAxis,
+    // this.labelCollisionOffsetFromTick,
+    // this.labelCollisionRotation,
+    this.tickLabelJustification = TickLabelJustification.inside,
   });
 
-  /// disable label and tick axis
+  /// disable label and tick axis, but not axis line
   final bool noRenderSpec;
 
   /// default: AxisRenderType.smallTick
-  final AxisRenderType renderType;
+  final AxisRenderType axisRenderType;
 
-  /// show domain line\
+  /// show axis line\
   /// default: true
-  final bool showLine;
+  final bool showAxisLine;
 
-  /// styling for domain line
-  final LineStyle lineStyle;
+  /// styling for axis line
+  final LineStyle axisLineStyle;
 
   /// styling of lines perpendicular to the axis line
   final LineStyle gridlineStyle;
@@ -50,18 +50,14 @@ abstract class ChartAxis<T> {
   /// domain value or measure value
   final String Function(T? value)? tickLabelFormatter;
 
-  /// styling for domain label
+  /// styling for axis tick label
   final LabelStyle labelStyle;
 
   /// label position based on tick axis\
   /// default: `LabelAnchor.centered`
   final LabelAnchor labelAnchor;
 
-  /// starting point at center right.
-  ///
-  /// center right = 0 degree.
-  ///
-  /// default: 0
+  /// default: 0 degree
   final int labelRotation;
 
   /// can be use as space beetween label.
@@ -74,31 +70,32 @@ abstract class ChartAxis<T> {
   final int? labelOffsetFromAxis;
 
   /// Absolute distance from the tick to the text if using start/end
-  final int? labelOffsetFromTick;
+  // final int? labelOffsetFromTick;
 
   /// Distance from the axis line in px when a collision between ticks has
   /// occurred.
-  final int? labelCollisionOffsetFromAxis;
+  // final int? labelCollisionOffsetFromAxis;
 
   /// Absolute distance from the tick to the text when a collision between ticks
   /// has occurred.
-  final int? labelCollisionOffsetFromTick;
+  // final int? labelCollisionOffsetFromTick;
 
   /// Angle of rotation for tick labels, in degrees when a collision between
   /// ticks has occurred.
-  final int? labelCollisionRotation;
+  // final int? labelCollisionRotation;
 
-  final TickLabelJustification? tickLabelJustification;
+  /// Work on vertical axis
+  final TickLabelJustification tickLabelJustification;
 
   axisSpec();
 
   common.RenderSpec<T> getRenderSpec() {
     if (noRenderSpec) {
       return common.NoneRenderSpec<T>(
-        axisLineStyle: lineStyle.getRender(),
+        axisLineStyle: axisLineStyle.getRender(),
       );
     }
-    return switch (renderType) {
+    return switch (axisRenderType) {
       AxisRenderType.gridline => _renderGridline(),
       _ => _renderSmallTick(),
     };
@@ -106,15 +103,15 @@ abstract class ChartAxis<T> {
 
   common.SmallTickRendererSpec<T> _renderSmallTick() {
     return common.SmallTickRendererSpec<T>(
-      axisLineStyle: lineStyle.getRender(),
+      axisLineStyle: axisLineStyle.getRender(),
       labelAnchor: MethodCommon.tickLabelAnchor(labelAnchor),
-      labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxis,
-      labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTick,
-      labelCollisionRotation: labelCollisionRotation,
+      // labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxis,
+      // labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTick,
+      // labelCollisionRotation: labelCollisionRotation,
       labelJustification:
           MethodCommon.tickLabelJustification(tickLabelJustification),
       labelOffsetFromAxisPx: labelOffsetFromAxis,
-      labelOffsetFromTickPx: labelOffsetFromTick,
+      // labelOffsetFromTickPx: labelOffsetFromTick,
       labelRotation: labelRotation,
       labelStyle: labelStyle.getRender(),
       lineStyle: tickLineStyle.getRender(),
@@ -125,15 +122,15 @@ abstract class ChartAxis<T> {
 
   common.GridlineRendererSpec<T> _renderGridline() {
     return common.GridlineRendererSpec<T>(
-      axisLineStyle: lineStyle.getRender(),
+      axisLineStyle: axisLineStyle.getRender(),
       labelAnchor: MethodCommon.tickLabelAnchor(labelAnchor),
-      labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxis,
-      labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTick,
-      labelCollisionRotation: labelCollisionRotation,
+      // labelCollisionOffsetFromAxisPx: labelCollisionOffsetFromAxis,
+      // labelCollisionOffsetFromTickPx: labelCollisionOffsetFromTick,
+      // labelCollisionRotation: labelCollisionRotation,
       labelJustification:
           MethodCommon.tickLabelJustification(tickLabelJustification),
       labelOffsetFromAxisPx: labelOffsetFromAxis,
-      labelOffsetFromTickPx: labelOffsetFromTick,
+      // labelOffsetFromTickPx: labelOffsetFromTick,
       labelRotation: labelRotation,
       labelStyle: labelStyle.getRender(),
       lineStyle: gridlineStyle.getRender(),

@@ -1,8 +1,14 @@
 part of '../../d_chart.dart';
 
 class LineStyle {
+  const LineStyle({
+    this.color = Colors.black12,
+    this.dashPattern,
+    this.thickness,
+  });
+
   /// line color\
-  /// default: Colors.grey
+  /// default: Colors.black12
   final Color color;
 
   /// line pattern
@@ -11,12 +17,6 @@ class LineStyle {
   /// line thickness\
   /// default: 1
   final int? thickness;
-
-  const LineStyle({
-    this.color = Colors.black12,
-    this.dashPattern,
-    this.thickness,
-  });
 
   common.LineStyleSpec getRender() {
     return common.LineStyleSpec(

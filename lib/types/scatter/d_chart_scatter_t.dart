@@ -6,27 +6,21 @@ class DChartScatterT extends BaseDChartT {
     required super.groupList,
     super.animate,
     super.animationDuration,
-    DomainAxisT? super.domainAxis,
-    MeasureAxis? super.measureAxis,
-    MeasureAxis? super.secondaryMeasureAxis,
+    DomainAxisT super.domainAxis = const DomainAxisT(),
+    MeasureAxis super.measureAxis = const MeasureAxis(),
+    MeasureAxis super.secondaryMeasureAxis = const MeasureAxis(),
     super.useSecondaryMeasureAxis,
     super.layoutMargin,
     super.allowSliding,
+    super.defaultInteractions,
     super.onUpdatedListener,
     super.onChangedListener,
     super.ltr,
-    super.defaultInteractions,
     super.flipVerticalAxis,
     this.configSeriesScatter = const ConfigSeriesScatterT(),
-    this.useUTC = false,
   });
 
   final ConfigSeriesScatterT configSeriesScatter;
-
-  /// DateTime Factory
-  ///
-  /// Local or UTC
-  final bool useUTC;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +42,6 @@ class DChartScatterT extends BaseDChartT {
           }
           return chartSeries;
         }),
-        dateTimeFactory: MethodCommon.dateTimeFactory(useUTC),
         flipVerticalAxis: flipVerticalAxis,
         defaultInteractions: defaultInteractions,
         animate: animate,

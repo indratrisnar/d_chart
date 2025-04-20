@@ -8,17 +8,16 @@ abstract class ConfigSeriesBarLane<G, D, T> extends ConfigSeries<G, D, T> {
     super.fillColor,
     super.fillPattern,
     // super.dashPattern,
-    // super.labelAccessor, // below instead
-    String Function(G?, D, int?)? barLabel,
+    super.labelAccessor,
     super.strokeWidthPx,
     // super.radiusPx,
     super.measureOffset,
     super.domain,
-    super.domainLowerBound,
-    super.domainUpperBound,
+    // super.domainLowerBound,
+    // super.domainUpperBound,
     super.measure,
-    super.measureLowerBound,
-    super.measureUpperBound,
+    // super.measureLowerBound,
+    // super.measureUpperBound,
     this.fillPatternBase = FillPattern.solid,
     this.cornerRadius = 2,
     this.barGroupingType = BarGroupingType.grouped,
@@ -27,23 +26,11 @@ abstract class ConfigSeriesBarLane<G, D, T> extends ConfigSeries<G, D, T> {
     this.showBarLabel = false,
     this.barLabelDecorator = const BarLabelDecoratorO(),
     this.backgroundBarColor,
-  }) : super(labelAccessor: barLabel);
-
-  /// fill type\
-  /// default: FillPattern.solid
-  final FillPattern fillPatternBase;
-
-  /// bar corner radius\
-  /// default: 2
-  final int cornerRadius;
+  });
 
   /// type group\
   /// default: BarGroupingType.grouped
   final BarGroupingType barGroupingType;
-
-  /// minimum bar length\
-  /// default: 0
-  // final int minBarLengthPx; // in chart.js this is for scale, but in this framework, i don't know what is it for
 
   /// The padding between bar stacks.
   /// default: 1\
@@ -51,10 +38,6 @@ abstract class ConfigSeriesBarLane<G, D, T> extends ConfigSeries<G, D, T> {
   /// to show padding? `stackedBarPaddingPx` > `strokeWidthPx`
   /// && `barGroupingType` is `BarGroupingType.stacked` or `BarGroupingType.groupedStacked`
   final int stackedBarPaddingPx;
-
-  /// Stroke width of the target line.
-  /// default: 0.0\
-  // final double strokeWidthPxBase;
 
   /// Sets the series weight pattern. This is a pattern of weights used to
   /// calculate the width of bars within a bar group. If not specified, each bar
@@ -73,6 +56,14 @@ abstract class ConfigSeriesBarLane<G, D, T> extends ConfigSeries<G, D, T> {
   ///
   /// Not used for stacked bars.
   final List<int>? weightPattern;
+
+  /// bar corner radius\
+  /// default: 2
+  final int cornerRadius;
+
+  /// fill type\
+  /// default: FillPattern.solid
+  final FillPattern fillPatternBase;
 
   /// show label on bar item
   ///
@@ -110,17 +101,16 @@ class ConfigSeriesBarLaneO
     super.fillColor,
     super.fillPattern,
     // super.dashPattern,
-    // super.labelAccessor, // below instead
-    super.barLabel,
+    super.labelAccessor,
     super.strokeWidthPx,
     // super.radiusPx,
     super.measureOffset,
     super.domain,
-    super.domainLowerBound,
-    super.domainUpperBound,
+    // super.domainLowerBound,
+    // super.domainUpperBound,
     super.measure,
-    super.measureLowerBound,
-    super.measureUpperBound,
+    // super.measureLowerBound,
+    // super.measureUpperBound,
     super.fillPatternBase,
     super.cornerRadius,
     super.barGroupingType,

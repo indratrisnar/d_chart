@@ -43,4 +43,12 @@ class MethodCommon {
         ? const common.UTCDateTimeFactory()
         : const common.LocalDateTimeFactory();
   }
+
+  static common.BarLabelVerticalPosition barLabelVerticalPosition(
+      BarLabelVerticalPosition type) {
+    return switch (type) {
+      BarLabelVerticalPosition.top => common.BarLabelVerticalPosition.top,
+      _ => common.BarLabelVerticalPosition.middle,
+    };
+  }
 }

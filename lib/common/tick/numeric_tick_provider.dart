@@ -1,6 +1,13 @@
 part of '../../d_chart.dart';
 
 class NumericTickProvider {
+  const NumericTickProvider({
+    this.zeroBound,
+    this.desiredTickCount,
+    this.desiredMinTickCount,
+    this.desiredMaxTickCount,
+  });
+
   /// automatically include zero in the data range.
   final bool? zeroBound;
 
@@ -17,19 +24,13 @@ class NumericTickProvider {
   /// Both min and max win out if they are set along with [desiredTickCount].
   final int? desiredTickCount;
 
-  const NumericTickProvider({
-    this.zeroBound,
-    this.desiredTickCount,
-    this.desiredMinTickCount,
-    this.desiredMaxTickCount,
-  });
-
   common.BasicNumericTickProviderSpec getRender() {
     return common.BasicNumericTickProviderSpec(
       zeroBound: zeroBound,
       desiredMaxTickCount: desiredMaxTickCount,
       desiredMinTickCount: desiredMinTickCount,
       desiredTickCount: desiredTickCount,
+      // dataIsInWholeNumbers: false,
     );
   }
 }

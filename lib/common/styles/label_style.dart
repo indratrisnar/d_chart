@@ -1,6 +1,13 @@
 part of '../../d_chart.dart';
 
 class LabelStyle {
+  const LabelStyle({
+    this.color = Colors.black87,
+    this.fontSize = 12,
+    this.fontWeight = FontWeight.normal,
+    this.lineHeight,
+  });
+
   /// line color\
   /// default: Colors.black87
   final Color color;
@@ -14,13 +21,6 @@ class LabelStyle {
 
   /// such as height inside Flutter TextStyle
   final double? lineHeight;
-
-  const LabelStyle({
-    this.color = Colors.black87,
-    this.fontSize = 12,
-    this.fontWeight = FontWeight.normal,
-    this.lineHeight,
-  });
 
   common.TextStyleSpec getRender() {
     return common.TextStyleSpec(

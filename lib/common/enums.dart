@@ -1,15 +1,23 @@
 part of '../d_chart.dart';
 
+/// Configures where to place the label relative to the arcs.
+enum ArcLabelPosition {
+  /// Automatically try to place the label inside the arc first and place it on
+  /// the outside of the space available outside the arc is greater than space
+  /// available inside the arc.
+  auto,
+
+  /// Always place label on the outside.
+  outside,
+
+  /// Always place label on the inside.
+  inside
+}
+
+enum AxisRenderType { smallTick, gridline }
+
 /// for type custom render
 enum RenderType { bar, barLane, barTargetLine, line, scatterPlot }
-
-/// Defines the pattern for a color fill.
-///
-/// * [forwardHatch] defines a pattern of white lines angled up and to the right
-///   on top of a bar filled with the fill color.
-/// * [solid] defines a simple bar filled with the fill color. This is the
-///   default pattern for bars.
-enum FillPattern { solid, forwarHatch }
 
 /// Defines the way multiple series of bars are renderered per domain.
 ///
@@ -21,18 +29,6 @@ enum FillPattern { solid, forwarHatch }
 ///   in a group of bar stacks. Each stack will contain all the series that
 ///   share a series category.
 enum BarGroupingType { grouped, groupedStacked, stacked }
-
-/// label position based on tick axis
-enum LabelAnchor {
-  before,
-  centered,
-  after,
-
-  /// The top most tick draws all text under the location.
-  /// The bottom most tick draws all text above the location.
-  /// The rest of the ticks are centered.
-  inside,
-}
 
 /// position label bar chart item
 enum BarLabelAnchor { start, middle, end }
@@ -55,20 +51,33 @@ enum BarLabelPosition {
   right,
 }
 
-/// Configures where to place the label relative to the arcs.
-enum ArcLabelPosition {
-  /// Automatically try to place the label inside the arc first and place it on
-  /// the outside of the space available outside the arc is greater than space
-  /// available inside the arc.
-  auto,
+/// Configures where to place labels vertically on horizontal bars.
+enum BarLabelVerticalPosition {
+  /// Anchors label to be on top of bar
+  top,
 
-  /// Always place label on the outside.
-  outside,
-
-  /// Always place label on the inside.
-  inside
+  /// Anchors label to be inline with bar
+  middle,
 }
 
-enum AxisRenderType { smallTick, gridline }
+/// Defines the pattern for a color fill.
+///
+/// * [forwardHatch] defines a pattern of white lines angled up and to the right
+///   on top of a bar filled with the fill color.
+/// * [solid] defines a simple bar filled with the fill color. This is the
+///   default pattern for bars.
+enum FillPattern { solid, forwarHatch }
+
+/// label position based on tick axis
+enum LabelAnchor {
+  before,
+  centered,
+  after,
+
+  /// The top most tick draws all text under the location.
+  /// The bottom most tick draws all text above the location.
+  /// The rest of the ticks are centered.
+  inside,
+}
 
 enum TickLabelJustification { inside, outside }

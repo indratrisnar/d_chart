@@ -6,13 +6,13 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
     super.customColor,
     super.areaColor,
     // super.fillColor, below instead
-    final Color? Function(G, D, int?)? pointColor,
+    final Color? Function(G group, D data, int? index)? pointColor,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,
     super.strokeWidthPx,
     // super.radiusPx, below instead
-    num Function(G, D, int?)? pointRadius,
+    num Function(G group, D data, int? index)? pointRadius,
     super.measureOffset,
     super.domain,
     super.domainLowerBound,
@@ -20,7 +20,7 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
     super.measure,
     super.measureLowerBound,
     super.measureUpperBound,
-    this.pointRadiusBase = 3.5,
+    this.pointRadiusBase = 5,
     this.strokeWidthPxBase = 2.0,
     this.dashPatternBase,
     this.includeLine = true,
@@ -34,20 +34,22 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
     this.pointSymbol = const SymbolRenderCircle(),
   }) : super(fillColor: pointColor, radiusPx: pointRadius);
 
-  /// Radius of points on the line, if [includePoints] is enabled.
-  final double pointRadiusBase;
+  /// Configures whether a line representing the data will be drawn.
+  final bool includeLine;
+
+  /// adjust the offset of one chart above another chart
+  ///
+  /// default: false
+  final bool stacked;
+
+  /// Whether lines should have round end caps, or square if false.
+  final bool roundEndCaps;
 
   /// Stroke width of the line.
   final double strokeWidthPxBase;
 
   /// Dash pattern for the line.
   final List<int>? dashPatternBase;
-
-  /// Configures whether a line representing the data will be drawn.
-  final bool includeLine;
-
-  /// Configures whether points representing the data will be drawn.
-  final bool includePoints;
 
   /// Configures whether an area skirt representing the data will be drawn.
   ///
@@ -66,16 +68,8 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
   /// 0 - 1
   final double areaOpacity;
 
-  /// Whether lines should have round end caps, or square if false.
-  final bool roundEndCaps;
-
-  /// show label on plot point
-  ///
-  /// default: false
-  final bool includePointLabel;
-
-  /// to decor label on plot point
-  final PointLabelDecorator<D, T> pointLabelDecorator;
+  /// Configures whether points representing the data will be drawn.
+  final bool includePoints;
 
   /// symbol for point
   ///
@@ -84,10 +78,16 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
   /// default: SymbolRenderCircle
   final SymbolRender pointSymbol;
 
-  /// adjust the offset of one chart above another chart
+  /// Radius of points on the line, if [includePoints] is enabled.
+  final double pointRadiusBase;
+
+  /// show label on plot point
   ///
   /// default: false
-  final bool stacked;
+  final bool includePointLabel;
+
+  /// to decor label on plot point
+  final PointLabelDecorator<D, T> pointLabelDecorator;
 
   @override
   common.LineRendererConfig<T> getRenderConfig() {
@@ -102,7 +102,6 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
       roundEndCaps: roundEndCaps,
       strokeWidthPx: strokeWidthPxBase,
       symbolRenderer: pointSymbol.getRenderer(),
-      // layoutPaintOrder: common.LayoutViewPaintOrder.line, // still no active
       stacked: stacked,
       pointRendererDecorators: [
         if (includePointLabel) pointLabelDecorator.render(),

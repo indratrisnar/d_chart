@@ -1,15 +1,15 @@
 part of '../../d_chart.dart';
 
 class ArcLabelLeaderLineStyle {
-  final Color color;
-  final double length;
-  final double thickness;
-
   const ArcLabelLeaderLineStyle({
     required this.color,
     required this.length,
     required this.thickness,
   });
+
+  final Color color;
+  final double length;
+  final double thickness;
 
   common.ArcLabelLeaderLineStyleSpec getRender() {
     return common.ArcLabelLeaderLineStyleSpec(

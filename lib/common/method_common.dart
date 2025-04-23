@@ -6,10 +6,11 @@ class MethodCommon {
   }
 
   static common.FillPatternType fillPattern(FillPattern pattern) {
-    if (pattern == FillPattern.forwarHatch) {
-      return common.FillPatternType.forwardHatch;
-    }
-    return common.FillPatternType.solid;
+    return switch (pattern) {
+      FillPattern.forwarHatch => common.FillPatternType.forwardHatch,
+      FillPattern.gradient => common.FillPatternType.gradient,
+      _ => common.FillPatternType.solid,
+    };
   }
 
   static common.TickLabelAnchor tickLabelAnchor(LabelAnchor? type) {

@@ -9,6 +9,7 @@ abstract class ConfigSeries<G, D, T> {
     this.customColor,
     this.areaColor,
     this.fillColor,
+    this.gradient,
     this.fillPattern,
     this.dashPattern,
     this.labelAccessor,
@@ -36,6 +37,9 @@ abstract class ConfigSeries<G, D, T> {
 
   /// set fill chart where has fill box like bar
   final Color? Function(G group, D data, int? index)? fillColor;
+
+  /// set gradient color instead of fillColor
+  final Gradient? Function(G group, D data, int? index)? gradient;
 
   /// default: solid
   final FillPattern Function(G group, D data, int? index)? fillPattern;
@@ -133,6 +137,9 @@ abstract class ConfigSeries<G, D, T> {
               if (setupColor == null) return null;
               return MethodCommon.chartColor(setupColor);
             },
+      gradientFn: gradient == null
+          ? null
+          : (datum, index) => gradient!(group, datum, index),
       fillPatternFn: fillPattern == null
           ? null
           : (datum, index) {
@@ -184,67 +191,3 @@ abstract class ConfigSeries<G, D, T> {
     };
   }
 }
-
-// class ConfigSeriesN extends ConfigSeries<NumericGroup, NumericData, num> {
-//   const ConfigSeriesN({
-//     super.seriesColor,
-//     super.customColor,
-//     super.areaColor,
-//     super.fillColor,
-//     super.fillPattern,
-//     super.dashPattern,
-//     super.labelAccessor,
-//     super.strokeWidthPx,
-//     super.radiusPx,
-//     super.measureOffset,
-//     super.domain,
-//     super.domainLowerBound,
-//     super.domainUpperBound,
-//     super.measure,
-//     super.measureLowerBound,
-//     super.measureUpperBound,
-//   });
-
-// }
-
-// class ConfigSeriesO extends ConfigSeries<OrdinalGroup, OrdinalData, String> {
-//   const ConfigSeriesO({
-//     super.seriesColor,
-//     super.customColor,
-//     super.areaColor,
-//     super.fillColor,
-//     super.fillPattern,
-//     super.dashPattern,
-//     super.labelAccessor,
-//     super.strokeWidthPx,
-//     super.radiusPx,
-//     super.measureOffset,
-//     super.domain,
-//     super.domainLowerBound,
-//     super.domainUpperBound,
-//     super.measure,
-//     super.measureLowerBound,
-//     super.measureUpperBound,
-//   });
-// }
-
-// class ConfigSeriesT extends ConfigSeries<TimeGroup, TimeData, DateTime> {
-//   const ConfigSeriesT({
-//     super.seriesColor,
-//     super.customColor,
-//     super.areaColor,
-//     super.fillColor,
-//     super.fillPattern,
-//     super.dashPattern,
-//     super.labelAccessor,
-//     super.strokeWidthPx,
-//     super.radiusPx,
-//     super.measureOffset,
-//     super.domain,
-//     super.domainLowerBound,
-//     super.domainUpperBound,
-//     super.measure,
-//     super.measureLowerBound,
-//     super.measureUpperBound,
-//   });
-// }

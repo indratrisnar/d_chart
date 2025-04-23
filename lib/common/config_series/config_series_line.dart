@@ -7,6 +7,8 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
     super.areaColor,
     // super.fillColor, below instead
     final Color? Function(G group, D data, int? index)? pointColor,
+    // super.gradient, below instead
+    final Gradient? Function(G group, D data, int? index)? pointGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,
@@ -32,7 +34,11 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
     this.stacked = false,
     required this.pointLabelDecorator,
     this.pointSymbol = const SymbolRenderCircle(),
-  }) : super(fillColor: pointColor, radiusPx: pointRadius);
+  }) : super(
+          fillColor: pointColor,
+          radiusPx: pointRadius,
+          gradient: pointGradient,
+        );
 
   /// Configures whether a line representing the data will be drawn.
   final bool includeLine;
@@ -118,6 +124,7 @@ class ConfigSeriesLineN
     super.areaColor,
     // super.fillColor,
     super.pointColor,
+    super.pointGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,
@@ -154,6 +161,7 @@ class ConfigSeriesLineO
     super.areaColor,
     // super.fillColor,
     super.pointColor,
+    super.pointGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,
@@ -190,6 +198,7 @@ class ConfigSeriesLineT
     super.areaColor,
     // super.fillColor,
     super.pointColor,
+    super.pointGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,

@@ -7,6 +7,8 @@ abstract class ConfigSeriesScatter<G, D, T> extends ConfigSeries<G, D, T> {
     // super.areaColor,
     // super.fillColor, below instead
     Color? Function(G group, D data, int? index)? pointColor,
+    // super.gradient, below instead
+    final Gradient? Function(G group, D data, int? index)? pointGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
@@ -27,7 +29,11 @@ abstract class ConfigSeriesScatter<G, D, T> extends ConfigSeries<G, D, T> {
     this.comparisonSymbolRender = const ComparisonSymbolRenderRectangleRange(),
     this.showPointLabel = false,
     required this.pointLabelDecorator,
-  }) : super(fillColor: pointColor, radiusPx: pointRadius);
+  }) : super(
+          fillColor: pointColor,
+          radiusPx: pointRadius,
+          gradient: pointGradient,
+        );
 
   /// render symbol for plot point
   /// - SymbolRenderCircle
@@ -87,6 +93,7 @@ class ConfigSeriesScatterN
     // super.areaColor,
     // super.fillColor,
     super.pointColor,
+    super.pointGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
@@ -118,6 +125,7 @@ class ConfigSeriesScatterO
     // super.areaColor,
     // super.fillColor,
     super.pointColor,
+    super.pointGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
@@ -149,6 +157,7 @@ class ConfigSeriesScatterT
     // super.areaColor,
     // super.fillColor,
     super.pointColor,
+    super.pointGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,

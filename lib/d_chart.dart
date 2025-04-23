@@ -1,4 +1,4 @@
-// Almost all of resource of this package from community_flutter_charts
+// Almost all of resource of this package from community_charts_flutter
 // Copyright 2018 the Charts project authors. Please see the AUTHORS file
 // for details.
 //
@@ -18,8 +18,9 @@ library d_chart;
 
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:community_charts_common/community_charts_common.dart' as common;
-import 'package:community_charts_flutter/community_charts_flutter.dart'
+import 'package:community_charts_common2/community_charts_common2.dart'
+    as common;
+import 'package:community_charts_flutter2/community_charts_flutter2.dart'
     as charts;
 
 part 'base/base_d_chart.dart';

@@ -19,6 +19,7 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
     // super.measureLowerBound,
     // super.measureUpperBound,
     this.arcLength = math.pi * 2,
+    this.arcLengthDegree,
     this.arcWidth,
     this.showLabel = false,
     required this.arcLabelDecorator,
@@ -26,15 +27,21 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
     this.startAngle = -math.pi / 2,
     this.startAngleDegree,
     this.strokeWidthBase = 2.0,
+    this.strokeColor,
   });
 
   /// Stroke width of the border of the arcs.
   final double strokeWidthBase;
 
+  final Color? strokeColor;
+
   /// Total arc length, in radians.
   ///
   /// The default arcLength is 2π.
+  /// prioritize: `arcLengthDegree`
   final double arcLength;
+
+  final double? arcLengthDegree;
 
   /// Fixed width of the arc within the radius.
   ///
@@ -63,8 +70,13 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
 
   @override
   common.ArcRendererConfig<T> getRenderConfig() {
+    if (arcLengthDegree != null) {
+      assert(arcLengthDegree! >= 0 && arcLengthDegree! <= 360);
+    }
     return common.ArcRendererConfig<T>(
-      arcLength: arcLength,
+      arcLength: arcLengthDegree != null
+          ? (arcLengthDegree! * math.pi / 180)
+          : arcLength,
       arcWidth: arcWidth,
       arcRendererDecorators: [
         if (showLabel) arcLabelDecorator.render(),
@@ -73,6 +85,8 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
           ? (startAngleDegree! * math.pi / 180)
           : startAngle,
       strokeWidthPx: strokeWidthBase,
+      strokeColor:
+          strokeColor == null ? null : MethodCommon.chartColor(strokeColor!),
       arcRatio: arcRatio,
     );
   }
@@ -97,7 +111,9 @@ class ConfigSeriesPieN extends ConfigSeriesPie<NumericGroup, NumericData, num> {
     // super.measureLowerBound,
     // super.measureUpperBound,
     super.strokeWidthBase,
+    super.strokeColor,
     super.arcLength,
+    super.arcLengthDegree,
     super.arcWidth,
     super.showLabel,
     super.arcLabelDecorator = const ArcLabelDecoratorN(),
@@ -128,7 +144,9 @@ class ConfigSeriesPieO
     // super.measureLowerBound,
     // super.measureUpperBound,
     super.strokeWidthBase,
+    super.strokeColor,
     super.arcLength,
+    super.arcLengthDegree,
     super.arcWidth,
     super.showLabel,
     super.arcLabelDecorator = const ArcLabelDecoratorO(),
@@ -158,7 +176,9 @@ class ConfigSeriesPieT extends ConfigSeriesPie<TimeGroup, TimeData, DateTime> {
     // super.measureLowerBound,
     // super.measureUpperBound,
     super.strokeWidthBase,
+    super.strokeColor,
     super.arcLength,
+    super.arcLengthDegree,
     super.arcWidth,
     super.showLabel,
     super.arcLabelDecorator = const ArcLabelDecoratorT(),

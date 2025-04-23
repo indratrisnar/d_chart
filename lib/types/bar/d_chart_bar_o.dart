@@ -39,6 +39,10 @@ class DChartBarO extends BaseDChartO {
           final group = groupList[indexGroup];
           final groupRenderType =
               renderType == null ? Constants.barRenderType : renderType!(group);
+          assert(groupRenderType == RenderType.bar ||
+              groupRenderType == RenderType.barLane ||
+              groupRenderType == RenderType.barTargetLine);
+
           final configSeries = switch (groupRenderType) {
             RenderType.barLane => configSeriesBarLane,
             RenderType.barTargetLine => configSeriesBarTargetLine,

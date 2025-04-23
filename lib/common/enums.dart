@@ -66,7 +66,7 @@ enum BarLabelVerticalPosition {
 ///   on top of a bar filled with the fill color.
 /// * [solid] defines a simple bar filled with the fill color. This is the
 ///   default pattern for bars.
-enum FillPattern { solid, forwarHatch }
+enum FillPattern { solid, forwarHatch, gradient }
 
 /// label position based on tick axis
 enum LabelAnchor {

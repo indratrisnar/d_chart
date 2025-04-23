@@ -1,3 +1,67 @@
+## 3.0.0
+
+- Re-Style Code Bridge Structure
+- Data Model
+  - remove color
+  - add dynamic property for group
+  - measure can set to null
+- Config Series
+  some global property move to ConfigSeries, to config universal chart
+- config render
+  - focus to core area about chart type and domain type
+  - config render property merge with Config Series
+- fix bug
+  - Chart Line
+    - cannot modified symbol point (fixed)
+    - add more option for symbol point
+- import
+  - only available for main d_chart import, not sub-import
+- Type
+  - ChartType -> RenderType
+  - RenderType move to main property at Bar & Combo as dynamic function, determine per group. You can set by group id
+  - new types of Bar: BarLaneO, BarTargetLine(N,O,T)
+  - Widget
+- Main Widget
+
+  N: Numeric/num  
+  O: Ordinal/String  
+  T: Time/DateTime
+
+  - Bar : O, T
+  - Bar Custom
+  - Combo: N, O, T
+  - Line: N, T
+  - Pie: N, O, T
+  - Scatter: N, T
+
+- New enum
+  - AxisRenderType { smallTick, gridline }
+  - TickLabelJustification { inside, outside }
+- Re-Focus for only 1 domain type, no-more multi property for each domain type
+  - before
+    ```dart
+    Label(
+      tickLabelFormatterN:,
+      tickLabelFormatterO:,
+      tickLabelFormatterT:,
+    )
+    ```
+  - after
+    ```dart
+    LabelN(
+      tickLabelFormatter:,
+    )
+    ```
+- Axis
+  - `usegridLine` removed, consider using AxisRenderType
+  - New style Domain
+    - DomainAxisN : Numeric
+    - DomainAxisO : Ordinal
+    - DomainAxisT : Time
+- Deprecated
+  - DChartBarCustom
+  - DChartSingleBar
+
 ## 2.10.5
 
 - update deprecated code on DChartSingleBar

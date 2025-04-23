@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  community_charts_flutter: ^1.0.4
-  community_charts_common: ^1.0.4
+  community_charts_common2: ^1.0.5
+  community_charts_flutter2: ^1.0.5
 
 dev_dependencies:
   flutter_test:

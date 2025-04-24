@@ -21,13 +21,4 @@ class LayoutMargin {
       bottomMarginSpec: common.MarginSpec.fixedPixel(bottom),
     );
   }
-
-  static charts.LayoutConfig get defaultRender {
-    return charts.LayoutConfig(
-      leftMarginSpec: common.MarginSpec.fixedPixel(20),
-      topMarginSpec: common.MarginSpec.fixedPixel(20),
-      rightMarginSpec: common.MarginSpec.fixedPixel(20),
-      bottomMarginSpec: common.MarginSpec.fixedPixel(20),
-    );
-  }
 }

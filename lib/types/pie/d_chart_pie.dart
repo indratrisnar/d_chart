@@ -29,7 +29,7 @@ abstract class DChartPie<G, D, T> extends BaseDChart<G, D, T> {
         animate: animate,
         animationDuration: animationDuration,
         defaultRenderer: configSeriesPie.getRenderConfig(),
-        layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
+        layoutConfig: layoutMargin?.getRender(),
         behaviors: [
           if (allowSliding) charts.SlidingViewport(),
           if (allowSliding) charts.PanAndZoomBehavior(),

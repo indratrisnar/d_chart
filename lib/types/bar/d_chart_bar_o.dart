@@ -78,7 +78,7 @@ class DChartBarO extends BaseDChartO {
         domainAxis: domainAxis?.axisSpec(),
         primaryMeasureAxis: measureAxis?.axisSpec(),
         secondaryMeasureAxis: secondaryMeasureAxis?.axisSpec(),
-        layoutConfig: layoutMargin?.getRender() ?? LayoutMargin.defaultRender,
+        layoutConfig: layoutMargin?.getRender(),
         behaviors: [
           if (allowSliding) charts.SlidingViewport(),
           if (allowSliding) charts.PanAndZoomBehavior(),

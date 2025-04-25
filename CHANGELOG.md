@@ -61,6 +61,10 @@
 - Deprecated
   - DChartBarCustom
   - DChartSingleBar
+- Gradient
+  - `fillGradient`: bar, point/scatter
+  - `strokeGradient`: bar, point/scatter, line
+  - `areaGradient`: line
 
 ## 2.10.5
 

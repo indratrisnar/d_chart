@@ -5,16 +5,16 @@ This package is built on top of [community_charts_flutter2](https://pub.dev/pack
 
 # Usage
 
+- [Example](https://dchart.pages.dev/docs/3.0.0/example/)
 - [Documentation](https://dchart.pages.dev/docs/3.0.0/usage)
-- Wrap Chart with Widget Size like SizedBox, Container, Aspecration etc to set root size for chart
-- Example
+- Wrap Chart with SizedBox, Container, AspectRatio etc to adjust chart size
 
-```dart
-AspectRatio(
-    aspectRatio: 16/9,
-    child: DChartComboO(),
-),
-```
+  ```dart
+  AspectRatio(
+      aspectRatio: 16/9,
+      child: DChartComboO(),
+  ),
+  ```
 
 <br>
 
@@ -24,24 +24,24 @@ AspectRatio(
 | O    | Ordinal | String   |
 | T    | Time    | DateTime |
 
-- [Bar](https://dchart.pages.dev/docs/3.0.0/category/bar):
-  - BarO,
-  - BarT,
-  - BarLaneO,
+- [Bar](https://dchart.pages.dev/docs/3.0.0/category/bar)
+  - BarO
+  - BarT
+  - BarLaneO
   - BarTargetLineN
   - BarTargetLineO
   - BarTargetLineT
-- [Line](https://dchart.pages.dev/docs/3.0.0/category/line):
+- [Line](https://dchart.pages.dev/docs/3.0.0/category/line)
   - LineN
   - LineT
-- [Scatter](https://dchart.pages.dev/docs/3.0.0/category/scatter):
+- [Scatter](https://dchart.pages.dev/docs/3.0.0/category/scatter)
   - ScatterN
   - ScatterT
-- [Combo](https://dchart.pages.dev/docs/3.0.0/category/combo):
+- [Combo](https://dchart.pages.dev/docs/3.0.0/category/combo)
   - ComboN
   - ComboO
   - ComboT
-- [Pie](https://dchart.pages.dev/docs/3.0.0/types/pie):
+- [Pie](https://dchart.pages.dev/docs/3.0.0/types/pie)
   - PieN
   - PieO
   - PieT

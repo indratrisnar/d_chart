@@ -50,8 +50,7 @@ abstract class BaseDChart<G, D, T> extends StatelessWidget {
   /// Which measure to use for group
   final bool Function(G group)? useSecondaryMeasureAxis;
 
-  /// margin from outer chart to wrapper box\
-  /// default: 20px for each side
+  /// margin from outer chart to wrapper box
   final LayoutMargin? layoutMargin;
 
   /// give user access to slide chart viewport\

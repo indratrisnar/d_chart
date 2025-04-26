@@ -9,6 +9,7 @@ abstract class ConfigSeriesScatter<G, D, T> extends ConfigSeries<G, D, T> {
     Color? Function(G group, D data, int? index)? pointColor,
     // super.gradient, below instead
     final Gradient? Function(G group, D data, int? index)? pointGradient,
+    super.strokeGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
@@ -32,7 +33,7 @@ abstract class ConfigSeriesScatter<G, D, T> extends ConfigSeries<G, D, T> {
   }) : super(
           fillColor: pointColor,
           radiusPx: pointRadius,
-          gradient: pointGradient,
+          fillGradient: pointGradient,
         );
 
   /// render symbol for plot point
@@ -94,6 +95,7 @@ class ConfigSeriesScatterN
     // super.fillColor,
     super.pointColor,
     super.pointGradient,
+    super.strokeGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
@@ -126,6 +128,7 @@ class ConfigSeriesScatterO
     // super.fillColor,
     super.pointColor,
     super.pointGradient,
+    super.strokeGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,
@@ -158,6 +161,7 @@ class ConfigSeriesScatterT
     // super.fillColor,
     super.pointColor,
     super.pointGradient,
+    super.strokeGradient,
     // super.fillPattern,
     super.dashPattern,
     super.labelAccessor,

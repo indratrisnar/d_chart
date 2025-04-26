@@ -1,6 +1,6 @@
 name: d_chart
 description: Simple way to show and use chart for Flutter with many option.
-version: 2.10.5
+version: 3.0.0
 homepage: https://github.com/indratrisnar/d_chart
 
 environment:
@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  community_charts_common2: ^1.0.5
-  community_charts_flutter2: ^1.0.5
+  community_charts_common2: ^1.0.7
+  community_charts_flutter2: ^1.0.7
 
 dev_dependencies:
   flutter_test:

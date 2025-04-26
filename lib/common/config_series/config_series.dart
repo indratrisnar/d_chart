@@ -9,7 +9,10 @@ abstract class ConfigSeries<G, D, T> {
     this.customColor,
     this.areaColor,
     this.fillColor,
-    this.gradient,
+    this.fillGradient,
+    this.strokeGradient,
+    this.targetLineGradient,
+    this.areaGradient,
     this.fillPattern,
     this.dashPattern,
     this.labelAccessor,
@@ -39,7 +42,16 @@ abstract class ConfigSeries<G, D, T> {
   final Color? Function(G group, D data, int? index)? fillColor;
 
   /// set gradient color instead of fillColor
-  final Gradient? Function(G group, D data, int? index)? gradient;
+  final Gradient? Function(G group, D data, int? index)? fillGradient;
+
+  /// set gradient color for stroke
+  final Gradient? Function(G group, D data, int? index)? strokeGradient;
+
+  /// just like `strokeGradient`, but better for clip bound size for gradient on each element
+  final Gradient? Function(G group, D data, int? index)? targetLineGradient;
+
+  /// set gradient for area in line chart
+  final Gradient? Function(G group, D data, int? index)? areaGradient;
 
   /// default: solid
   final FillPattern Function(G group, D data, int? index)? fillPattern;
@@ -137,9 +149,18 @@ abstract class ConfigSeries<G, D, T> {
               if (setupColor == null) return null;
               return MethodCommon.chartColor(setupColor);
             },
-      gradientFn: gradient == null
+      fillGradientFn: fillGradient == null
           ? null
-          : (datum, index) => gradient!(group, datum, index),
+          : (datum, index) => fillGradient!(group, datum, index),
+      strokeGradientFn: strokeGradient == null
+          ? null
+          : (datum, index) => strokeGradient!(group, datum, index),
+      targetLineGradientFn: targetLineGradient == null
+          ? null
+          : (datum, index) => targetLineGradient!(group, datum, index),
+      areaGradientFn: areaGradient == null
+          ? null
+          : (datum, index) => areaGradient!(group, datum, index),
       fillPatternFn: fillPattern == null
           ? null
           : (datum, index) {

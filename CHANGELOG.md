@@ -62,9 +62,12 @@
   - DChartBarCustom
   - DChartSingleBar
 - Gradient
-  - `fillGradient`: bar, point/scatter
+  - `fillGradient`: bar, point/scatter, Pie
   - `strokeGradient`: bar, point/scatter, line
+  - `targetLineGradient`: bar -> targetLine
   - `areaGradient`: line
+- Public Function
+  - `radianFromDegree()` to convert radian from degree
 
 ## 2.10.5
 

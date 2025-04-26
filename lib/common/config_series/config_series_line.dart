@@ -9,6 +9,8 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
     final Color? Function(G group, D data, int? index)? pointColor,
     // super.gradient, below instead
     final Gradient? Function(G group, D data, int? index)? pointGradient,
+    super.strokeGradient,
+    super.areaGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,
@@ -37,7 +39,7 @@ abstract class ConfigSeriesLine<G, D, T> extends ConfigSeries<G, D, T> {
   }) : super(
           fillColor: pointColor,
           radiusPx: pointRadius,
-          gradient: pointGradient,
+          fillGradient: pointGradient,
         );
 
   /// Configures whether a line representing the data will be drawn.
@@ -125,6 +127,8 @@ class ConfigSeriesLineN
     // super.fillColor,
     super.pointColor,
     super.pointGradient,
+    super.strokeGradient,
+    super.areaGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,
@@ -162,6 +166,8 @@ class ConfigSeriesLineO
     // super.fillColor,
     super.pointColor,
     super.pointGradient,
+    super.strokeGradient,
+    super.areaGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,
@@ -199,6 +205,8 @@ class ConfigSeriesLineT
     // super.fillColor,
     super.pointColor,
     super.pointGradient,
+    super.strokeGradient,
+    super.areaGradient,
     // super.fillPattern,
     super.dashPattern,
     // super.labelAccessor,

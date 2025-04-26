@@ -45,18 +45,18 @@ packages:
     dependency: "direct main"
     description:
       name: community_charts_common2
-      sha256: "158c8ac2fba4758b5c2b1ed42e6ff59bd17e78b58f38fa77f455a1508cc2bef7"
+      sha256: "7a6bb82637395fbc0f48ad9121cf7861830033b5390f81a783e1e452c4d6b609"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.7"
   community_charts_flutter2:
     dependency: "direct main"
     description:
       name: community_charts_flutter2
-      sha256: "79e4aa6f5a19a848bd82aec90b56ace27786007626b5ed4d69d74c2f431d68e2"
+      sha256: "46de88a0fa5c2873a7442e89a5cd51fbde9c25e3f66f42192c1a3a3cc02f829f"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.7"
   fake_async:
     dependency: transitive
     description:

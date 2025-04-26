@@ -6,6 +6,7 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
     super.customColor,
     // super.areaColor,
     // super.fillColor,
+    super.fillGradient,
     // super.fillPattern,
     // super.dashPattern,
     super.labelAccessor,
@@ -19,13 +20,11 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
     // super.measureLowerBound,
     // super.measureUpperBound,
     this.arcLength = math.pi * 2,
-    this.arcLengthDegree,
     this.arcWidth,
     this.showLabel = false,
     required this.arcLabelDecorator,
     this.arcRatio,
     this.startAngle = -math.pi / 2,
-    this.startAngleDegree,
     this.strokeWidthBase = 2.0,
     this.strokeColor,
   });
@@ -40,8 +39,6 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
   /// The default arcLength is 2π.
   /// prioritize: `arcLengthDegree`
   final double arcLength;
-
-  final double? arcLengthDegree;
 
   /// Fixed width of the arc within the radius.
   ///
@@ -58,11 +55,6 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
   /// prioritize: `startAngleDegree`
   final double startAngle;
 
-  /// using degree instead of radian
-  ///
-  /// top center = 0°
-  final double? startAngleDegree;
-
   /// default: false
   final bool showLabel;
 
@@ -70,20 +62,13 @@ abstract class ConfigSeriesPie<G, D, T> extends ConfigSeries<G, D, T> {
 
   @override
   common.ArcRendererConfig<T> getRenderConfig() {
-    if (arcLengthDegree != null) {
-      assert(arcLengthDegree! >= 0 && arcLengthDegree! <= 360);
-    }
     return common.ArcRendererConfig<T>(
-      arcLength: arcLengthDegree != null
-          ? (arcLengthDegree! * math.pi / 180)
-          : arcLength,
+      arcLength: arcLength,
       arcWidth: arcWidth,
       arcRendererDecorators: [
         if (showLabel) arcLabelDecorator.render(),
       ],
-      startAngle: startAngleDegree != null
-          ? (startAngleDegree! * math.pi / 180)
-          : startAngle,
+      startAngle: startAngle,
       strokeWidthPx: strokeWidthBase,
       strokeColor:
           strokeColor == null ? null : MethodCommon.chartColor(strokeColor!),
@@ -98,6 +83,7 @@ class ConfigSeriesPieN extends ConfigSeriesPie<NumericGroup, NumericData, num> {
     super.customColor,
     // super.areaColor,
     // super.fillColor,
+    super.fillGradient,
     // super.fillPattern,
     // super.dashPattern,
     super.labelAccessor,
@@ -113,13 +99,11 @@ class ConfigSeriesPieN extends ConfigSeriesPie<NumericGroup, NumericData, num> {
     super.strokeWidthBase,
     super.strokeColor,
     super.arcLength,
-    super.arcLengthDegree,
     super.arcWidth,
     super.showLabel,
     super.arcLabelDecorator = const ArcLabelDecoratorN(),
     super.arcRatio,
     super.startAngle,
-    super.startAngleDegree,
     // super.strokeWidthPx = 2.0,
   });
 }
@@ -131,6 +115,7 @@ class ConfigSeriesPieO
     super.customColor,
     // super.areaColor,
     // super.fillColor,
+    super.fillGradient,
     // super.fillPattern,
     // super.dashPattern,
     super.labelAccessor,
@@ -146,13 +131,11 @@ class ConfigSeriesPieO
     super.strokeWidthBase,
     super.strokeColor,
     super.arcLength,
-    super.arcLengthDegree,
     super.arcWidth,
     super.showLabel,
     super.arcLabelDecorator = const ArcLabelDecoratorO(),
     super.arcRatio,
     super.startAngle,
-    super.startAngleDegree,
     // super.strokeWidthPx = 2.0,
   });
 }
@@ -163,6 +146,7 @@ class ConfigSeriesPieT extends ConfigSeriesPie<TimeGroup, TimeData, DateTime> {
     super.customColor,
     // super.areaColor,
     // super.fillColor,
+    super.fillGradient,
     // super.fillPattern,
     // super.dashPattern,
     super.labelAccessor,
@@ -178,13 +162,11 @@ class ConfigSeriesPieT extends ConfigSeriesPie<TimeGroup, TimeData, DateTime> {
     super.strokeWidthBase,
     super.strokeColor,
     super.arcLength,
-    super.arcLengthDegree,
     super.arcWidth,
     super.showLabel,
     super.arcLabelDecorator = const ArcLabelDecoratorT(),
     super.arcRatio,
     super.startAngle,
-    super.startAngleDegree,
     // super.strokeWidthPx = 2.0,
   });
 }
